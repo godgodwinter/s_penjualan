@@ -7,15 +7,76 @@
         <div data-i18n="Support">Pengaturan</div>
     </a>
     </li>
+
+<!-- Mastering -->
+<li class="menu-header small text-uppercase"><span class="menu-header-text">Mastering</span></li>
     <li class="menu-item {{$pages=='portofolio'?'active': ''}}">
         <a
             href="{{route('admin.portofolio')}}"
             class="menu-link"
         >
         <i class="menu-icon fa-solid fa-table-cells"></i>
-            <div data-i18n="Support">Portofolio</div>
+            <div data-i18n="Support">Produk</div>
         </a>
         </li>
+
+    <li class="menu-item {{$pages=='portofolio'?'active': ''}}">
+        <a
+            href="{{route('admin.portofolio')}}"
+            class="menu-link"
+        >
+        <i class="menu-icon fa-solid fa-table-cells"></i>
+            <div data-i18n="Support">Stok</div>
+        </a>
+        </li>
+
+
+    <li class="menu-item {{$pages=='portofolio'?'active': ''}}">
+        <a
+            href="{{route('admin.portofolio')}}"
+            class="menu-link"
+        >
+        <i class="menu-icon fa-solid fa-table-cells"></i>
+            <div data-i18n="Support">Re-Stok</div>
+        </a>
+        </li>
+
+
+<!-- Transaksi -->
+<li class="menu-header small text-uppercase"><span class="menu-header-text">Transaksi</span></li>
+    <li class="menu-item {{$pages=='portofolio'?'active': ''}}">
+        <a
+            href="{{route('admin.portofolio')}}"
+            class="menu-link"
+        >
+        <i class="menu-icon fa-solid fa-table-cells"></i>
+            <div data-i18n="Support">Transaksi</div>
+        </a>
+        </li>
+
+
+    <li class="menu-item {{$pages=='portofolio'?'active': ''}}">
+        <a
+            href="{{route('admin.portofolio')}}"
+            class="menu-link"
+        >
+        <i class="menu-icon fa-solid fa-table-cells"></i>
+            <div data-i18n="Support">Konfirmasi Pembayaran</div>
+        </a>
+        </li>
+
+    <li class="menu-item {{$pages=='portofolio'?'active': ''}}">
+        <a
+            href="{{route('admin.portofolio')}}"
+            class="menu-link"
+        >
+        <i class="menu-icon fa-solid fa-table-cells"></i>
+            <div data-i18n="Support">Invoice</div>
+        </a>
+        </li>
+
+<!-- Transaksi -->
+<li class="menu-header small text-uppercase"><span class="menu-header-text">Transaksi</span></li>
 <li class="menu-item {{$pages=='kategori'?'active': ''}}">
     <a
         href="{{route('dev.crud')}}"
@@ -25,6 +86,7 @@
         <div data-i18n="Support">Label</div>
     </a>
     </li>
+
 <!-- Layouts -->
 <li class="menu-item">
 <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -61,7 +123,6 @@
     </li>
 </ul>
 </li>
-
 
 <!-- Forms & Tables -->
 <li class="menu-header small text-uppercase"><span class="menu-header-text">Forms &amp; Tables</span></li>
