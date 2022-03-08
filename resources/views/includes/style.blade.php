@@ -1,3 +1,5 @@
+<link href="{{ mix('css/app.css') }}" rel="stylesheet">
+
 <!-- Favicon -->
 <link rel="icon" type="image/x-icon" href="{{ asset('/') }}assets/template/sneat/assets/img/favicon/favicon.ico" />
 

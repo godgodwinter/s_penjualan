@@ -1,6 +1,7 @@
 <?php
 
 use App\Helpers\Fungsi;
+use App\Http\Controllers\admin\labelController;
 use App\Http\Controllers\admin\pelangganController;
 use App\Http\Controllers\admin\portofolioController;
 use App\Http\Controllers\admin\produkController;
@@ -9,6 +10,14 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::middleware('auth')->group(function () {
+    //label
+    Route::get('/admin/label', [labelController::class, 'index'])->name('admin.label');
+    Route::get('/admin/label/create', [labelController::class, 'create'])->name('admin.label.create');
+    Route::post('/admin/label/store', [labelController::class, 'store'])->name('admin.label.store');
+    Route::get('/admin/label/{item}', [labelController::class, 'edit'])->name('admin.label.edit');
+    Route::put('/admin/label/{item}', [labelController::class, 'update'])->name('admin.label.update');
+    Route::delete('/admin/label/{item}', [labelController::class, 'destroy'])->name('admin.label.destroy');
+
     //pages
     Route::get('/admin/portofolio', [portofolioController::class, 'index'])->name('admin.portofolio');
     Route::get('/admin/portofolio/create', [portofolioController::class, 'create'])->name('admin.portofolio.create');

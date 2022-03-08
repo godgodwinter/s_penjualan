@@ -27,3 +27,5 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/babeng/admin.php';
 require __DIR__.'/babeng/dev.php';
 require __DIR__.'/auth.php';
+//RESTAPI
+require __DIR__.'/babeng/api/devapi.php';

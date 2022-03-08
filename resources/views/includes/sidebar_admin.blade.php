@@ -10,12 +10,21 @@
 
 <!-- Mastering -->
 <li class="menu-header small text-uppercase"><span class="menu-header-text">Mastering</span></li>
-    <li class="menu-item {{$pages=='portofolio'?'active': ''}}">
+    <li class="menu-item {{$pages=='label'?'active': ''}}">
         <a
-            href="{{route('admin.portofolio')}}"
+            href="{{route('admin.label')}}"
             class="menu-link"
         >
-        <i class="menu-icon fa-solid fa-table-cells"></i>
+        <i class="menu-icon fa-solid fa-tags"></i>
+            <div data-i18n="Support">Label</div>
+        </a>
+        </li>
+    <li class="menu-item {{$pages=='produk'?'active': ''}}">
+        <a
+            href="{{route('admin.produk')}}"
+            class="menu-link"
+        >
+        <i class="menu-icon fa-brands fa-product-hunt"></i>
             <div data-i18n="Support">Produk</div>
         </a>
         </li>
@@ -25,7 +34,7 @@
             href="{{route('admin.portofolio')}}"
             class="menu-link"
         >
-        <i class="menu-icon fa-solid fa-table-cells"></i>
+        <i class="menu-icon fa-solid fa-boxes-stacked"></i>
             <div data-i18n="Support">Stok</div>
         </a>
         </li>
@@ -36,7 +45,7 @@
             href="{{route('admin.portofolio')}}"
             class="menu-link"
         >
-        <i class="menu-icon fa-solid fa-table-cells"></i>
+        <i class="menu-icon fa-solid fa-cubes"></i>
             <div data-i18n="Support">Re-Stok</div>
         </a>
         </li>
@@ -49,7 +58,7 @@
             href="{{route('admin.portofolio')}}"
             class="menu-link"
         >
-        <i class="menu-icon fa-solid fa-table-cells"></i>
+        <i class="menu-icon fa-solid fa-cart-shopping"></i>
             <div data-i18n="Support">Transaksi</div>
         </a>
         </li>
@@ -60,7 +69,7 @@
             href="{{route('admin.portofolio')}}"
             class="menu-link"
         >
-        <i class="menu-icon fa-solid fa-table-cells"></i>
+        <i class="menu-icon fa-solid fa-clipboard-check"></i>
             <div data-i18n="Support">Konfirmasi Pembayaran</div>
         </a>
         </li>
@@ -70,7 +79,7 @@
             href="{{route('admin.portofolio')}}"
             class="menu-link"
         >
-        <i class="menu-icon fa-solid fa-table-cells"></i>
+        <i class="menu-icon fa-solid fa-file-invoice"></i>
             <div data-i18n="Support">Invoice</div>
         </a>
         </li>
@@ -83,7 +92,7 @@
         class="menu-link"
     >
     <i class="menu-icon fa-solid fa-table-cells"></i>
-        <div data-i18n="Support">Label</div>
+        <div data-i18n="Support">Kategori</div>
     </a>
     </li>
 

@@ -300,7 +300,7 @@
       >
     </div> --}}
 
-
+ <script src="{{ mix('js/app.js') }}" defer></script>
     {{-- script --}}
     @stack('before-script')
     @include('includes.script')
