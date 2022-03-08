@@ -2,17 +2,30 @@ function refreshDataRestok(){
     let getData=storeGetProduk();
     if(getData){
     let data=getData.map(function(el,index){
-        return `<tr>
-        <td>${index+1}</td>
-        <td><button class="btn btn-danger btn-sm" onclick="storeHapusData(${el.id})">Hapus</button></td>
+        return `<tr >
+        <td class="text-center">${index+1}</td>
+        <td class="text-center babeng-min-row">
+        <button class="btn btn-danger btn-sm" onclick="return  confirm('Anda yakin menghapus data ini? Y/N') ?storeHapusData(${el.id}):''"><span
+        class="pcoded-micon"> <i class="fa-solid fa-trash-can"></i></span></button>
+
+        <button class="btn btn-warning btn-sm" onclick="storeBtnOpenModalEdit(${el.id},${index})" data-bs-toggle="modal" data-bs-target="#formModalEdit"><span
+        class="pcoded-micon"> <i class="fa-solid fa-pen-to-square"></i></span></button>
+        </td>
         <td>${el.nama}</td>
-        <td>${el.harga_jual}</td>
-        <td>${el.harga_beli}</td>
+        <td>Rp ${rupiah(el.harga_jual)},00</td>
+        <td>Rp ${rupiah(el.harga_beli)},00</td>
         <td class="text-center">${el.jumlah}</td>
-        <td class="text-center">${el.total}</td>
+        <td class="text-center">Rp ${rupiah(el.total)},00</td>
         </tr>`
     }).join('');
     document.querySelector('#trbody').innerHTML=data;
+    $('#cart').val(JSON.stringify(getData));
+    let sumtotalbayar=getData.map(item => item.total).reduce((prev, next) => prev + next);
+    $('#totalbayar').val('Rp ' + rupiah(sumtotalbayar));
+    }else{
+        document.querySelector('#trbody').innerHTML='';
+        $('#cart').val('');
+        $('#totalbayar').val(0);
     }
 }
 
@@ -73,7 +86,7 @@ function storePeriksa(id=null) {
     if(getData!=null){
         let jmlData=getData.length;
         for(let i=0;i<jmlData;i++){
-            console.log(getData[i].id);
+            // console.log(getData[i].id);
             if(getData[i].id==id){
                 getData.splice(i,1);
                 localStorage.setItem('restokItems',JSON.stringify(getData));
@@ -83,4 +96,74 @@ function storePeriksa(id=null) {
             }
         }
     }
+}
+
+function storeBtnOpenModalEdit(id=null,index=null){
+    // console.log(id,index);
+    let getData=storeGetProduk();
+    $('#formModalEdit').on('shown.bs.modal', function () {
+        $('#inputNamaProduk').val(getData[index].nama);
+        $('#inputHargaBeli').val(getData[index].harga_beli);
+        $('#inputJumlah').val(getData[index].jumlah);
+        $('#inputJumlah').focus();
+    });
+    let footerModalEdit=`<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+    <button type="button" class="btn btn-primary" onclick="storeBtnApplyModalEdit(${index})">Apply</button>`;
+    $('#btnApplyModalEdit').html(footerModalEdit);
+}
+
+function storeBtnApplyModalEdit(index=null){
+    let getData=storeGetProduk();
+    getData[index].jumlah=$('#inputJumlah').val();
+    getData[index].harga_beli=$('#inputHargaBeli').val();
+    getData[index].total=$('#inputJumlah').val()*$('#inputHargaBeli').val();
+    // console.log(index,getData[index].jumlah,getData[index].harga_beli,getData[index].total);
+    localStorage.setItem('restokItems',JSON.stringify(getData));
+    $('#formModalEdit').modal('hide');
+    // $('.close').click(); 
+    refreshDataRestok();
+    
+}
+
+
+function storeCariData(inputancari='',inputanUrl='#'){
+
+
+            let contentResponse = '';
+            let datas=null;
+            //fetch data example
+            $.ajax({
+                url: inputanUrl,
+                type: "GET",
+                data: {
+                    cari: inputancari
+                },
+                success: function (response) {
+                    // console.log(response.data);
+                    datas = response.data;
+                    let jmlDataResponse = datas.length;
+                    for (let i = 0; i < jmlDataResponse; i++) {
+                        contentResponse += `
+<div class="col-12 col-md-6 col-lg-4 mb-4 mb-lg-0 mt-3">
+<div class="card border-0 bg-white text-center p-1" >
+<img src="https://ui-avatars.com/api/?name=${datas[i].nama}&color=7F9CF5&background=EBF4FF" class="thumbnail img-responsive"  style="display: block;max-width: 100%;height: 200px;object-fit: cover"> 
+<div class="card-body">
+<h5 class="card-title">${datas[i].nama}</h5>
+<p class="card-text">Harga : Rp ${rupiah(datas[i].harga_jual)},00</p>
+<button  class="btn btn-info addProduk" onclick="storeProduk(${datas[i].id},'${datas[i].nama}',${datas[i].harga_jual})">Add</button>
+</div>
+</div>
+</div>
+`;
+                    }
+                    $('#contentCari').html(contentResponse);
+                }
+            });
+
+}
+function resetData(){
+    console.log('Reset All data');
+    localStorage.clear();
+    refreshDataRestok();
+    // reload();
 }

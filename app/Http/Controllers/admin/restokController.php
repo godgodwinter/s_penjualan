@@ -32,6 +32,11 @@ class restokController extends Controller
 
     public function store(Request $request)
     {
+            $datakeranjang=null;
+        if($request->cart){
+            $datakeranjang=json_decode($request->cart);
+        }
+        dd($request,$datakeranjang);
             $request->validate([
                 'nama'=>'required',
                 'harga_jual'=>'required',
@@ -40,6 +45,7 @@ class restokController extends Controller
             [
                 'nama.nama'=>'Nama harus diisi',
             ]);
+
             $slug=Str::slug($request->nama, '-');
             DB::table('restok')->insert(
                 array(

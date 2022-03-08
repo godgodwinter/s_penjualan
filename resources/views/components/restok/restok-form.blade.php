@@ -6,7 +6,7 @@
               <th>Nama</th>
               <th>Harga Jual</th>
               <th>Harga Beli</th>
-              <th class="text-center">Jumlah</th>
+              <th class="text-center babeng-min-row">Jumlah</th>
               <th class="text-center">Total Harga</th>
         </x-slot>
         <x-slot name="tbody">
