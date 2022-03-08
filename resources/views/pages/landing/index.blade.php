@@ -64,78 +64,89 @@ Beranda
             <div class="container">
             <div class="row ">
 
-            <div class="col ">
-                <div div class="height d-flex justify-content-center align-items-center">
-                    <div class="card p-3">
-                        <div class="d-flex justify-content-between align-items-center ">
-                            <div class="mt-2">
-                                <h4 class="text-uppercase">Ikea</h4>
-                                <div class="mt-5">
-                                    <h5 class="text-uppercase mb-0">Blanda Matt</h5>
-                                    <h1 class="main-heading mt-0">VASE</h1>
-                                    <div class="d-flex flex-row user-ratings">
-                                        <div class="ratings"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </div>
-                                        <h6 class="text-muted ml-1">4/5</h6>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="image"> <img src="https://i.imgur.com/MGorDUi.png" width="200"> </div>
-                        </div>
-                        <div class="d-flex justify-content-between align-items-center mt-2 mb-2"> <span>Available colors</span>
-                            <div class="colors"> <span></span> <span></span> <span></span> <span></span> </div>
-                        </div>
-                        <p>A great option weather you are at office or at home. </p> <button class="btn btn-danger">Add to cart</button>
+                <div class="col-12 col-md-6 col-lg-4 mb-4 mb-lg-0 mt-3">
+                    <div class="card border-0 bg-white text-center p-1" >
+                    <img src="{{asset('/')}}assets/img/unsplash-produk1.jpg" class="thumbnail img-responsive"  style="display: block;max-width: 100%;height: 150px;object-fit: cover"> 
+                    <div class="card-body">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text">Harga : Rp 200.000,00</p>
+                      <a href="#" class="btn btn-info">Add</a>
                     </div>
+                  </div>
                 </div>
-                </div>
-
-            <div class="col ">
-                <div div class="height d-flex justify-content-center align-items-center">
-                    <div class="card p-3">
-                        <div class="d-flex justify-content-between align-items-center ">
-                            <div class="mt-2">
-                                <h4 class="text-uppercase">Ikea</h4>
-                                <div class="mt-5">
-                                    <h5 class="text-uppercase mb-0">Blanda Matt</h5>
-                                    <h1 class="main-heading mt-0">VASE</h1>
-                                    <div class="d-flex flex-row user-ratings">
-                                        <div class="ratings"> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> <i class="fa fa-star"></i> </div>
-                                        <h6 class="text-muted ml-1">4/5</h6>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="image"> <img src="https://i.imgur.com/MGorDUi.png" width="200"> </div>
-                        </div>
-                        <div class="d-flex justify-content-between align-items-center mt-2 mb-2"> <span>Available colors</span>
-                            <div class="colors"> <span></span> <span></span> <span></span> <span></span> </div>
-                        </div>
-                        <p>A great option weather you are at office or at home. </p> <button class="btn btn-danger">Add to cart</button>
+                <div class="col-12 col-md-6 col-lg-4 mb-4 mb-lg-0 mt-3">
+                    <div class="card border-0 bg-white text-center p-1" >
+                    <img src="https://ui-avatars.com/api/?name=Produk&color=7F9CF5&background=EBF4FF" class="thumbnail img-responsive"  style="display: block;max-width: 100%;height: 150px;object-fit: cover"> 
+                    <div class="card-body">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text">Harga : Rp 200.000,00</p>
+                      <a href="#" class="btn btn-info">Add</a>
                     </div>
-                </div>
-                </div>
-
-            <div class="col "><div class="bg-dark vh-100 d-flex justify-content-center align-items-center">
-    <div class="container d-flex justify-content-center">
-        <div class="card p-2">
-            <div class="p-info px-3 py-3">
-                <div>
-                    <h5 class="mb-0">Beats By Dre</h5> <span>Professional Headphones</span>
-                </div>
-                <div class="p-price d-flex flex-row"> <span>$</span>
-                    <h1>299</h1>
-                </div>
-                <div class="heart"> <i class="bx bx-heart"></i> </div>
-            </div>
-            <div class="text-center p-image"> <img src="https://i.imgur.com/hpftqCo.png"> </div>
-            <div class="p-about">
-                <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed</p>
-            </div>
-            <div class="buttons d-flex flex-row gap-3 px-3"> <button class="btn btn-danger w-100">View</button> <button class="btn btn-outline-danger w-100">Buy Now</button> </div>
-        </div>
-    </div>
-</div>
+                  </div>
                 </div>
 
+                <div class="col-12 col-md-6 col-lg-4 mb-4 mb-lg-0 mt-3">
+                    <div class="card border-0 bg-white text-center p-1" >
+                    <img src="{{asset('/')}}assets/img/unsplash-produk1.jpg" class="thumbnail img-responsive"  style="display: block;max-width: 100%;height: 150px;object-fit: cover"> 
+                    <div class="card-body">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text">Harga : Rp 200.000,00</p>
+                      <a href="#" class="btn btn-info">Add</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 mb-4 mb-lg-0 mt-3">
+                    <div class="card border-0 bg-white text-center p-1" >
+                    <img src="https://ui-avatars.com/api/?name=Produk&color=7F9CF5&background=EBF4FF" class="thumbnail img-responsive"  style="display: block;max-width: 100%;height: 150px;object-fit: cover"> 
+                    <div class="card-body">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text">Harga : Rp 200.000,00</p>
+                      <a href="#" class="btn btn-info">Add</a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-4 mb-4 mb-lg-0 mt-3">
+                    <div class="card border-0 bg-white text-center p-1" >
+                    <img src="{{asset('/')}}assets/img/unsplash-produk1.jpg" class="thumbnail img-responsive"  style="display: block;max-width: 100%;height: 150px;object-fit: cover"> 
+                    <div class="card-body">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text">Harga : Rp 200.000,00</p>
+                      <a href="#" class="btn btn-info">Add</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 mb-4 mb-lg-0 mt-3">
+                    <div class="card border-0 bg-white text-center p-1" >
+                    <img src="https://ui-avatars.com/api/?name=Produk&color=7F9CF5&background=EBF4FF" class="thumbnail img-responsive"  style="display: block;max-width: 100%;height: 150px;object-fit: cover"> 
+                    <div class="card-body">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text">Harga : Rp 200.000,00</p>
+                      <a href="#" class="btn btn-info">Add</a>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-4 mb-4 mb-lg-0 mt-3">
+                    <div class="card border-0 bg-white text-center p-1" >
+                    <img src="{{asset('/')}}assets/img/unsplash-produk1.jpg" class="thumbnail img-responsive"  style="display: block;max-width: 100%;height: 150px;object-fit: cover"> 
+                    <div class="card-body">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text">Harga : Rp 200.000,00</p>
+                      <a href="#" class="btn btn-info">Add</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4 mb-4 mb-lg-0 mt-3">
+                    <div class="card border-0 bg-white text-center p-1" >
+                    <img src="https://ui-avatars.com/api/?name=Produk&color=7F9CF5&background=EBF4FF" class="thumbnail img-responsive"  style="display: block;max-width: 100%;height: 150px;object-fit: cover"> 
+                    <div class="card-body">
+                      <h5 class="card-title">Card title</h5>
+                      <p class="card-text">Harga : Rp 200.000,00</p>
+                      <a href="#" class="btn btn-info">Add</a>
+                    </div>
+                  </div>
+                </div>
                 
             </div>
 

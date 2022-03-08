@@ -1,9 +1,9 @@
 <?php
 
 use App\Http\Controllers\api\apiKategoriController;
+use App\Http\Controllers\api\apiProdukController;
 use Illuminate\Support\Facades\Route;
-// Route::post('/admin/label/store', [labelController::class, 'store'])->name('admin.label.store');
-
+Route::get('restapi/dataproduk/cari', [apiProdukController::class, 'cari'])->name('api.produk.cari');
 Route::middleware('auth')->group(function () {
     Route::get('restapi/label', [apiKategoriController::class, 'label'])->name('api.label.index');
 });

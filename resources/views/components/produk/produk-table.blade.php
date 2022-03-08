@@ -5,6 +5,8 @@
               <th class="text-center">Aksi</th>
               <th>Nama</th>
               <th>Harga Jual</th>
+              <th class="text-center">Stok</th>
+              <th class="text-center">Terjual</th>
         </x-slot>
         <x-slot name="tbody">
             @forelse ($items as $item)
@@ -16,6 +18,11 @@
                 </td>
                 <td>{{$item->nama}}</td>
                 <td>{{Fungsi::rupiah($item->harga_jual)}}</td>
+                @php
+                    $getstok=\App\Models\produkdetail::where('produk_id',$item->id)->get();
+                @endphp
+                <td class="text-center">{{ $getstok->count() }}</td>
+                <td class="text-center">0</td>
             </tr>
             @empty
             @endforelse

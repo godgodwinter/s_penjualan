@@ -5,6 +5,7 @@ use App\Http\Controllers\admin\labelController;
 use App\Http\Controllers\admin\pelangganController;
 use App\Http\Controllers\admin\portofolioController;
 use App\Http\Controllers\admin\produkController;
+use App\Http\Controllers\admin\restokController;
 use App\Http\Controllers\admin\transaksiController;
 use Illuminate\Support\Facades\Route;
 
@@ -33,6 +34,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/produk/{item}', [produkController::class, 'edit'])->name('admin.produk.edit');
     Route::put('/admin/produk/{item}', [produkController::class, 'update'])->name('admin.produk.update');
     Route::delete('/admin/produk/{item}', [produkController::class, 'destroy'])->name('admin.produk.destroy');
+
+
+    //restok
+    Route::get('/admin/restok', [restokController::class, 'index'])->name('admin.restok');
+    Route::get('/admin/restok/create', [restokController::class, 'create'])->name('admin.restok.create');
+    Route::post('/admin/restok/store', [restokController::class, 'store'])->name('admin.restok.store');
+    Route::get('/admin/restok/{item}', [restokController::class, 'edit'])->name('admin.restok.edit');
+    Route::put('/admin/restok/{item}', [restokController::class, 'update'])->name('admin.restok.update');
+    Route::delete('/admin/restok/{item}', [restokController::class, 'destroy'])->name('admin.restok.destroy');
 
 
     //pelanggan

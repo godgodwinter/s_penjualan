@@ -6,19 +6,19 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class produkdetail extends Model
+class restok extends Model
 {
-        public $table = "produkdetail";
+        public $table = "restok";
 
         use SoftDeletes;
         use HasFactory;
 
         protected $fillable = [
-            'barang_id',
-            'harga_beli',
-            'jml',
-            'restok_id',
-            // 'harga_jual',
+            'kodetrans',
+            'namatoko',
+            'tglbeli',
+            'totalbayar',
+            'penanggungjawab',
         ];
 
 

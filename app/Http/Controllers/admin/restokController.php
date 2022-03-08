@@ -4,25 +4,30 @@ namespace App\Http\Controllers\admin;
 
 use App\Helpers\Fungsi;
 use App\Http\Controllers\Controller;
-use App\Models\produk;
+use App\Models\produkdetail;
+use App\Models\restok;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Faker\Factory as Faker;
 
-class produkController extends Controller
+class restokController extends Controller
 {
     public function index(Request $request)
     {
         #WAJIB
-        $pages='produk';
-        $items=produk::orderBy('nama','asc')
+        $pages='restok';
+        $items=restok::
+        orderBy('namatoko','asc')
         ->paginate();
-        return view('pages.admin.produk.index',compact('items','request','pages'));
+        return view('pages.admin.restok.index',compact('items','request','pages'));
     }
     public function create()
     {
-        $pages='produk';
-        return view('pages.admin.produk.create',compact('pages'));
+        $pages='restok';
+        $faker = Faker::create('id_ID');
+        $kodetrans=$faker->unique()->uuid();
+        return view('pages.admin.restok.create',compact('pages','kodetrans'));
     }
 
     public function store(Request $request)
@@ -36,7 +41,7 @@ class produkController extends Controller
                 'nama.nama'=>'Nama harus diisi',
             ]);
             $slug=Str::slug($request->nama, '-');
-            DB::table('produk')->insert(
+            DB::table('restok')->insert(
                 array(
                        'nama'     =>   $request->nama,
                        'harga_jual'     =>    Fungsi::angka($request->harga_jual),
@@ -45,15 +50,15 @@ class produkController extends Controller
                        'created_at'=>date("Y-m-d H:i:s"),
                        'updated_at'=>date("Y-m-d H:i:s")
                 ));
-    return redirect()->route('admin.produk')->with('status','Data berhasil tambahkan!')->with('tipe','success')->with('icon','fas fa-feather');
+    return redirect()->route('admin.restok')->with('status','Data berhasil tambahkan!')->with('tipe','success')->with('icon','fas fa-feather');
     }
 
-    public function edit(produk $item)
+    public function edit(produkdetail $item)
     {
-        $pages='produk';
-        return view('pages.admin.produk.edit',compact('pages','item'));
+        $pages='restok';
+        return view('pages.admin.restok.edit',compact('pages','item'));
     }
-    public function update(produk $item,Request $request)
+    public function update(produkdetail $item,Request $request)
     {
 
         $request->validate([
@@ -68,7 +73,7 @@ class produkController extends Controller
         ]);
 
         $slug=Str::slug($request->nama, '-');
-            produk::where('id',$item->id)
+        produkdetail::where('id',$item->id)
             ->update([
                 'nama'     =>   $request->nama,
                 'harga_jual'     =>    Fungsi::angka($request->harga_jual),
@@ -78,12 +83,12 @@ class produkController extends Controller
 
 
 
-    return redirect()->route('admin.produk')->with('status','Data berhasil diubah!')->with('tipe','success')->with('icon','fas fa-feather');
+    return redirect()->route('admin.restok')->with('status','Data berhasil diubah!')->with('tipe','success')->with('icon','fas fa-feather');
     }
-    public function destroy(produk $item){
+    public function destroy(produkdetail $item){
 
-        produk::destroy($item->id);
-        return redirect()->route('admin.produk')->with('status','Data berhasil dihapus!')->with('tipe','warning')->with('icon','fas fa-feather');
+        produkdetail::destroy($item->id);
+        return redirect()->route('admin.restok')->with('status','Data berhasil dihapus!')->with('tipe','warning')->with('icon','fas fa-feather');
 
     }
 }

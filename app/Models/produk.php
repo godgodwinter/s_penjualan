@@ -22,15 +22,15 @@ class produk extends Model
 
         public function produkdetail()
         {
-            return $this->hasMany(produkdetail::class,'parrent_id','id');
+            return $this->hasMany(produkdetail::class,'produk_id','id');
         }
 
-    public static function boot() {
-        parent::boot();
-        static::deleting(function($produk) { // before delete() method call this
-             $produk->produkdetail()->delete();
-             // do the rest of the cleanup...
-        });
-    }
+    // public static function boot() {
+        // parent::boot();
+        // static::deleting(function($produk) { // before delete() method call this
+        //      $produk->produkdetail()->delete();
+        //      // do the rest of the cleanup...
+        // });
+    // }
 
 }

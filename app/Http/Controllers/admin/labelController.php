@@ -20,7 +20,7 @@ class labelController extends Controller
     }
     public function create()
     {
-        $pages='kategori';
+        $pages='label';
         return view('pages.admin.label.create',compact('pages'));
     }
 
@@ -47,7 +47,7 @@ class labelController extends Controller
 
     public function edit(kategori $item)
     {
-        $pages='kategori';
+        $pages='label';
         return view('pages.admin.label.edit',compact('pages','item'));
     }
     public function update(kategori $item,Request $request)

@@ -29,7 +29,7 @@
         </a>
         </li>
 
-    <li class="menu-item {{$pages=='portofolio'?'active': ''}}">
+    {{-- <li class="menu-item {{$pages=='portofolio'?'active': ''}}">
         <a
             href="{{route('admin.portofolio')}}"
             class="menu-link"
@@ -37,12 +37,12 @@
         <i class="menu-icon fa-solid fa-boxes-stacked"></i>
             <div data-i18n="Support">Stok</div>
         </a>
-        </li>
+        </li> --}}
 
 
-    <li class="menu-item {{$pages=='portofolio'?'active': ''}}">
+    <li class="menu-item {{$pages=='restok'?'active': ''}}">
         <a
-            href="{{route('admin.portofolio')}}"
+            href="{{route('admin.restok')}}"
             class="menu-link"
         >
         <i class="menu-icon fa-solid fa-cubes"></i>
