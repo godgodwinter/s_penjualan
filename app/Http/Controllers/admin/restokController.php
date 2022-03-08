@@ -36,26 +36,39 @@ class restokController extends Controller
         if($request->cart){
             $datakeranjang=json_decode($request->cart);
         }
-        dd($request,$datakeranjang);
+        // dd($request,$datakeranjang);
             $request->validate([
-                'nama'=>'required',
-                'harga_jual'=>'required',
-                'desc'=>'required',
+                'namatoko'=>'required',
+                'penanggungjawab'=>'required',
+                'tglbeli'=>'required',
             ],
             [
                 'nama.nama'=>'Nama harus diisi',
             ]);
 
-            $slug=Str::slug($request->nama, '-');
-            DB::table('restok')->insert(
+            $restok_id=DB::table('restok')->insertGetId(
                 array(
-                       'nama'     =>   $request->nama,
-                       'harga_jual'     =>    Fungsi::angka($request->harga_jual),
-                       'desc'     =>   $request->desc,
-                       'slug'     =>   $slug,
+                        'kodetrans'     =>   $request->kodetrans,
+                       'namatoko'     =>   $request->namatoko,
+                       'totalbayar'     =>    Fungsi::angka($request->totalbayar),
+                       'penanggungjawab'     =>   $request->penanggungjawab,
+                       'tglbeli'     =>   $request->tglbeli,
                        'created_at'=>date("Y-m-d H:i:s"),
                        'updated_at'=>date("Y-m-d H:i:s")
                 ));
+                $jmlData=count($datakeranjang);
+                for($i=0;$i<$jmlData;$i++){
+                    DB::table('produkdetail')->insertGetId(
+                        array(
+                                'produk_id'     =>   $datakeranjang[$i]->id,
+                                'restok_id'     =>   $restok_id,
+                                'harga_beli'     =>   $datakeranjang[$i]->harga_beli,
+                                'harga_jual'     =>   $datakeranjang[$i]->harga_jual,
+                                'jml'     =>   $datakeranjang[$i]->jumlah,
+                                'created_at'=>date("Y-m-d H:i:s"),
+                                'updated_at'=>date("Y-m-d H:i:s")
+                        ));
+                }
     return redirect()->route('admin.restok')->with('status','Data berhasil tambahkan!')->with('tipe','success')->with('icon','fas fa-feather');
     }
 
