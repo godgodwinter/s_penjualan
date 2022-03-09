@@ -53,9 +53,9 @@
 
 <!-- Transaksi -->
 <li class="menu-header small text-uppercase"><span class="menu-header-text">Transaksi</span></li>
-    <li class="menu-item {{$pages=='portofolio'?'active': ''}}">
+    <li class="menu-item {{$pages=='transaksi'?'active': ''}}">
         <a
-            href="{{route('admin.portofolio')}}"
+            href="{{route('admin.transaksi')}}"
             class="menu-link"
         >
         <i class="menu-icon fa-solid fa-cart-shopping"></i>

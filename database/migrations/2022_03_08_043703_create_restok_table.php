@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('kodetrans');
             $table->string('namatoko');
             $table->string('tglbeli');
-            $table->string('totalbayar');
+            $table->integer('totalbayar');
             $table->string('penanggungjawab');
             $table->softDeletes();
             $table->timestamps();

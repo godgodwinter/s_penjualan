@@ -15,14 +15,16 @@ return new class extends Migration
     {
         Schema::create('transaksi', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('pelanggan_id');
+            $table->string('pelanggan_id')->nullable(); //jika non member berarti offline tidak perlu pelanggan_id
+            $table->string('pelanggan_tipe'); //member, non member
+            $table->text('alamat')->nullable(); //jika offline tidak perlu diisi 
             $table->string('tgl_beli');
-            $table->string('ppn');
+            $table->integer('ppn')->nullable();
             $table->string('status'); //pembayaran
-            $table->string('photo_konfirmasi'); 
-            $table->string('total_bayar'); 
-            $table->string('dibayar'); 
-            $table->string('kembalian'); 
+            $table->string('photo_konfirmasi')->nullable(); 
+            $table->integer('total_bayar'); 
+            $table->integer('dibayar'); 
+            $table->integer('kembalian')->nullable(); 
             $table->softDeletes();
             $table->timestamps();
         });

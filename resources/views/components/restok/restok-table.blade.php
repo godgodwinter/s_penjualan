@@ -3,7 +3,7 @@
         <x-slot name="thead">
               <th class="babeng-min-row text-center">No</th>
               <th class="text-center">Aksi</th>
-              <th >Kode Transaksi</th>
+              <th >Tanggal Transaksi</th>
               <th>Nama Toko</th>
               <th class="babeng-min-row text-center">Jumlah Produk</th>
               <th class="babeng-min-row text-center">Jumlah Barang</th>
@@ -18,13 +18,14 @@
             <tr>
                 <td class=" text-center">{{$loop->index+1}}</td>
                 <td class="babeng-min-row">
-                    <x-btndelete link="{{route('admin.label.destroy',$item->id)}}"></x-btndelete>
+                    <x-btndelete link="{{route('admin.restok.destroy',$item->id)}}"></x-btndelete>
                     <button class="btn btn-info btn-sm" onclick="btnModalDetailTransaksi('{{$url}}',{{$item->id}})" data-bs-toggle="modal" data-bs-target="#modalDetailTransaksi"><span
                         class="pcoded-micon"> <i class="fa-solid fa-angles-right"></i></span></button>
                    
                     
                 </td>
-                <td>{{substr($item->kodetrans, 0, 7) . '...'}}</td>
+                {{-- <td>{{substr($item->kodetrans, 0, 7) . '...'}}</td> --}}
+                <td>{{Fungsi::tanggalindo($item->tglbeli)}}</td>
                 <td>{{$item->namatoko}}</td>
                 @php
                     $jumlahproduk = \App\Models\produkdetail::where('restok_id',$item->id)->count();

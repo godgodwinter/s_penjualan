@@ -17,9 +17,9 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('transaksi_id');
             $table->string('produk_id');
-            $table->string('harga_jual');
-            $table->string('diskon');
-            $table->string('harga_akhir');
+            $table->integer('harga_jual');
+            $table->integer('diskon');
+            $table->integer('harga_akhir');
             $table->softDeletes();
             $table->timestamps();
         });

@@ -41,7 +41,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/restok/create', [restokController::class, 'create'])->name('admin.restok.create');
     Route::post('/admin/restok/store', [restokController::class, 'store'])->name('admin.restok.store');
     Route::get('/admin/restok/{item}', [restokController::class, 'edit'])->name('admin.restok.edit');
-    Route::put('/admin/restok/{item}', [restokController::class, 'update'])->name('admin.restok.update');
+    // Route::put('/admin/restok/{item}', [restokController::class, 'update'])->name('admin.restok.update');
     Route::delete('/admin/restok/{item}', [restokController::class, 'destroy'])->name('admin.restok.destroy');
 
 

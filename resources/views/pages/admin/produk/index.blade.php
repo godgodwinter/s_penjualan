@@ -32,7 +32,7 @@ Produk
                   <i class="fa-solid fa-circle-plus"></i>
               </a>
             </div>
-              <div class="btn-group" role="group" aria-produk="First group">
+              {{-- <div class="btn-group" role="group" aria-produk="First group">
                 <button type="button" class="btn btn-outline-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Download PDF">
                     <i class="fa-solid fa-file-pdf"></i>
                 </button>
@@ -42,7 +42,7 @@ Produk
                 <button type="button" class="btn btn-outline-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Import">
                     <i class="fa-solid fa-upload"></i>
                 </button>
-              </div>
+              </div> --}}
             </div>
           </div>
         </div>

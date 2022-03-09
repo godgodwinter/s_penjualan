@@ -18,7 +18,9 @@ class restokController extends Controller
         #WAJIB
         $pages='restok';
         $items=restok::
-        orderBy('namatoko','asc')
+        orderBy('tglbeli','desc')
+        ->orderBy('created_at','desc')
+        ->orderBy('namatoko','asc')
         ->paginate();
         return view('pages.admin.restok.index',compact('items','request','pages'));
     }
@@ -104,9 +106,9 @@ class restokController extends Controller
 
     return redirect()->route('admin.restok')->with('status','Data berhasil diubah!')->with('tipe','success')->with('icon','fas fa-feather');
     }
-    public function destroy(produkdetail $item){
+    public function destroy(restok $item){
 
-        produkdetail::destroy($item->id);
+        restok::destroy($item->id);
         return redirect()->route('admin.restok')->with('status','Data berhasil dihapus!')->with('tipe','warning')->with('icon','fas fa-feather');
 
     }
