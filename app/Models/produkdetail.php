@@ -21,5 +21,9 @@ class produkdetail extends Model
             // 'harga_jual',
         ];
 
+        public function produk()
+        {
+            return $this->belongsTo(produk::class,'produk_id','id');
+        }
 
 }
