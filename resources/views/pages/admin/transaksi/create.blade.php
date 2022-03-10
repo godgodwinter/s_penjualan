@@ -48,7 +48,8 @@ Buat Transaksi
         </div>
 
         <div class="col-md-4 col-12">
-            <x-transaksi.transaksi-form-two kodetrans="{{$kodetrans}}"></x-transaksi.transaksi-form-two>
+            {{-- {{dd($pelanggan)}} --}}
+            <x-transaksi.transaksi-form-two kodetrans="{{$kodetrans}}" :pelanggan="$pelanggan"></x-transaksi.transaksi-form-two>
         </div>
     </div>
 </div>
@@ -69,7 +70,7 @@ Buat Transaksi
             <div class="modal-body">
 @push('before-script')
 <script src="{{asset('/assets/js/babeng.js')}}"></script>
-<script src="{{asset('/assets/js/store.js')}}"></script>
+<script src="{{asset('/assets/js/transaksi.js')}}"></script>
 <script>
     $(document).ready(function () {
 

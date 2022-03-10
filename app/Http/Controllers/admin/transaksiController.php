@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\pelanggan;
 use App\Models\transaksi;
 use Illuminate\Http\Request;
 use Faker\Factory as Faker;
@@ -24,6 +25,7 @@ class transaksiController extends Controller
         $pages='transaksi';
         $faker = Faker::create('id_ID');
         $kodetrans=$faker->unique()->uuid();
-        return view('pages.admin.transaksi.create',compact('pages','kodetrans'));
+        $pelanggan=pelanggan::get();
+        return view('pages.admin.transaksi.create',compact('pages','kodetrans','pelanggan'));
     }
 }

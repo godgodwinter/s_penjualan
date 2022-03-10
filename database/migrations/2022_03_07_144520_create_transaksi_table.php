@@ -17,6 +17,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('pelanggan_id')->nullable(); //jika non member berarti offline tidak perlu pelanggan_id
             $table->string('pelanggan_tipe'); //member, non member
+            $table->string('transaksi_tipe'); //online, offline
             $table->text('alamat')->nullable(); //jika offline tidak perlu diisi 
             $table->string('tgl_beli');
             $table->integer('ppn')->nullable();

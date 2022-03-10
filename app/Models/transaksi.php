@@ -15,6 +15,8 @@ class transaksi extends Model
 
         protected $fillable = [
             'pelanggan_id',
+            'pelanggan_tipe',
+            'transaksi_tipe',
             'tgl_beli',
             'ppn',
             'status', //status pembayaran

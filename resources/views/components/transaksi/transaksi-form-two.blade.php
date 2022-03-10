@@ -1,6 +1,4 @@
 <div >
-
-
     <div class="row py-2 px-2">
         <div class="col-sm-6 col-md-9" >
     <div class="btn-group" role="group" aria-label="Third group" id="onlineoffine">
@@ -16,6 +14,16 @@
 </div>
 </div>
 @push('before-script')
+<script type="text/javascript">
+      // In your Javascript (external .js resource or <script> tag)
+          $(document).ready(function() {
+              $('.js-example-basic-single').select2({
+                  theme: "classic",
+                  // allowClear: true,
+                  width: "resolve"
+              });
+          });
+ </script>
 <script>
     $(function () {
         let transaksiTipe='offline';
@@ -26,6 +34,16 @@
             $("#buttonOffline").addClass("btn-dark text-secondary");
             $("#buttonOffline").removeClass("btn-info text-white");
         document.getElementById("inputTransaksiTipe").value = transaksiTipe;
+    let divOnlineString=`<label for="site-title" class="form-control-label col-sm-5 text-md-right">Alamat Penerima</label>
+            <div class="col-sm-4 col-md-7">
+
+              <input type="text" class="form-control  @error('alamat') is-invalid @enderror" name="alamat" required  value="">
+
+              @error('alamat')<div class="invalid-feedback"> {{$message}}</div>
+              @enderror
+
+            </div>`;
+        $("#divonline").html(divOnlineString);
         console.log("Online");
    }); 
   
@@ -36,7 +54,8 @@
             $("#buttonOnline").addClass("btn-dark text-secondary");
             $("#buttonOnline").removeClass("btn-info text-white");
         document.getElementById("inputTransaksiTipe").value = transaksiTipe;
-        console.log("Offline");
+    let divOnlineString=``;
+        $("#divonline").html(divOnlineString);
    }); 
   
     });
@@ -59,10 +78,11 @@
     </div>
 </div>
 </div>
-
+{{-- {{dd($pelanggan)}} --}}
 @push('before-script')
 <script>
     $(function () {
+
         let pelangganTipe='nonmember';
     $("#buttonMember").on("click", function(){
         pelangganTipe='member';
@@ -71,6 +91,22 @@
             $("#buttonNonmember").addClass("btn-dark text-secondary");
             $("#buttonNonmember").removeClass("btn-info text-white");
         document.getElementById("inputPelangganTipe").value = pelangganTipe;
+        let selectPelanggan_id=`<select class="js-example-basic-single form-control" name="pelanggan_id"   required>
+                        <option disabled value=""> Pilih Pelanggan</option>`;
+        @forelse ($pelanggan as $item)
+            selectPelanggan_id+=`<option value="{{$item->id}}">{{$item->nama}}</option>`;
+        @empty
+            
+        @endforelse                        
+                            // <option value="1"> 1</option>
+                      selectPelanggan_id+=`</select>`;
+        $('#divpelanggan_id').html(selectPelanggan_id);
+
+        $('.js-example-basic-single').select2({
+                  theme: "classic",
+                  // allowClear: true,
+                  width: "resolve"
+              });
         console.log("member");
    }); 
   
@@ -81,6 +117,9 @@
             $("#buttonMember").addClass("btn-dark text-secondary");
             $("#buttonMember").removeClass("btn-info text-white");
         document.getElementById("inputPelangganTipe").value = pelangganTipe;
+        let divpelangganString=`<input type="text" class="form-control " name="pelanggan_id" required  value="">`;
+        $('#divpelanggan_id').html(divpelangganString);
+        console.log("Offline");
         console.log("nonmember");
    }); 
   
@@ -105,30 +144,19 @@
         <input type="hidden" class="form-control  @error('cart') is-invalid @enderror" id="cart" name="cart"  >
 
     <div class="row py-2 px-2" id="formtwo">
-        <div class="form-group row align-items-center py-2">
-            <label for="site-title" class="form-control-label col-sm-5 text-md-right">Nama Pelanggan</label>
-            <div class="col-sm-4 col-md-7">
-              <input type="text" class="form-control  @error('nama') is-invalid @enderror" name="nama" required  value="{{old('nama')?old('nama'):$nama}}">
-              @error('nama')<div class="invalid-feedback"> {{$message}}</div>
-              @enderror
-            </div>
+            <div class="form-group row align-items-center py-2">
+                <label for="site-title" class="form-control-label col-sm-5 text-md-right">Nama Pelanggan</label>
+                <div class="col-sm-4 col-md-7" id="divpelanggan_id" >
+                  <input type="text" class="form-control  @error('pelanggan_id') is-invalid @enderror" name="pelanggan_id" required  value="{{old('pelanggan_id')?old('pelanggan_id'):$nama}}">
+                  @error('nama')<div class="invalid-feedback"> {{$message}}</div>
+                  @enderror
+                </div>
+              </div>
+
+
+              
+        <div class="form-group row align-items-center py-2" id="divonline">
           </div>
-
-        {{-- <div class="form-group row align-items-center py-2">
-            <label for="site-title" class="form-control-label col-sm-5 text-md-right">Alamat Penerima</label>
-            <div class="col-sm-4 col-md-7">
-
-                <input type="hidden" class="form-control  @error('cart') is-invalid @enderror" id="cart" name="cart"  >
-
-                <input type="hidden" class="form-control  @error('kodetrans') is-invalid @enderror" id="kodetrans" name="kodetrans" value="{{$kodetrans}}" >
-
-              <input type="text" class="form-control  @error('namatoko') is-invalid @enderror" name="namatoko" required  value="{{old('namatoko')?old('namatoko'):$namatoko}}">
-
-              @error('namatoko')<div class="invalid-feedback"> {{$message}}</div>
-              @enderror
-
-            </div>
-          </div> --}}
           
 
         <div class="form-group row align-items-center py-2">
