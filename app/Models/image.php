@@ -18,6 +18,7 @@ class image extends Model
             'prefix',
             'parrent_id',
             'desc',
+            'photo',
         ];
 
 }

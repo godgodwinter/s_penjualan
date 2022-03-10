@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('prefix');
             $table->string('parrent_id');
             $table->text('desc')->nullable();
+            $table->text('photo');
             $table->softDeletes();
             $table->timestamps();
         });
