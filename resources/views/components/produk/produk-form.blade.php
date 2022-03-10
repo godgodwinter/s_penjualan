@@ -5,6 +5,7 @@
         $nama='';
         $harga_jual='';
         $desc='';
+        $satuan='';
     @endphp
         @if($item)
         @method('put')
@@ -13,6 +14,7 @@
         $nama=$item->nama;
         $harga_jual=$item->harga_jual;
         $desc=$item->desc;
+        $satuan=$item->satuan;
     @endphp
         @endif
         @csrf
@@ -67,7 +69,7 @@
             </script>
           @endpush
           <div class="form-group row align-items-center py-2">
-              <label for="site-title" class="form-control-label col-sm-3 text-md-right">Content </label>
+              <label for="site-title" class="form-control-label col-sm-3 text-md-right">Deskripsi </label>
               <div class="col-sm-6 col-md-9">
 
                 <textarea name="desc"
@@ -85,6 +87,17 @@
 
               </div>
             </div>
+            <div class="form-group row align-items-center py-2">
+                <label for="site-title" class="form-control-label col-sm-3 text-md-right">Satuan </label>
+                <div class="col-sm-6 col-md-9">
+    
+                  <input type="text" class="form-control  @error('satuan') is-invalid @enderror" placeholder="Kg/Biji/Meter/dll" name="satuan" required  value="{{old('satuan')?old('satuan'):$satuan}}">
+    
+                  @error('satuan')<div class="invalid-feedback"> {{$message}}</div>
+                  @enderror
+    
+                </div>
+              </div>
 
               <div class="card-footer d-flex justify-content-between flex-row-reverse">
                 <button class="btn btn-primary" id="save-btn">Simpan</button>

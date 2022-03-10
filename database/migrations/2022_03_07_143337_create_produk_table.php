@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('harga_jual');
             $table->string('slug');
             $table->string('desc');
+            $table->string('satuan');
             $table->softDeletes();
             $table->timestamps();
         });

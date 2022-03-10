@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-Transaksi
+Buat Transaksi
 @endsection
 
 @push('before-script')
@@ -29,8 +29,9 @@ Transaksi
                         data-bs-toggle="modal" data-bs-target="#formModal">
                         <i class="fa-solid fa-cart-plus"></i>
                     </button>
-
                 </div>
+
+
             </div>
         </div>
     </div>
@@ -43,11 +44,11 @@ Transaksi
     <hr class="my-1" />
     <div class="row">
         <div class="col-md-8 col-12">
-            {{-- <x-restok.restok-form item=""></x-restok.restok-form> --}}
+            <x-transaksi.transaksi-form item=""></x-transaksi.transaksi-form>
         </div>
 
         <div class="col-md-4 col-12">
-            {{-- <x-restok.restok-form-two kodetrans="{{$kodetrans}}"></x-restok.restok-form-two> --}}
+            <x-transaksi.transaksi-form-two kodetrans="{{$kodetrans}}"></x-transaksi.transaksi-form-two>
         </div>
     </div>
 </div>

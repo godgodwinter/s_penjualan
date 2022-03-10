@@ -18,7 +18,20 @@ class pelanggan extends Model
             'jk',
             'alamat',
             'telp', //status pembayaran
+            'users_id',
         ];
 
+        public function User()
+        {
+            return $this->belongsTo(User::class,'users_id','id');
+        }
+
+    public static function boot() {
+        parent::boot();
+        static::deleting(function($pelanggan) { // before delete() method call this
+             $pelanggan->User()->delete();
+             // do the rest of the cleanup...
+        });
+    }
 
 }

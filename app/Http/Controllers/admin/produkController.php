@@ -31,6 +31,7 @@ class produkController extends Controller
                 'nama'=>'required',
                 'harga_jual'=>'required',
                 'desc'=>'required',
+                'satuan'=>'required',
             ],
             [
                 'nama.nama'=>'Nama harus diisi',
@@ -42,6 +43,7 @@ class produkController extends Controller
                        'harga_jual'     =>    Fungsi::angka($request->harga_jual),
                        'desc'     =>   $request->desc,
                        'slug'     =>   $slug,
+                       'satuan'     =>   $request->satuan,
                        'created_at'=>date("Y-m-d H:i:s"),
                        'updated_at'=>date("Y-m-d H:i:s")
                 ));
@@ -73,6 +75,7 @@ class produkController extends Controller
                 'nama'     =>   $request->nama,
                 'harga_jual'     =>    Fungsi::angka($request->harga_jual),
                 'desc'     =>   $request->desc,
+                'satuan'     =>   $request->satuan,
                'updated_at'=>date("Y-m-d H:i:s")
             ]);
 

@@ -19,6 +19,25 @@
             <div data-i18n="Support">Label</div>
         </a>
         </li>
+        <li class="menu-item {{$pages=='label'?'active': ''}}">
+            <a
+                href="{{route('admin.label')}}"
+                class="menu-link"
+            >
+            <i class="menu-icon fa-solid fa-address-book"></i>
+                <div data-i18n="Support">Pelanggan</div>
+            </a>
+            </li>
+
+        <li class="menu-item {{$pages=='label'?'active': ''}}">
+            <a
+                href="{{route('admin.label')}}"
+                class="menu-link"
+            >
+            <i class="menu-icon fa-solid fa-user-shield"></i>
+                    <div data-i18n="Support">Administrator</div>
+            </a>
+            </li>
     <li class="menu-item {{$pages=='produk'?'active': ''}}">
         <a
             href="{{route('admin.produk')}}"

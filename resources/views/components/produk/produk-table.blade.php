@@ -7,6 +7,7 @@
               <th>Harga Jual</th>
               <th class="text-center">Stok</th>
               <th class="text-center">Terjual</th>
+              <th class="text-center">Satuan</th>
         </x-slot>
         <x-slot name="tbody">
             @forelse ($items as $item)
@@ -23,6 +24,7 @@
                 @endphp
                 <td class="text-center">{{ $getstok}}</td>
                 <td class="text-center">0</td>
+                <td class="text-center">{{$item->satuan}}</td>
             </tr>
             @empty
             @endforelse

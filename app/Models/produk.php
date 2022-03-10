@@ -18,6 +18,7 @@ class produk extends Model
             'harga_jual',
             'slug',
             'desc',
+            'satuan',
         ];
 
         public function produkdetail()

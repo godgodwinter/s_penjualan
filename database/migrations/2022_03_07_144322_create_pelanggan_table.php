@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('jk');
             $table->text('alamat');
             $table->string('telp');
+            $table->string('users_id');
             $table->softDeletes();
             $table->timestamps();
         });

@@ -7,6 +7,7 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class oneseeder extends Seeder
 {
@@ -45,5 +46,117 @@ class oneseeder extends Seeder
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
          ]);
+
+
+        DB::table('pelanggan')->truncate();
+        $pelanggan = collect([
+            [
+                'nama'=>'Salmon',
+                'jk'=>'Laki-laki',
+                'alamat'=>'malang',
+                'telp'=>'08123456789',
+                'email'=>'pelanggan@gmail.com',
+                'username'=>'pelanggan',
+                'password'=>'pelanggan',
+            ],
+            [
+                'nama'=>'Sri',
+                'jk'=>'Perempuan',
+                'alamat'=>'malang',
+                'telp'=>'08123456799',
+                'email'=>'sri@gmail.com',
+                'username'=>'sri',
+                'password'=>'sri',
+            ],
+            [
+                'nama'=>'Joko',
+                'jk'=>'Laki-laki',
+                'alamat'=>'malang',
+                'telp'=>'08234123123',
+                'email'=>'joko@gmail.com',
+                'username'=>'joko',
+                'password'=>'joko',
+            ],
+        ]);
+
+        foreach ($pelanggan as $item) {
+            $users_id=DB::table('users')->insertGetId([
+                'name' => $item['nama'],
+                'email' => $item['email'],
+                'password' => Hash::make($item['password']),
+                // 'password' => '$2y$10$oOhE/tcF8MC9crGCw/Zv5.zFMGu0JLm591undChCaHJM6YrnGjgCu',
+                'tipeuser' => 'pelanggan',
+                'nomerinduk' => null,
+                'username' => $item['username'],
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+             ]);
+
+            DB::table('pelanggan')->insert([
+                'nama' => $item['nama'],
+                'jk' => $item['jk'],
+                'alamat' => $item['alamat'],
+                'telp' => $item['telp'],
+                'users_id' => $users_id,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+             ]);
+        }
+
+
+        DB::table('kategori')->truncate();
+        $label=['Tools','Material','Furnitur','Aksesoris','Listrik','Lainnya'];
+        foreach ($label as $key => $value) {
+            DB::table('kategori')->insert([
+                'nama' => $value,
+                'kode' => Str::slug(strtolower($value)),
+                'prefix' => 'label',
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+             ]);
+        }
+
+
+        DB::table('produk')->truncate();
+        $produk = collect([
+            [
+                'nama'=>'Paku kayu tembok dinding',
+                'harga_jual'=>14000,
+                'satuan'=>'Gram',
+                'desc'=>'Kondisi: Baru, Berat:50gr',
+            ],
+            [
+                'nama'=>'Keramik 40x40 krem ivory motif marble marmer asap',
+                'harga_jual'=>42000,
+                'satuan'=>'Gram',
+                'desc'=>'Kondisi: Baru, Berat :200gr',
+            ],
+            [
+                'nama'=>'Tang toho professional cutting pliers 7" kualitas bagus',
+                'harga_jual'=>105000,
+                'satuan'=>'Pcs',
+                'desc'=>'Kondisi: Baru, Berat:500gr',
+            ],
+            [
+                'nama'=>'Palu Tukang kombinasi konde bulat kambing pencabut Paku',
+                'harga_jual'=>27000,
+                'satuan'=>'Pcs',
+                'desc'=>'Kondisi: Baru, Berat:450gr',
+            ]
+        ]);
+        //make object produk example
+
+        
+        foreach ($produk as $item) {
+            DB::table('produk')->insert([
+                'nama' => $item['nama'],
+                'harga_jual' => $item['harga_jual'],
+                'slug' => Str::slug(strtolower($item['nama'])),
+                'desc' => $item['desc'],
+                'satuan' => $item['satuan'],
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+             ]);
+        }
     }
 }
