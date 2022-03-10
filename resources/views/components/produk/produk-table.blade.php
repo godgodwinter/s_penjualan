@@ -21,9 +21,10 @@
                 <td>{{Fungsi::rupiah($item->harga_jual)}}</td>
                 @php
                     $getstok=\App\Models\produkdetail::where('produk_id',$item->id)->sum('jml');
+                    $getterjual=\App\Models\transaksidetail::where('produk_id',$item->id)->sum('jml');
                 @endphp
                 <td class="text-center">{{ $getstok}}</td>
-                <td class="text-center">0</td>
+                <td class="text-center">{{$getterjual}}</td>
                 <td class="text-center">{{$item->satuan}}</td>
             </tr>
             @empty

@@ -12,8 +12,8 @@ function refreshDataRestok(){
         class="pcoded-micon"> <i class="fa-solid fa-pen-to-square"></i></span></button>
         </td>
         <td>${el.nama}</td>
-        <td>Rp ${rupiah(el.harga_jual)},00</td>
-        <td>Rp ${rupiah(el.harga_beli)},00</td>
+        <td>Rp ${rupiah(el.harga_asli)},00 / Stok : ${el.stok}</td>
+        <td>Rp ${rupiah(el.harga_terjual)},00</td>
         <td class="text-center">${el.jumlah}</td>
         <td class="text-center">Rp ${rupiah(el.total)},00</td>
         </tr>`
@@ -34,12 +34,15 @@ function storeGetProduk(){
     // console.log(getData);
     return getData;
 }
-function storeProduk(id=null,nama=null,harga_jual=null){	
+function storeProduk(id=null,nama=null,harga_jual=null,stok=null,terjual=null,stoktersedia=null){	
     var dataTemp = {
         id:id,
         nama:nama,
-        harga_jual:harga_jual,
-        harga_beli:harga_jual,
+        harga_asli:harga_jual,
+        harga_terjual:harga_jual, //
+        stok:stok,
+        // terjual:terjual,
+        // stoktersedia:stoktersedia,
         jumlah:0,
         total:0,
     }
@@ -99,24 +102,48 @@ function storePeriksa(id=null) {
 }
 
 function storeBtnOpenModalEdit(id=null,index=null){
+    let footerModalEdit='';
     // console.log(id,index);
     let getData=storeGetProduk();
     $('#formModalEdit').on('shown.bs.modal', function () {
         $('#inputNamaProduk').val(getData[index].nama);
-        $('#inputHargaBeli').val(getData[index].harga_beli);
+        $('#inputHargaAsli').val(`${rupiah(getData[index].harga_asli)} / Stok : ${getData[index].stok}`);
+        $('#inputTerjual').val(getData[index].harga_terjual);
         $('#inputJumlah').val(getData[index].jumlah);
+        $('#inputJumlah').prop('max',getData[index].stok);
         $('#inputJumlah').focus();
+        // console.log($(this).attr("max"),getData[index].stok);
+        if(getData[index].stok==0){
+            $('#inputJumlah').prop("disabled", true);
+        }else{
+            $('#inputJumlah').prop("disabled", false);
+        }
+        $('#inputJumlah').keyup(function () { 
+            // console.log($(this).attr("max"));
+            if($(this).val()>parseInt($(this).attr("max")) || $(this).val()=='' || $(this).val()==null || $(this).val()==0){
+            //    console.log('stok tidak cukup');
+            $('#inputJumlah').addClass('is-invalid ');
+     footerModalEdit=`<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+     <button type="button" class="btn btn-dark text-secondary">Apply</button>`;
+            }else{
+              $('#inputJumlah').removeClass('is-invalid ');  
+     footerModalEdit=`<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+     <button type="button" class="btn btn-primary" onclick="storeBtnApplyModalEdit(${index})">Apply</button>`; 
+            }
+
+    $('#btnApplyModalEdit').html(footerModalEdit);
+        });
     });
-    let footerModalEdit=`<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-    <button type="button" class="btn btn-primary" onclick="storeBtnApplyModalEdit(${index})">Apply</button>`;
+    footerModalEdit=`<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+    <button type="button" class="btn btn-dark text-secondary">Apply</button>`;
     $('#btnApplyModalEdit').html(footerModalEdit);
 }
 
 function storeBtnApplyModalEdit(index=null){
     let getData=storeGetProduk();
     getData[index].jumlah=$('#inputJumlah').val();
-    getData[index].harga_beli=$('#inputHargaBeli').val();
-    getData[index].total=$('#inputJumlah').val()*$('#inputHargaBeli').val();
+    getData[index].inputTerjual=$('#inputTerjual').val();
+    getData[index].total=$('#inputJumlah').val()*$('#inputTerjual').val();
     // console.log(index,getData[index].jumlah,getData[index].harga_beli,getData[index].total);
     localStorage.setItem('transaksiItems',JSON.stringify(getData));
     $('#formModalEdit').modal('hide');
@@ -143,14 +170,19 @@ function storeCariData(inputancari='',inputanUrl='#'){
                     datas = response.data;
                     let jmlDataResponse = datas.length;
                     for (let i = 0; i < jmlDataResponse; i++) {
+                        buttonContent=`<button  class="btn btn-dark">Add</button>`;
+                        if(datas[i].stoktersedia>0){
+                            buttonContent=`<button  class="btn btn-info addProduk" onclick="storeProduk(${datas[i].id},'${datas[i].nama}',${datas[i].harga_jual},${datas[i].stoktersedia})">Add</button>`;
+
+                        }
                         contentResponse += `
 <div class="col-12 col-md-6 col-lg-4 mb-4 mb-lg-0 mt-3">
 <div class="card border-0 bg-white text-center p-1" >
 <img src="https://ui-avatars.com/api/?name=${datas[i].nama}&color=7F9CF5&background=EBF4FF" class="thumbnail img-responsive"  style="display: block;max-width: 100%;height: 200px;object-fit: cover"> 
 <div class="card-body">
 <h5 class="card-title">${datas[i].nama}</h5>
-<p class="card-text">Harga : Rp ${rupiah(datas[i].harga_jual)},00</p>
-<button  class="btn btn-info addProduk" onclick="storeProduk(${datas[i].id},'${datas[i].nama}',${datas[i].harga_jual})">Add</button>
+<p class="card-text">Harga : Rp ${rupiah(datas[i].harga_jual)},00 - Stok : ${datas[i].stoktersedia}</p>
+${buttonContent}
 </div>
 </div>
 </div>

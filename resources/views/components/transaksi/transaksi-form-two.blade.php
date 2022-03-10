@@ -54,7 +54,8 @@
             $("#buttonOnline").addClass("btn-dark text-secondary");
             $("#buttonOnline").removeClass("btn-info text-white");
         document.getElementById("inputTransaksiTipe").value = transaksiTipe;
-    let divOnlineString=``;
+    let divOnlineString=`
+              <input type="hidden" class="form-control  " name="alamat"   value="">`;
         $("#divonline").html(divOnlineString);
    }); 
   
@@ -156,6 +157,7 @@
 
               
         <div class="form-group row align-items-center py-2" id="divonline">
+            <input type="hidden" class="form-control " name="alamat"   value="">
           </div>
           
 

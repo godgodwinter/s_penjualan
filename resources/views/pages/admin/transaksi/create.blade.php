@@ -138,10 +138,10 @@ Buat Transaksi
 
 
                 <div class="form-group row align-items-center py-2">
-                    <label for="site-title" class="form-control-label col-sm-3 text-md-right">Harga Pembelian</label>
+                    <label for="site-title" class="form-control-label col-sm-3 text-md-right">Harga Asli / Stok</label>
                     <div class="col-sm-6 col-md-9">
         
-                      <input type="text" class="form-control "  id="inputHargaBeli">
+                      <input type="text" class="form-control "  id="inputHargaAsli" readonly>
         
                       @error('namatoko')<div class="invalid-feedback"> {{$message}}</div>
                       @enderror
@@ -151,13 +151,26 @@ Buat Transaksi
 
 
                 <div class="form-group row align-items-center py-2">
-                    <label for="site-title" class="form-control-label col-sm-3 text-md-right">Jumlah</label>
+                    <label for="site-title" class="form-control-label col-sm-3 text-md-right ">Harga Jual</label>
                     <div class="col-sm-6 col-md-9">
         
-                      <input type="number" class="form-control" id="inputJumlah">
+                      <input type="text" class="form-control "  id="inputTerjual" >
         
                       @error('namatoko')<div class="invalid-feedback"> {{$message}}</div>
                       @enderror
+        
+                    </div>
+                  </div>
+
+
+                <div class="form-group row align-items-center py-2">
+                    <label for="site-title" class="form-control-label col-sm-3 text-md-right ">Jumlah</label>
+                    <div class="col-sm-6 col-md-9">
+        
+                      <input type="number" class="form-control" id="inputJumlah" min="0" max="0" >
+        
+                    <div class="invalid-feedback">Stok tidak cukup!</div>
+                     
         
                     </div>
                   </div>

@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('transaksi_id');
             $table->string('produk_id');
             $table->integer('harga_jual');
+            $table->integer('jml');
             $table->integer('diskon');
             $table->integer('harga_akhir');
             $table->softDeletes();

@@ -4,8 +4,8 @@
               <th class="babeng-min-row text-center">No</th>
               <th class="text-center">Aksi</th>
               <th>Nama</th>
-              <th>Harga Jual</th>
-              <th>Harga Beli</th>
+              <th>Harga Asli / Stok </th>
+              <th>Harga Terjual</th>
               <th class="text-center babeng-min-row">Jumlah</th>
               <th class="text-center">Total Harga</th>
         </x-slot>

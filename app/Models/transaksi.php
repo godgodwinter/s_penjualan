@@ -14,21 +14,26 @@ class transaksi extends Model
         use HasFactory;
 
         protected $fillable = [
+            'kodetrans',
             'pelanggan_id',
             'pelanggan_tipe',
             'transaksi_tipe',
-            'tgl_beli',
+            'tglbeli',
             'ppn',
             'status', //status pembayaran
             'photo_konfirmasi',
-            'total_bayar',
+            'totalbayar',
+            'penanggungjawab',
             'dibayar',
             'kembalian',
         ];
-
+        public function pelanggan()
+        {
+            return $this->belongsTo(pelanggan::class,'pelanggan_id','id');
+        }
         public function transaksidetail()
         {
-            return $this->hasMany(transaksidetail::class,'parrent_id','id');
+            return $this->hasMany(transaksidetail::class,'transaksi_id','id');
         }
 
     public static function boot() {

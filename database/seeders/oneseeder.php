@@ -132,7 +132,7 @@ class oneseeder extends Seeder
                 'desc'=>'Kondisi: Baru, Berat :200gr',
             ],
             [
-                'nama'=>'Tang toho professional cutting pliers 7" kualitas bagus',
+                'nama'=>'Tang toho professional cutting pliers 7 kualitas bagus',
                 'harga_jual'=>105000,
                 'satuan'=>'Pcs',
                 'desc'=>'Kondisi: Baru, Berat:500gr',
