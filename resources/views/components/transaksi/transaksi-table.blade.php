@@ -9,6 +9,7 @@
               <th class="babeng-min-row text-center">Jumlah Produk</th>
               <th class="babeng-min-row text-center">Jumlah Barang</th>
               <th class="babeng-min-row text-center">Total Tagihan</th>
+              <th class="babeng-min-row text-center">Status</th>
               <th class="babeng-min-row text-center">Penanggung Jawab</th>
         </x-slot>
         <x-slot name="tbody">
@@ -17,6 +18,7 @@
                 $pelanggan='';
                 $warnapelanggan='info';
                 $warnatransaksi='dark';
+                $warnastatus='dark';
                 if($item->pelanggan_tipe=='member'){
                     $warnapelanggan='success';
                     $pelanggan=$item->pelanggan?$item->pelanggan->nama:'Pelangan tidak ditemukan';
@@ -25,6 +27,9 @@
                 }
                 if($item->transaksi_tipe=='online'){
                     $warnatransaksi='success';
+                }
+                if($item->status=='success'){
+                    $warnastatus='success';
                 }
             @endphp
             @php
@@ -50,6 +55,7 @@
                 <td class="text-center">{{$jumlahproduk}}</td>
                 <td class="text-center">{{$jumlahbarang}}</td>
                 <td class="text-center">{{Fungsi::rupiah($item->totalbayar)}}</td>
+                <td><span class="badge bg-label-{{$warnastatus}} me-1">{{$item->status}}</span></td>
                 <td class="text-center">{{$item->penanggungjawab}}</td>
             </tr>
             @empty

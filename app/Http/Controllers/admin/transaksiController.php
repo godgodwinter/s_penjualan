@@ -44,7 +44,10 @@ class transaksiController extends Controller
         [
             'pelanggan_id.required'=>'Pelanggan harus diisi',
         ]);
-
+        $status='success';
+        if($request->transaksi_tipe=='online'){
+            $status='pending';
+        }
         $data_id=DB::table('transaksi')->insertGetId(
             array(
                     'kodetrans'     =>   $request->kodetrans,
@@ -58,7 +61,7 @@ class transaksiController extends Controller
                    'ppn'     =>   null,
                    'dibayar'     =>   null,
                    'kembalian'     =>   null,
-                   'status'     =>   'success', //pending.cancel,success,delivered
+                   'status'     =>   $status, //pending.cancel,success,delivered
                    'created_at'=>date("Y-m-d H:i:s"),
                    'updated_at'=>date("Y-m-d H:i:s")
             ));
