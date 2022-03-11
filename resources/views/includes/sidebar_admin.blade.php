@@ -83,9 +83,9 @@
         </li>
 
 
-    <li class="menu-item {{$pages=='portofolio'?'active': ''}}">
+    <li class="menu-item {{$pages=='konfirmasi'?'active': ''}}">
         <a
-            href="{{route('admin.portofolio')}}"
+            href="{{route('admin.konfirmasi')}}"
             class="menu-link"
         >
         <i class="menu-icon fa-solid fa-clipboard-check"></i>
@@ -93,15 +93,15 @@
         </a>
         </li>
 
-    <li class="menu-item {{$pages=='portofolio'?'active': ''}}">
+    {{-- <li class="menu-item {{$pages=='invoice'?'active': ''}}">
         <a
-            href="{{route('admin.portofolio')}}"
+            href="{{route('admin.invoice')}}"
             class="menu-link"
         >
         <i class="menu-icon fa-solid fa-file-invoice"></i>
             <div data-i18n="Support">Invoice</div>
         </a>
-        </li>
+        </li> --}}
 
 <!-- Transaksi -->
 <li class="menu-header small text-uppercase"><span class="menu-header-text">Transaksi</span></li>

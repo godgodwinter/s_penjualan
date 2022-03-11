@@ -39,9 +39,13 @@
                 <td class=" text-center">{{$loop->index+1}}</td>
                 <td class="babeng-min-row">
                     <x-btndelete link="{{route('admin.transaksi.destroy',$item->id)}}"></x-btndelete>
-                    {{-- <button class="btn btn-info btn-sm" onclick="btnModalDetailTransaksi('{{$url}}',{{$item->id}})" data-bs-toggle="modal" data-bs-target="#modalDetailTransaksi"><span
-                        class="pcoded-micon"> <i class="fa-solid fa-angles-right"></i></span></button>
-                    --}}
+                   @if ($item->status=='pending')
+                   <button class="btn btn-success btn-sm"   data-bs-toggle="tooltip" data-bs-placement="top" title="Konfimasi Pembayaran" ><span
+                    class="pcoded-micon"> <i class="fa-regular fa-circle-check"></i></span></button>
+                   @endif
+                    <a href="{{route('cetak.transaksi',$item->kodetrans)}}" class="btn btn-info btn-sm"   data-bs-toggle="tooltip" data-bs-placement="top" title="Invoice" onclick="return confirm('Anda yakin melihat data ini? Y/N')"><span
+                        class="pcoded-micon"> <i class="fa-solid fa-file-invoice" ></i></span></a>
+                   
                     
                 </td>
                 {{-- <td>{{substr($item->kodetrans, 0, 7) . '...'}}</td> --}}

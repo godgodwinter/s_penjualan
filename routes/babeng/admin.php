@@ -1,12 +1,15 @@
 <?php
 
 use App\Helpers\Fungsi;
+use App\Http\Controllers\admin\invoiceController;
+use App\Http\Controllers\admin\konfirmasiController;
 use App\Http\Controllers\admin\labelController;
 use App\Http\Controllers\admin\pelangganController;
 use App\Http\Controllers\admin\portofolioController;
 use App\Http\Controllers\admin\produkController;
 use App\Http\Controllers\admin\restokController;
 use App\Http\Controllers\admin\transaksiController;
+use App\Http\Controllers\dev\cetakController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -61,4 +64,22 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/transaksi/{item}', [transaksiController::class, 'edit'])->name('admin.transaksi.edit');
     Route::put('/admin/transaksi/{item}', [transaksiController::class, 'update'])->name('admin.transaksi.update');
     Route::delete('/admin/transaksi/{item}', [transaksiController::class, 'destroy'])->name('admin.transaksi.destroy');
+    Route::get('/cetak/transaksi/{item}', [cetakController::class, 'transaksi'])->name('cetak.transaksi');
+
+
+    //konfirmasi
+    Route::get('/admin/konfirmasi', [konfirmasiController::class, 'index'])->name('admin.konfirmasi');
+    Route::get('/admin/konfirmasi/create', [konfirmasiController::class, 'create'])->name('admin.konfirmasi.create');
+    Route::post('/admin/konfirmasi/store', [konfirmasiController::class, 'store'])->name('admin.konfirmasi.store');
+    Route::get('/admin/konfirmasi/{item}', [konfirmasiController::class, 'edit'])->name('admin.konfirmasi.edit');
+    Route::put('/admin/konfirmasi/{item}', [konfirmasiController::class, 'update'])->name('admin.konfirmasi.update');
+    Route::delete('/admin/konfirmasi/{item}', [konfirmasiController::class, 'destroy'])->name('admin.konfirmasi.destroy');
+
+    // //invoice
+    // Route::get('/admin/invoice', [invoiceController::class, 'index'])->name('admin.invoice');
+    // Route::get('/admin/invoice/create', [invoiceController::class, 'create'])->name('admin.invoice.create');
+    // Route::post('/admin/invoice/store', [invoiceController::class, 'store'])->name('admin.invoice.store');
+    // Route::get('/admin/invoice/{item}', [invoiceController::class, 'edit'])->name('admin.invoice.edit');
+    // Route::put('/admin/invoice/{item}', [invoiceController::class, 'update'])->name('admin.invoice.update');
+    // Route::delete('/admin/invoice/{item}', [invoiceController::class, 'destroy'])->name('admin.invoice.destroy');
 });
