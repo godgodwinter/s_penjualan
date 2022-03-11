@@ -13,7 +13,7 @@ class cetakController extends Controller
     {
         $items=transaksi::with('transaksidetail')->where('kodetrans',$item)->first();
         $tgl=date("YmdHis");
-        $pdf = PDF::loadview('pages.dev.testing.cetak')->setPaper('a4', 'potrait');
+        $pdf = PDF::loadview('pages.dev.testing.cetak2')->setPaper('a4', 'potrait');
         return $pdf->stream('data'.$tgl.'.pdf');
         // dd('invoice',$items);
         // return view('dev.cetak.index');
