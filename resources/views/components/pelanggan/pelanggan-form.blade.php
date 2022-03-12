@@ -1,11 +1,11 @@
 <div>
-    <form id="setting-form" method="POST" action="{{$item?route('admin.pelanggan.update',$item->id):route('admin.label.store')}}">
+    <form id="setting-form" method="POST" action="{{$item?route('admin.pelanggan.update',$item->id):route('admin.pelanggan.store')}}">
     @php
     //declare var
         $nama='';
         $username=null;
         $email=null;
-        $jk='';
+        $jk=null;
         $alamat='';
         $telp='';
         $users_id='';
@@ -36,132 +36,10 @@
           </div>
 
           @push('before-script')
-              <script>
-$(function () {
-    var statusInputUsername = 0;
-    var statusInputEmail = 0;
-    var statusInputPassword=0;
-    var periksaKesamaanPassword=0;
-    let statusDanger = ` <i class="fa-solid fa-circle-xmark fill-current text-danger text-lg" data-bs-toggle="tooltip" data-bs-placement="top" title="Data sudah digunakan!"></i>`;
-    let statusInfo = ` <i class="fa-solid fa-circle-check  fill-current text-info text-lg"></i>`;
-    let btnSubmit = `<button class="btn btn-primary" id="save-btn">Simpan</button>`;
-    let btnSubmitDisabled = `<span class="btn btn-dark" id="save-btn" data-bs-toggle="tooltip" data-bs-placement="top" title="Disabled">Simpan</span>`;
-
-    $('#inputPassword').keyup(function (e) { 
-        periksaKesamaanPassword=periksaPassword();
-        if(periksaKesamaanPassword<1 || $(this).val().length<3){
-            $('#labelPassword').html('Password '+statusDanger);
-            $('#labelPassword2').html('Konfirmasi Password '+statusDanger);
-            statusInputPassword=0;
-        }else{
-            $('#labelPassword').html('Password '+statusInfo);
-            $('#labelPassword2').html('Konfirmasi Password '+statusInfo);
-            statusInputPassword=1;
-        }
-        periksaData();
-    });
-
-    $('#inputPassword2').keyup(function (e) { 
-        periksaKesamaanPassword=periksaPassword();
-        if(periksaKesamaanPassword<1 || $(this).val().length<3){
-            $('#labelPassword').html('Password '+statusDanger);
-            $('#labelPassword2').html('Konfirmasi Password '+statusDanger);
-            statusInputPassword=0;
-        }else{
-            $('#labelPassword').html('Password '+statusInfo);
-            $('#labelPassword2').html('Konfirmasi Password '+statusInfo);
-            statusInputPassword=1;
-        }
-        periksaData();
-    });
-
-    $('#inputUsername').keyup(function (e) {
-        // console.log($(this).val());
-
-        //fetch data example
-        $.ajax({
-            url: "{{route('api.users.periksausername')}}",
-            type: "GET",
-            data: {
-                username: $(this).val()
-            },
-            success: function (response) {
-                // console.log(response.data);
-                if (response.data > 0) {
-                    $('#labelUsername').html('Username ' + statusDanger);
-                    statusInputUsername = 0;
-                } else {
-                    $('#labelUsername').html('Username ' + statusInfo);
-                    statusInputUsername = 1;
-                }
-                periksaData();
-            }
-        });
-    });
-
-
-    $('#inputEmail').keyup(function (e) {
-        // console.log($(this).val());
-
-        let validateEmailStatus = periksaEmail($(this).val());
-        if (validateEmailStatus > 0) {
-            //fetch data example
-            $.ajax({
-                url: "{{route('api.users.periksausername')}}",
-                type: "GET",
-                data: {
-                    email: $(this).val()
-                },
-                success: function (response) {
-                    // console.log(response.data);
-                    if (response.data > 0) {
-                        $('#labelEmail').html('Email ' + statusDanger);
-                        statusInputEmail = 0;
-                    } else {
-                        $('#labelEmail').html('Email ' + statusInfo);
-                        statusInputEmail = 1;
-                    }
-                    periksaData();
-                }
-            });
-        } else {
-            $('#labelEmail').html('Email ' + statusDanger);
-            $('#divBtnSubmit').html(btnSubmitDisabled);
-
-        }
-    });
-
-    //method / function
-    function periksaData() {
-        if (statusInputUsername > 0 && statusInputEmail > 0 && statusInputPassword > 0) {
-            $('#divBtnSubmit').html(btnSubmit);
-        } else {
-            $('#divBtnSubmit').html(btnSubmitDisabled);
-        }
-    }
-
-    function periksaEmail(inputText) {
-        var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-        if (inputText.match(mailformat)) {
-            // console.log("Valid email address!");
-            // document.form1.text1.focus();
-            return 1;
-        } else {
-            // console.log("You have entered an invalid email address!");
-            // alert("You have entered an invalid email address!");
-            // document.form1.text1.focus();
-            return 0;
-        }
-    }
-    function periksaPassword(){
-        if($('#inputPassword').val()==$('#inputPassword2').val()){
-            return 1;
-        }else{
-            return 0;
-        }
-    }
-});
-              </script>
+<script>
+    var InputanUrl= "{{route('api.users.periksausername')}}";
+</script>
+<script src="{{asset('/assets/js/babengvalidate.js')}}"></script>
           @endpush
 
             <div class="form-group row align-items-center py-2">
@@ -221,8 +99,19 @@ $(function () {
             <label for="site-title" class="form-control-label col-sm-3 text-md-right">Jenis Kelamin </label>
             <div class="col-sm-6 col-md-9">
 
-              <input type="text" class="form-control  @error('jk') is-invalid @enderror" name="jk" required  value="{{old('jk')?old('jk'):$jk}}">
-
+              {{-- <input type="text" class="form-control  @error('jk') is-invalid @enderror" name="jk" required  value="{{old('jk')?old('jk'):$jk}}"> --}}
+              <select class="js-example-basic-single form-control @error('jk') is-invalid @enderror" name="jk" required>
+                @if($jk)
+                <option >{{old('jk')?old('jk'):$jk}}</option>
+                @else
+                <option disabled value=""> Pilih Jenis Kelamin</option>
+                  @if (old('jk'))
+                  <option >{{old('jk')}}</option>
+                  @endif
+                @endif
+                <option >Laki-laki</option>
+                <option >Perempuan</option>
+              </select>
               @error('jk')<div class="invalid-feedback"> {{$message}}</div>
               @enderror
 
