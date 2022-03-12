@@ -121,7 +121,15 @@
            
 </form>
             `;
-        }else if(status=='success'){
+        }else if(status=='success' || status=='cancel'){
+            divModalDetailContent=`  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <form action="${urlUpdate}" method="post" class="d-inline">
+    @csrf
+    <input type="hidden" name="status" value="pending">
+    <button class="btn  btn-dark "
+        onclick="return  confirm('Anda yakin mengkonfirmasi data ini? Y/N')"  data-bs-toggle="tooltip" data-bs-placement="top" title="Pending data!"> Pending Pembelian!</button>
+           
+</form>`;
             // divModalDetailContent=`<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             // <button type="button" class="btn btn-info" data-bs-dismiss="modal">Tunggu Konfirmasi </button>
             // `;
