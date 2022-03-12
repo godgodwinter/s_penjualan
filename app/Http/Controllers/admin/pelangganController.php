@@ -4,8 +4,11 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\pelanggan;
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class pelangganController extends Controller
 {
@@ -26,23 +29,36 @@ class pelangganController extends Controller
 
     public function store(Request $request)
     {
-        dd($request);
+        // dd($request);
             $request->validate([
                 'nama'=>'required',
                 // 'prefix'=>'required',
-                'kode'=>'required',
+                // 'kode'=>'required',
             ],
             [
-                'nama.nama'=>'Nama harus diisi',
+                'nama.required'=>'Nama harus diisi',
             ]);
-            DB::table('pelanggan')->insert(
-                array(
-                       'nama'     =>   $request->nama,
-                       'prefix'     =>   'pelanggan',
-                       'kode'     =>   $request->kode,
-                       'created_at'=>date("Y-m-d H:i:s"),
-                       'updated_at'=>date("Y-m-d H:i:s")
-                ));
+
+            $users_id=DB::table('users')->insertGetId([
+                'name' => $request->nama,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'tipeuser' => 'pelanggan',
+                'nomerinduk' => null,
+                'username' => $request->username,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+             ]);
+
+             DB::table('pelanggan')->insert([
+                'nama' => $request->nama,
+                'jk' => $request->jk,
+                'alamat' => $request->alamat,
+                'telp' => $request->telp,
+                'users_id' => $users_id,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+             ]);
     return redirect()->route('admin.pelanggan')->with('status','Data berhasil tambahkan!')->with('tipe','success')->with('icon','fas fa-feather');
     }
 
@@ -59,16 +75,21 @@ class pelangganController extends Controller
         ],
         [
             'nama.required'=>'nama harus diisi',
-            // 'prefix'=>'required',
-            'kode'=>'required',
         ]);
-
+        User::where('id',$item->users_id)
+        ->update([
+            'username' => $request->username,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'updated_at' => Carbon::now()
+        ]);
             pelanggan::where('id',$item->id)
             ->update([
-                'nama'     =>   $request->nama,
-                'prefix'     =>   'pelanggan',
-                'kode'     =>   $request->kode,
-               'updated_at'=>date("Y-m-d H:i:s")
+                'nama' => $request->nama,
+                'jk' => $request->jk,
+                'alamat' => $request->alamat,
+                'telp' => $request->telp,
+                'updated_at' => Carbon::now()
             ]);
 
 

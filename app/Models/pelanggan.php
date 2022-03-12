@@ -29,7 +29,7 @@ class pelanggan extends Model
     public static function boot() {
         parent::boot();
         static::deleting(function($pelanggan) { // before delete() method call this
-             $pelanggan->User()->delete();
+             $pelanggan->Users()->delete();
              // do the rest of the cleanup...
         });
     }

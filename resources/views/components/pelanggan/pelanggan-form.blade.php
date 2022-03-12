@@ -19,6 +19,10 @@
     //init while items>0
         $nama=$item->nama;
         $username=$item->users?$item->users->username:null;
+        $email=$item->users?$item->users->email:null;
+        $jk=$item->jk;
+        $alamat=$item->alamat;
+        $telp=$item->telp;
     @endphp
         @endif
         @csrf
