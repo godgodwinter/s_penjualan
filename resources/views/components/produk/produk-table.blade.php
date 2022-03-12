@@ -21,7 +21,9 @@
                 <td>{{Fungsi::rupiah($item->harga_jual)}}</td>
                 @php
                     $getstok=\App\Models\produkdetail::where('produk_id',$item->id)->sum('jml');
-                    $getterjual=\App\Models\transaksidetail::where('produk_id',$item->id)->sum('jml');
+                    $getterjual=\App\Models\transaksidetail::where('produk_id',$item->id)->whereHas('transaksi', function ($query) {
+                        $query->where('status', '<>', 'cancel');
+                    })->sum('jml');
                 @endphp
                 <td class="text-center">{{ $getstok}}</td>
                 <td class="text-center">{{$getterjual}}</td>

@@ -91,4 +91,14 @@ return redirect()->route('admin.transaksi')->with('status','Data berhasil tambah
         return redirect()->route('admin.transaksi')->with('status','Data berhasil dihapus!')->with('tipe','warning')->with('icon','fas fa-feather');
 
     }
+    public function konfirmasi(transaksi $item,Request $request){
+        // dd($request);
+            transaksi::where('id',$item->id)
+            ->update([
+                'status'     =>   $request->status,
+               'updated_at'=>date("Y-m-d H:i:s")
+            ]);
+
+        return redirect()->route('admin.transaksi')->with('status','Transaksi Berhasil!')->with('tipe','success')->with('icon','fas fa-feather');
+    }
 }

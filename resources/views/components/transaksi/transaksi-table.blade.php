@@ -4,21 +4,23 @@
               <th class="babeng-min-row text-center">No</th>
               <th class="text-center">Aksi</th>
               <th >Tanggal Transaksi</th>
+              <th class="babeng-min-row text-center">Status</th>
               <th>Nama Pelanggan</th>
               <th class="babeng-min-row text-center">Jenis Pembelian</th>
               <th class="babeng-min-row text-center">Jumlah Produk</th>
               <th class="babeng-min-row text-center">Jumlah Barang</th>
               <th class="babeng-min-row text-center">Total Tagihan</th>
-              <th class="babeng-min-row text-center">Status</th>
               <th class="babeng-min-row text-center">Penanggung Jawab</th>
         </x-slot>
         <x-slot name="tbody">
             @forelse ($items as $item)
             @php
+            $urlModalDetail=route('api.transaksi.detail',$item->id);
+            $urlModalDetailUpdate=route('admin.transaksi.konfirmasi',$item->id);
                 $pelanggan='';
                 $warnapelanggan='info';
-                $warnatransaksi='dark';
-                $warnastatus='dark';
+                $warnatransaksi='secondary';
+                $warnastatus='secondary';
                 if($item->pelanggan_tipe=='member'){
                     $warnapelanggan='success';
                     $pelanggan=$item->pelanggan?$item->pelanggan->nama:'Pelangan tidak ditemukan';
@@ -31,6 +33,10 @@
                 if($item->status=='success'){
                     $warnastatus='success';
                 }
+
+                if($item->status=='cancel'){
+                    $warnastatus='danger';
+                }
             @endphp
             @php
             $url=route('api.produk.restokdetail',$item->id);
@@ -39,10 +45,10 @@
                 <td class=" text-center">{{$loop->index+1}}</td>
                 <td class="babeng-min-row">
                     <x-btndelete link="{{route('admin.transaksi.destroy',$item->id)}}"></x-btndelete>
-                   @if ($item->status=='pending')
-                   <button class="btn btn-success btn-sm"   data-bs-toggle="tooltip" data-bs-placement="top" title="Konfimasi Pembayaran" ><span
+                   {{-- @if ($item->status=='pending') --}}
+                   <button class="btn btn-success btn-sm"  onclick="btnModalDetailTransaksi('{{$urlModalDetail}}',{{$item->id}},'{{$item->status}}','{{$urlModalDetailUpdate}}')" data-bs-toggle="modal" data-bs-target="#modalDetailTransaksi" ><span
                     class="pcoded-micon"> <i class="fa-regular fa-circle-check"></i></span></button>
-                   @endif
+                   {{-- @endif --}}
                     <a href="{{route('cetak.transaksi',$item->kodetrans)}}" class="btn btn-info btn-sm"   data-bs-toggle="tooltip" data-bs-placement="top" title="Invoice" onclick="return confirm('Anda yakin melihat data ini? Y/N')"><span
                         class="pcoded-micon"> <i class="fa-solid fa-file-invoice" ></i></span></a>
                    
@@ -50,8 +56,9 @@
                 </td>
                 {{-- <td>{{substr($item->kodetrans, 0, 7) . '...'}}</td> --}}
                 <td>{{Fungsi::tanggalindo($item->tglbeli)}}</td>
-                <td class="text-center babeng-min-row">{{$pelanggan}} - <span class="badge bg-label-{{$warnapelanggan}} me-1">{{$item->pelanggan_tipe}}</span> </td>
-                <td class="text-center"><span class="badge bg-label-{{$warnatransaksi}} me-1">{{$item->transaksi_tipe}}</span></td>
+                <td><span class="btn btn-{{$warnastatus}} me-1 text-dark text-capitalize">{{$item->status}}</span></td>
+                <td class="text-center babeng-min-row">{{$pelanggan}}  <span class="btn btn-{{$warnapelanggan}} text-dark me-1 text-capitalize">{{$item->pelanggan_tipe}}</span> </td>
+                <td class="text-center"><span class="btn btn-{{$warnatransaksi}} me-1 text-capitalize text-dark">{{$item->transaksi_tipe}}</span></td>
                 @php
                     $jumlahproduk = \App\Models\transaksidetail::where('transaksi_id',$item->id)->count();
                     $jumlahbarang = \App\Models\transaksidetail::where('transaksi_id',$item->id)->sum('jml');
@@ -59,7 +66,6 @@
                 <td class="text-center">{{$jumlahproduk}}</td>
                 <td class="text-center">{{$jumlahbarang}}</td>
                 <td class="text-center">{{Fungsi::rupiah($item->totalbayar)}}</td>
-                <td><span class="badge bg-label-{{$warnastatus}} me-1">{{$item->status}}</span></td>
                 <td class="text-center">{{$item->penanggungjawab}}</td>
             </tr>
             @empty
@@ -67,3 +73,61 @@
         </x-slot>
     </x-babeng.table-one>
 </div>
+
+@push('before-script')
+<script>
+    let tbodyContent=``;
+    function btnModalDetailTransaksi(url=null,id=null,status=null,urlUpdate=null){
+        // console.log(url,id);
+
+        //fetch
+        $.ajax({
+            url: url,
+            type: 'GET',
+            dataType: 'json',
+            success: function(data){
+                tbodyContent=``;
+                $.each(data.data, function(index, value){
+                    tbodyContent+=`
+                        <tr>
+                            <td class="text-center">${index+1}</td>
+                            <td>${value.produk.nama}</td>
+                            <td>${value.harga_jual}</td>
+                            <td class="text-center">${value.jml}</td>
+                            <td class="text-center">${value.harga_jual*value.jml}</td>
+                        </tr>
+                    `;
+                });
+      $('#trbody').html(tbodyContent);
+            }
+        });
+
+        let divModalDetailContent=`<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>`;
+        if(status=='pending'){
+            divModalDetailContent=`<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+    <form action="${urlUpdate}" method="post" class="d-inline">
+    @csrf
+    <input type="hidden" name="status" value="cancel">
+    <button class="btn  btn-danger "
+        onclick="return  confirm('Anda yakin mengkonfirmasi data ini? Y/N')"  data-bs-toggle="tooltip" data-bs-placement="top" title="Konfirmasi data!"> Batalkan Pembelian!</button>
+           
+</form>
+
+<form action="${urlUpdate}" method="post" class="d-inline">
+    @csrf
+    <input type="hidden" name="status" value="success">
+    <button class="btn  btn-success "
+        onclick="return  confirm('Anda yakin mengkonfirmasi data ini? Y/N')"  data-bs-toggle="tooltip" data-bs-placement="top" title="Konfirmasi data!"> Konfirmasi Pembelian!</button>
+           
+</form>
+            `;
+        }else if(status=='success'){
+            // divModalDetailContent=`<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            // <button type="button" class="btn btn-info" data-bs-dismiss="modal">Tunggu Konfirmasi </button>
+            // `;
+        }
+        $('#divModalDetail').html(divModalDetailContent);
+
+    }
+</script>
+@endpush

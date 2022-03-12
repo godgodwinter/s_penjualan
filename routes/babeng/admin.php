@@ -75,6 +75,7 @@ Route::middleware('auth')->group(function () {
     Route::put('/admin/transaksi/{item}', [transaksiController::class, 'update'])->name('admin.transaksi.update');
     Route::delete('/admin/transaksi/{item}', [transaksiController::class, 'destroy'])->name('admin.transaksi.destroy');
     Route::get('/cetak/transaksi/{item}', [cetakController::class, 'transaksi'])->name('cetak.transaksi');
+    Route::post('/admin/transaksi/konfirmasi/{item}', [transaksiController::class, 'konfirmasi'])->name('admin.transaksi.konfirmasi');
 
 
     //konfirmasi

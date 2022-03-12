@@ -18,7 +18,10 @@ class apiProdukController extends Controller
         foreach($datas as $data){
             //get stok
             $getstok=produkdetail::where('produk_id',$data->id)->sum('jml');
-            $getterjual=transaksidetail::where('produk_id',$data->id)->sum('jml');
+            // $getterjual=transaksidetail::where('produk_id',$data->id)->sum('jml');
+            $getterjual=transaksidetail::where('produk_id',$data->id)->whereHas('transaksi', function ($query) {
+                $query->where('status', '<>', 'cancel');
+            })->sum('jml');
             $getstoktersedia=$getstok-$getterjual;
             $arr['id']=$data->id;
             $arr['nama']=$data->nama;

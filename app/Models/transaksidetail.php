@@ -15,12 +15,21 @@ class transaksidetail extends Model
 
         protected $fillable = [
             'transaksi_id',
-            'barang_id',
+            'produk_id',
             'jml',
             'harga_awal',
             'diskon',
             'harga_akhir',
         ];
 
+        public function produk()
+        {
+            return $this->belongsTo(produk::class,'produk_id','id');
+        }
+
+        public function transaksi()
+        {
+            return $this->belongsTo(transaksi::class,'transaksi_id','id');
+        }
 
 }
