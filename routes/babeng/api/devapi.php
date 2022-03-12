@@ -5,6 +5,9 @@ use App\Http\Controllers\api\apiProdukController;
 use Illuminate\Support\Facades\Route;
 Route::get('restapi/dataproduk/cari', [apiProdukController::class, 'cari'])->name('api.produk.cari');
 Route::get('restapi/restokdetail/{item}', [apiProdukController::class, 'restokdetail'])->name('api.produk.restokdetail');
+
+Route::get('restapi/users/cek/username', [apiProdukController::class, 'periksausername'])->name('api.users.periksausername');
+
 Route::middleware('auth')->group(function () {
     Route::get('restapi/label', [apiKategoriController::class, 'label'])->name('api.label.index');
 });

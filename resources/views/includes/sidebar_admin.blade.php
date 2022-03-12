@@ -19,9 +19,9 @@
             <div data-i18n="Support">Label</div>
         </a>
         </li>
-        <li class="menu-item {{$pages=='label'?'active': ''}}">
+        <li class="menu-item {{$pages=='pelanggan'?'active': ''}}">
             <a
-                href="{{route('admin.label')}}"
+                href="{{route('admin.pelanggan')}}"
                 class="menu-link"
             >
             <i class="menu-icon fa-solid fa-address-book"></i>
@@ -29,9 +29,9 @@
             </a>
             </li>
 
-        <li class="menu-item {{$pages=='label'?'active': ''}}">
+        <li class="menu-item {{$pages=='administrator'?'active': ''}}">
             <a
-                href="{{route('admin.label')}}"
+                href="{{route('admin.administrator')}}"
                 class="menu-link"
             >
             <i class="menu-icon fa-solid fa-user-shield"></i>

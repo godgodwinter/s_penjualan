@@ -57,6 +57,15 @@ Route::middleware('auth')->group(function () {
     Route::delete('/admin/pelanggan/{item}', [pelangganController::class, 'destroy'])->name('admin.pelanggan.destroy');
 
 
+    //administrator
+    Route::get('/admin/administrator', [administratorController::class, 'index'])->name('admin.administrator');
+    Route::get('/admin/administrator/create', [administratorController::class, 'create'])->name('admin.administrator.create');
+    Route::post('/admin/administrator/store', [administratorController::class, 'store'])->name('admin.administrator.store');
+    Route::get('/admin/administrator/{item}', [administratorController::class, 'edit'])->name('admin.administrator.edit');
+    Route::put('/admin/administrator/{item}', [administratorController::class, 'update'])->name('admin.administrator.update');
+    Route::delete('/admin/administrator/{item}', [administratorController::class, 'destroy'])->name('admin.administrator.destroy');
+
+
     //transaksi
     Route::get('/admin/transaksi', [transaksiController::class, 'index'])->name('admin.transaksi');
     Route::get('/admin/transaksi/create', [transaksiController::class, 'create'])->name('admin.transaksi.create');

@@ -21,7 +21,7 @@ class pelanggan extends Model
             'users_id',
         ];
 
-        public function User()
+        public function Users()
         {
             return $this->belongsTo(User::class,'users_id','id');
         }

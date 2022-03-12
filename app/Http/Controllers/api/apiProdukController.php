@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\produk;
 use App\Models\produkdetail;
 use App\Models\transaksidetail;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class apiProdukController extends Controller
@@ -41,4 +42,22 @@ class apiProdukController extends Controller
             'data'    => $items,
         ], 200);
     }
+
+
+    public function periksausername(Request $request){
+        $items=0;
+        if($request->username){
+            $items=User::
+            where('username',$request->username)->count();
+        }
+        if($request->email){
+            $items=User::
+            where('email',$request->email)->count();
+        }
+        return response()->json([
+            'success'    => true,
+            'data'    => $items,
+        ], 200);
+    }
+
 }
