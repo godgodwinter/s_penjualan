@@ -60,4 +60,5 @@ class apiProdukController extends Controller
         ], 200);
     }
 
+    
 }

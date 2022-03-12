@@ -78,6 +78,7 @@ class pelangganController extends Controller
         ]);
         User::where('id',$item->users_id)
         ->update([
+            'name' => $request->nama,
             'username' => $request->username,
             'email' => $request->email,
             'password' => Hash::make($request->password),

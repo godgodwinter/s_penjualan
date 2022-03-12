@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-Label Produk
+Pelanggan
 @endsection
 
 @push('before-script')

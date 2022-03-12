@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('title')
-Label Produk
+Administrator
 @endsection
 
 @push('before-script')
@@ -35,7 +35,7 @@ Label Produk
 
     <hr class="my-1" />
 
-  <x-label.label-form :item="$item"></x-label.label-form>
+  <x-administrator.administrator-form :item="$item"></x-administrator.administrator-form>
     </div>
 
 

@@ -1,6 +1,7 @@
 <?php
 
 use App\Helpers\Fungsi;
+use App\Http\Controllers\admin\administratorController;
 use App\Http\Controllers\admin\invoiceController;
 use App\Http\Controllers\admin\konfirmasiController;
 use App\Http\Controllers\admin\labelController;
