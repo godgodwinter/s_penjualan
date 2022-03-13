@@ -33,3 +33,5 @@
 
 <!-- Swipe CSS -->
 <link type="text/css" href="{{ asset('/') }}assets/template/swipe/css/swipe.css" rel="stylesheet">
+
+<script src="{{asset('/')}}assets/js/cdn/jquery-3.5.1.js"></script>

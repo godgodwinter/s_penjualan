@@ -22,7 +22,8 @@ function storeCariData(inputancari='',inputanUrl='#'){
 <div class="card-body">
 <h5 class="card-title">${datas[i].nama}</h5>
 <p class="card-text">Harga : Rp ${rupiah(datas[i].harga_jual)},00</p>
-<button  class="btn btn-info addProduk" onclick="storeProduk(${datas[i].id},'${datas[i].nama}',${datas[i].harga_jual})">Add</button>
+<p class="card-text">Stok :  ${datas[i].stoktersedia}</p>
+<button  class="btn btn-${datas[i].stoktersedia<1?'dark':'info'} addProduk" onclick="storeProduk(${datas[i].id},'${datas[i].nama}',${datas[i].harga_jual})">Tambahkan Keranjang</button>
 </div>
 </div>
 </div>

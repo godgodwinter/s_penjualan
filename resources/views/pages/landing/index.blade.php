@@ -38,7 +38,7 @@ Beranda
                         <p class="lead mb-4 mb-lg-5"> Semua ada semua bisa.</p>
                         {{-- <p class="lead mb-4 mb-lg-5"> v0. {{ $versi }}.</p> --}}
                         <div>
-                            <a href="https://baemon.web.id/" class="btn btn-dark btn-download-app">
+                            <a href="{{route('produk')}}" class="btn btn-dark btn-download-app">
                                 <span class="d-flex align-items-center">
                                     <span class="icon icon-brand mr-2 mr-md-3"><span class="fab fa-google-play"></span></span>
                                     <span class="d-inline-block text-left">

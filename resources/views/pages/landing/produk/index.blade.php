@@ -23,6 +23,7 @@ Beranda
         </div>
 
 @push('before-script')
+<script src="{{asset('/assets/js/babeng.js')}}"></script>
 <script src="{{asset('/assets/js/landingProduk.js')}}"></script>
 <script>
     $(document).ready(function () {

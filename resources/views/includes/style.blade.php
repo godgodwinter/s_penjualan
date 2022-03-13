@@ -41,10 +41,17 @@
 <script src="{{ asset('/') }}assets/template/sneat/assets/js/config.js"></script>
 
 {{-- tambahan --}}
-<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+{{-- <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> --}}
+
+{{-- tambahan local--}}
+<script src="{{asset('/')}}assets/js/cdn/jquery-3.5.1.js"></script>
+<script src="{{asset('/')}}assets/js/cdn/jquery.dataTables.min.js"></script>
+<script src="{{asset('/')}}assets/js/cdn/dataTables.bootstrap5.min.js"></script>
+<script src="{{asset('/')}}assets/js/cdn/sweetalert2@11.js"></script>
+<script src="{{asset('/')}}assets/js/cdn/select2.min.js"></script>
 
 
