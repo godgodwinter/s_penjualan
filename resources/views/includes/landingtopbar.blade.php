@@ -12,13 +12,18 @@
 </div>
 <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
     <li class="nav-item">
-        <a href="{{route('portofolio')}}" class="nav-link">
-            Portofolio
+        <a href="{{route('produk')}}" class="nav-link">
+            Produk
         </a>
     </li>
     <li class="nav-item">
-        <a href="#about" class="nav-link">
-            About
+        <a href="{{route('about')}}" class="nav-link">
+            Tentang
+        </a>
+    </li>
+    <li class="nav-item">
+        <a href="{{route('keranjang')}}" class="nav-link">
+            Keranjang
         </a>
     </li>
     {{-- <li class="nav-item">

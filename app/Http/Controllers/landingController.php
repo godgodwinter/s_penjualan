@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\portofolio;
+use App\Models\produk;
 use Illuminate\Http\Request;
 
 class landingController extends Controller
@@ -20,5 +21,13 @@ class landingController extends Controller
             abort(404);
         }
         return view('pages.landing.portofolio.show',compact('item','pages'));
+    }
+    //produk
+    public function produk(){
+        $pages='produk';
+        $items=produk::with('produkdetail')
+        // ->with('transaksidetail')
+        ->get();
+        return view('pages.landing.produk.index',compact('items','pages'));
     }
 }

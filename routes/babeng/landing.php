@@ -5,5 +5,11 @@ use Illuminate\Support\Facades\Route;
 
 
 //pages
-Route::get('/portofolio', [landingController::class, 'index'])->name('portofolio');
-Route::get('/portofolio/{slug}', [landingController::class, 'show'])->name('portofolio.show');
+Route::get('/produk', [landingController::class, 'produk'])->name('produk');
+Route::get('/produk/{slug}', [landingController::class, 'show'])->name('produk.show');
+
+
+Route::get('/about', [landingController::class, 'index'])->name('about');
+
+
+Route::get('/keranjang', [landingController::class, 'index'])->name('keranjang');
