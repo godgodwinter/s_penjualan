@@ -12,4 +12,4 @@ Route::get('/produk/{slug}', [landingController::class, 'show'])->name('produk.s
 Route::get('/about', [landingController::class, 'index'])->name('about');
 
 
-Route::get('/keranjang', [landingController::class, 'index'])->name('keranjang');
+Route::get('/keranjang', [landingController::class, 'keranjang'])->name('keranjang');

@@ -10,6 +10,9 @@
     @if (Auth::user()!=null)
         @if (Auth::user()->tipeuser=='admin')
         @include('includes.sidebar_admin')
+        @elseif (Auth::user()->tipeuser=='pelanggan')
+        @include('includes.sidebar_pelanggan')
         @endif
+        
     @endif
 </ul>

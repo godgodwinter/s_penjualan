@@ -29,3 +29,13 @@ function rupiah(angka){
     return rupiah;
 
 }
+
+function babengalert(inputIcon='info',InputTitle='Alert!'){
+    Swal.fire({
+        icon: inputIcon,
+        title: InputTitle,
+        // text: 'Something went wrong!',
+        showConfirmButton: true,
+        timer: 1000
+    })
+}

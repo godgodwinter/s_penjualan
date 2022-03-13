@@ -30,4 +30,10 @@ class landingController extends Controller
         ->get();
         return view('pages.landing.produk.index',compact('items','pages'));
     }
+
+    public function keranjang(){
+        $pages='keranjang';
+        $items=null;
+        return view('pages.landing.produk.keranjang',compact('items','pages'));
+    }
 }

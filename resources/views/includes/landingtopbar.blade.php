@@ -11,11 +11,11 @@
     </div>
 </div>
 <ul class="navbar-nav navbar-nav-hover align-items-lg-center">
-    <li class="nav-item">
+    {{-- <li class="nav-item">
         <a href="{{route('about')}}" class="nav-link">
             Tentang
         </a>
-    </li>
+    </li> --}}
     <li class="nav-item">
         <a href="{{route('produk')}}" class="nav-link">
             Produk

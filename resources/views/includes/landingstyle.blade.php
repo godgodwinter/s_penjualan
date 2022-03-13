@@ -35,3 +35,8 @@
 <link type="text/css" href="{{ asset('/') }}assets/template/swipe/css/swipe.css" rel="stylesheet">
 
 <script src="{{asset('/')}}assets/js/cdn/jquery-3.5.1.js"></script>
+
+{{-- <link rel="stylesheet" href="{{asset('/')}}assets/css/cdn/fontawesome6.all.min.css" /> --}}
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="{{asset('/')}}assets/js/cdn/sweetalert2@11.js"></script>
