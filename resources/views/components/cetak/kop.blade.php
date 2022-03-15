@@ -1,9 +1,9 @@
 <table width="100%" id="tableBiasa">
     <tr>
-        <td width="13%" align="right" style="padding-bottom:15px">
+        {{-- <td width="13%" align="right" style="padding-bottom:15px"> --}}
             {{-- <img src="{{Fungsi::lembaga_logo()}}" width="70" height="70"> --}}
-        </td>
-        <td width="80%" align="center">
+        {{-- </td> --}}
+        <td width="100%" align="center">
             <p><b>
                     <font size="14px"> TOKO MAJU SEJAHTERA
                         <br> No.10 HP. 085123456123 / 0341123456 Malang - Jawa Timur </font>
