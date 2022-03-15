@@ -182,9 +182,16 @@ function storeCariData(inputancari='',inputanUrl='#'){
 <div class="card-body">
 <h5 class="card-title">${datas[i].nama}</h5>
 <p class="card-text">Harga : Rp ${rupiah(datas[i].harga_jual)},00</p>
-<p class="card-text">Stok :  ${datas[i].stoktersedia}</p>
-<button  class="btn btn-${datas[i].stoktersedia<1?'dark':'info'} addProduk" onclick="storeProduk(${datas[i].id},'${datas[i].nama}',${datas[i].harga_jual},${datas[i].stoktersedia})">Tambahkan Keranjang</button>
-</div>
+<p class="card-text">Stok :  ${datas[i].stoktersedia}</p>`;
+
+if(datas[i].stoktersedia>0){
+contentResponse+=`<button  class="btn btn-${datas[i].stoktersedia<1?'dark':'info'} addProduk" onclick="storeProduk(${datas[i].id},'${datas[i].nama}',${datas[i].harga_jual},${datas[i].stoktersedia})">Tambahkan Keranjang</button>`;
+}else{
+    contentResponse+=`<button  class="btn btn-${datas[i].stoktersedia<1?'dark':'info'} addProduk" onclick="return  confirm('Stok Habis!')">Tambahkan Keranjang</button>`;
+
+}
+
+contentResponse+=`</div>
 </div>
 </div>
 `;
