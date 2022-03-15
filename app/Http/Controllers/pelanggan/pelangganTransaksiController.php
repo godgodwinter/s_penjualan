@@ -88,6 +88,7 @@ class pelangganTransaksiController extends Controller
             //transaksidetail store
                 $jmlData=count($datakeranjang);
                 for($i=0;$i<$jmlData;$i++){
+                    if($datakeranjang[$i]->inputTerjual>0){
                     DB::table('transaksidetail')->insertGetId(
                         array(
                                 'produk_id'     =>   $datakeranjang[$i]->id,
@@ -100,6 +101,7 @@ class pelangganTransaksiController extends Controller
                                 'updated_at'=>date("Y-m-d H:i:s")
                         ));
                 }
+            }
 return redirect()->route('pelanggan.transaksi')->with('status','Data berhasil tambahkan!')->with('tipe','success')->with('icon','fas fa-feather');
   
         // dd($request);

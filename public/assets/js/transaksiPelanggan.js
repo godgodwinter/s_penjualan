@@ -44,6 +44,7 @@ function storeProduk(id=null,nama=null,harga_jual=null,stok=null,terjual=null,st
         // stoktersedia:stoktersedia,
         jumlah:0,
         total:0,
+        inputTerjual:0,
     }
     //ambilDataLocalStorage
     //ubah menjadi array and object
