@@ -45,7 +45,7 @@ class transaksiController extends Controller
     if($request->cart){
         $datakeranjang=json_decode($request->cart);
     }
-    // dd($request,$datakeranjang);
+    // dd($request,$datakeranjang,empty($request->cart));
         $request->validate([
             'pelanggan_id'=>'required',
             'penanggungjawab'=>'required',
@@ -79,15 +79,15 @@ class transaksiController extends Controller
             //transaksidetail store
                 $jmlData=count($datakeranjang);
                 for($i=0;$i<$jmlData;$i++){
-                    if($datakeranjang[$i]->inputTerjual>0){
+                    if($datakeranjang[$i]->inputTerjual>0||!empty($datakeranjang[$i]->inputTerjual)){
                     DB::table('transaksidetail')->insertGetId(
                         array(
                                 'produk_id'     =>   $datakeranjang[$i]->id,
                                 'transaksi_id'     =>   $data_id,
-                                'harga_jual'     =>   $datakeranjang[$i]->inputTerjual,
+                                'harga_jual'     =>   $datakeranjang[$i]->inputTerjual?$datakeranjang[$i]->inputTerjual:0,
                                 'jml'     =>   $datakeranjang[$i]->jumlah,
                                 'diskon'     =>   0,
-                                'harga_akhir'     =>   $datakeranjang[$i]->inputTerjual,
+                                'harga_akhir'     =>   $datakeranjang[$i]->inputTerjual?$datakeranjang[$i]->inputTerjual:0,
                                 'created_at'=>date("Y-m-d H:i:s"),
                                 'updated_at'=>date("Y-m-d H:i:s")
                         ));
