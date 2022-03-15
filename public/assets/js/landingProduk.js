@@ -150,8 +150,8 @@ function storeBtnOpenModalEdit(id=null,index=null){
 function storeBtnApplyModalEdit(index=null){
     let getData=storeGetProduk();
     getData[index].jumlah=$('#inputJumlah').val();
-    getData[index].inputTerjual=$('#inputTerjual').val();
-    getData[index].total=$('#inputJumlah').val()*$('#inputTerjual').val();
+    // getData[index].inputTerjual=$('#inputTerjual').val();
+    getData[index].total=$('#inputJumlah').val()*getData[index].harga_terjual;
     // console.log(index,getData[index].jumlah,getData[index].harga_beli,getData[index].total);
     localStorage.setItem('transaksiItems',JSON.stringify(getData));
     $('#formModalEdit').modal('hide');
