@@ -93,12 +93,25 @@
         </a>
         </li> --}}
 
-    {{-- <li class="menu-item {{$pages=='invoice'?'active': ''}}">
+<!-- Transaksi -->
+<li class="menu-header small text-uppercase"><span class="menu-header-text">Menu Laporan</span></li>
+    <li class="menu-item {{$pages=='laporanrestok'?'active': ''}}">
         <a
-            href="{{route('admin.invoice')}}"
+            href="#"
             class="menu-link"
         >
         <i class="menu-icon fa-solid fa-file-invoice"></i>
-            <div data-i18n="Support">Invoice</div>
+            <div data-i18n="Support">Laporan Pengadaan / Restok Produk</div>
         </a>
-        </li> --}}
+        </li>
+
+
+    <li class="menu-item {{$pages=='laporanpenjualan'?'active': ''}}">
+        <a
+            href="#"
+            class="menu-link"
+        >
+        <i class="menu-icon fa-solid fa-file-invoice"></i>
+            <div data-i18n="Support">Laporan Penjualan</div>
+        </a>
+        </li>

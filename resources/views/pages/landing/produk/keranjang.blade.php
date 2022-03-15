@@ -118,17 +118,6 @@ refreshDataRestok();
 
 
 
-                <div class="form-group row align-items-center py-2">
-                    <label for="site-title" class="form-control-label col-sm-3 text-md-right">Harga Asli / Stok</label>
-                    <div class="col-sm-6 col-md-9">
-        
-                      <input type="text" class="form-control "  id="inputHargaAsli" readonly>
-        
-                      @error('namatoko')<div class="invalid-feedback"> {{$message}}</div>
-                      @enderror
-        
-                    </div>
-                  </div>
 
 
                 <div class="form-group row align-items-center py-2">

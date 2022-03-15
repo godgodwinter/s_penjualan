@@ -46,7 +46,15 @@
 
               
         <div class="form-group row align-items-center py-2" id="divonline">
-            <input type="hidden" class="form-control " name="alamat"   value="">
+          <label for="site-title" class="form-control-label col-sm-5 text-md-right">Alamat Penerima</label>
+          <div class="col-sm-4 col-md-7">
+
+            <input type="text" class="form-control  @error('alamat') is-invalid @enderror" name="alamat" required  value="">
+
+            @error('alamat')<div class="invalid-feedback"> {{$message}}</div>
+            @enderror
+
+          </div>
           </div>
           
 

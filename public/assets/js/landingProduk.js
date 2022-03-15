@@ -115,8 +115,9 @@ function storeBtnOpenModalEdit(id=null,index=null){
     //   })
     $('#formModalEdit').on('shown.bs.modal', function () {
         $('#inputNamaProduk').val(getData[index].nama);
-        $('#inputHargaAsli').val(`${rupiah(getData[index].harga_asli)} / Stok : ${getData[index].stok}`);
-        $('#inputTerjual').val(getData[index].harga_terjual);
+        // $('#inputHargaAsli').val(`${rupiah(getData[index].harga_asli)} / Stok : ${getData[index].stok}`);
+        $('#inputTerjual').val(`${rupiah(getData[index].harga_terjual)} / Stok : ${getData[index].stok}`);
+        // $('#inputTerjual').val(getData[index].harga_terjual);
         $('#inputJumlah').val(getData[index].jumlah);
         $('#inputJumlah').prop('max',getData[index].stok);
         $('#inputJumlah').focus();
