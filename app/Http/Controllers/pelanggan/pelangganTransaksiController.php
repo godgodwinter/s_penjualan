@@ -13,6 +13,15 @@ use Illuminate\Support\Facades\DB;
 
 class pelangganTransaksiController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware(function ($request, $next) {
+            if(Auth::user()->tipeuser!='pelanggan'){
+                return redirect()->route('dashboard')->with('status','Halaman tidak ditemukan!')->with('tipe','danger');
+            }
+        return $next($request);
+        });
+    }
     public function index(Request $request)
     {
         $getPelanggan=pelanggan::where('users_id',Auth::user()->id)->first();
