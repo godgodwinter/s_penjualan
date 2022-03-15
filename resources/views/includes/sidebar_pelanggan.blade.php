@@ -16,7 +16,7 @@
 
         <li class="menu-item {{$pages=='keranjang'?'active': ''}}">
             <a
-                href="{{route('keranjang')}}"
+                href="{{route('pelanggan.transaksi.create')}}"
                 class="menu-link"
             >
             <i class="menu-icon fa-solid fa-cart-arrow-down"></i>
@@ -27,7 +27,7 @@
 <li class="menu-header small text-uppercase"><span class="menu-header-text">Transaksi</span></li>
     <li class="menu-item {{$pages=='transaksi'?'active': ''}}">
         <a
-            href="{{route('admin.transaksi')}}"
+            href="{{route('pelanggan.transaksi')}}"
             class="menu-link"
         >
         <i class="menu-icon fa-solid fa-cart-shopping"></i>

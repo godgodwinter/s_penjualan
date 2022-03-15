@@ -82,7 +82,8 @@ refreshDataRestok();
 
 <div class="row justify-content-center">
     <div class="modal-footer">
-        <a href="{{route('login')}}" class="btn btn-lg btn-warning">Checkout</a>
+      <span class="btn btn-danger ml-2" id="save-reset" onclick="return confirm('Anda yakin melakukan reset ? Y/N') ?resetData():''">Reset</span>
+        <a href="{{route('pelanggan.transaksi.create')}}" class="btn btn-lg btn-warning">Checkout</a>
         
     </div>
 </div>

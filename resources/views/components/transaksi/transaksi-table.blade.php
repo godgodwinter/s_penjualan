@@ -44,14 +44,18 @@
             <tr>
                 <td class=" text-center">{{$loop->index+1}}</td>
                 <td class="babeng-min-row">
+                    @if(Auth()->user()->tipeuser=='admin')
                     <x-btndelete link="{{route('admin.transaksi.destroy',$item->id)}}"></x-btndelete>
+                    @endif
                    {{-- @if ($item->status=='pending') --}}
                    <button class="btn btn-success btn-sm"  onclick="btnModalDetailTransaksi('{{$urlModalDetail}}',{{$item->id}},'{{$item->status}}','{{$urlModalDetailUpdate}}')" data-bs-toggle="modal" data-bs-target="#modalDetailTransaksi" ><span
                     class="pcoded-micon"> <i class="fa-regular fa-circle-check"></i></span></button>
                    {{-- @endif --}}
+
+                   {{-- @if(Auth()->user()->tipeuser=='admin') --}}
                     <a href="{{route('cetak.transaksi',$item->kodetrans)}}" class="btn btn-info btn-sm"   data-bs-toggle="tooltip" data-bs-placement="top" title="Invoice" onclick="return confirm('Anda yakin melihat data ini? Y/N')"><span
                         class="pcoded-micon"> <i class="fa-solid fa-file-invoice" ></i></span></a>
-                   
+                    {{-- @endif --}}
                     
                 </td>
                 {{-- <td>{{substr($item->kodetrans, 0, 7) . '...'}}</td> --}}
@@ -105,6 +109,7 @@
         let divModalDetailContent=`<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>`;
         if(status=='pending'){
             divModalDetailContent=`<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+@if(Auth()->user()->tipeuser=='admin')
     <form action="${urlUpdate}" method="post" class="d-inline">
     @csrf
     <input type="hidden" name="status" value="cancel">
@@ -120,16 +125,19 @@
         onclick="return  confirm('Anda yakin mengkonfirmasi data ini? Y/N')"  data-bs-toggle="tooltip" data-bs-placement="top" title="Konfirmasi data!"> Konfirmasi Pembelian!</button>
            
 </form>
+@endif
             `;
         }else if(status=='success' || status=='cancel'){
             divModalDetailContent=`  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            @if(Auth()->user()->tipeuser=='admin')
             <form action="${urlUpdate}" method="post" class="d-inline">
     @csrf
     <input type="hidden" name="status" value="pending">
     <button class="btn  btn-dark "
         onclick="return  confirm('Anda yakin mengkonfirmasi data ini? Y/N')"  data-bs-toggle="tooltip" data-bs-placement="top" title="Pending data!"> Pending Pembelian!</button>
            
-</form>`;
+</form>
+@endif`;
             // divModalDetailContent=`<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             // <button type="button" class="btn btn-info" data-bs-dismiss="modal">Tunggu Konfirmasi </button>
             // `;

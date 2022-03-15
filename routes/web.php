@@ -25,6 +25,7 @@ Route::middleware('auth')->group(function () {
     // })->name('dashboard');
 });
 require __DIR__.'/babeng/admin.php';
+require __DIR__.'/babeng/pelanggan.php';
 require __DIR__.'/babeng/dev.php';
 require __DIR__.'/auth.php';
 //RESTAPI

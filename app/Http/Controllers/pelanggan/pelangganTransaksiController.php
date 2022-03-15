@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\pelanggan;
 
 use App\Helpers\Fungsi;
 use App\Http\Controllers\Controller;
@@ -11,36 +11,36 @@ use Faker\Factory as Faker;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
-class transaksiController extends Controller
+class pelangganTransaksiController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware(function ($request, $next) {
-            if(Auth::user()->tipeuser!='admin'){
-                return redirect()->route('dashboard')->with('status','Halaman tidak ditemukan!')->with('tipe','danger');
-            }
-        return $next($request);
-        });
-    }
     public function index(Request $request)
     {
+        $getPelanggan=pelanggan::where('users_id',Auth::user()->id)->first();
         #WAJIB
         $pages='transaksi';
         $items=transaksi::
         orderBy('tglbeli','desc')
+        ->where('pelanggan_id',$getPelanggan->id)
         ->orderBy('id','desc')
         ->paginate();
-        return view('pages.admin.transaksi.index',compact('items','request','pages'));
+        return view('pages.pelanggan.transaksi.index',compact('items','request','pages'));
     }
     public function create()
     {
+        $getPelanggan=pelanggan::where('users_id',Auth::user()->id)->first();
         $pages='transaksi';
         $faker = Faker::create('id_ID');
         $kodetrans=$faker->unique()->uuid();
-        $pelanggan=pelanggan::get();
-        return view('pages.admin.transaksi.create',compact('pages','kodetrans','pelanggan'));
+        $pelanggan=pelanggan::where('id',$getPelanggan->id)->get();
+        // dd($getPelanggan);
+        return view('pages.pelanggan.transaksi.create',compact('pages','kodetrans','pelanggan','getPelanggan'));
     }
     public function store(Request $request){
+        $getPelanggan=pelanggan::where('users_id',Auth::user()->id)->first();
+        $periksapending=transaksi::where('pelanggan_id',$getPelanggan->id)->where('status','pending')->count();
+        if($periksapending>0){
+            return redirect()->route('pelanggan.transaksi.create')->with('status','Gagal tambahkan! Menunggu proses transaksi sebelumnya!')->with('tipe','error')->with('icon','fas fa-feather');
+        }
         $datakeranjang=null;
     if($request->cart){
         $datakeranjang=json_decode($request->cart);
@@ -48,7 +48,7 @@ class transaksiController extends Controller
     // dd($request,$datakeranjang);
         $request->validate([
             'pelanggan_id'=>'required',
-            'penanggungjawab'=>'required',
+            // 'penanggungjawab'=>'required',
             'tglbeli'=>'required',
         ],
         [
@@ -61,11 +61,11 @@ class transaksiController extends Controller
         $data_id=DB::table('transaksi')->insertGetId(
             array(
                     'kodetrans'     =>   $request->kodetrans,
-                    'pelanggan_tipe'     =>   $request->pelanggan_tipe,
-                    'transaksi_tipe'     =>   $request->transaksi_tipe,
-                   'pelanggan_id'     =>   $request->pelanggan_id,
+                    'pelanggan_tipe'     =>   'member',
+                    'transaksi_tipe'     =>   'online',
+                   'pelanggan_id'     =>   $getPelanggan->id,
                    'totalbayar'     =>    Fungsi::angka($request->totalbayar),
-                   'penanggungjawab'     =>   $request->penanggungjawab,
+                   'penanggungjawab'     =>   'member',
                    'tglbeli'     =>   $request->tglbeli,
                    'alamat'     =>   $request->alamat,
                    'ppn'     =>   null,
@@ -91,24 +91,8 @@ class transaksiController extends Controller
                                 'updated_at'=>date("Y-m-d H:i:s")
                         ));
                 }
-return redirect()->route('admin.transaksi')->with('status','Data berhasil tambahkan!')->with('tipe','success')->with('icon','fas fa-feather');
+return redirect()->route('pelanggan.transaksi')->with('status','Data berhasil tambahkan!')->with('tipe','success')->with('icon','fas fa-feather');
   
         // dd($request);
-    }
-    public function destroy(transaksi $item){
-
-        transaksi::destroy($item->id);
-        return redirect()->route('admin.transaksi')->with('status','Data berhasil dihapus!')->with('tipe','warning')->with('icon','fas fa-feather');
-
-    }
-    public function konfirmasi(transaksi $item,Request $request){
-        // dd($request);
-            transaksi::where('id',$item->id)
-            ->update([
-                'status'     =>   $request->status,
-               'updated_at'=>date("Y-m-d H:i:s")
-            ]);
-
-        return redirect()->route('admin.transaksi')->with('status','Transaksi Berhasil!')->with('tipe','success')->with('icon','fas fa-feather');
     }
 }

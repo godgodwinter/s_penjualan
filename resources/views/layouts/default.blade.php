@@ -166,7 +166,9 @@
                 <li class="nav-item navbar-dropdown dropdown-user dropdown">
                   <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
-                      <img src="{{ asset('/') }}assets/template/sneat/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                      {{-- <img src="{{ asset('/') }}assets/template/sneat/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" /> --}}
+                      <img src="https://ui-avatars.com/api/?name={{Auth::user()?Auth::user()->name:'Belum Login'}}&color=7F9CF5&background=EBF4FF" class="w-px-40 h-auto rounded-circle"  style="display: block;max-width: 100%;height: 200px;object-fit: cover">
+                            
                     </div>
                   </a>
                   <ul class="dropdown-menu dropdown-menu-end">
@@ -175,7 +177,8 @@
                         <div class="d-flex">
                           <div class="flex-shrink-0 me-3">
                             <div class="avatar avatar-online">
-                              <img src="{{ asset('/') }}assets/template/sneat/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                              <img src="https://ui-avatars.com/api/?name={{Auth::user()?Auth::user()->name:'Belum Login'}}&color=7F9CF5&background=EBF4FF" class="w-px-40 h-auto rounded-circle"  style="display: block;max-width: 100%;height: 200px;object-fit: cover">
+                              {{-- <img src="{{ asset('/') }}assets/template/sneat/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" /> --}}
                             </div>
                           </div>
                           <div class="flex-grow-1">
@@ -185,22 +188,22 @@
                         </div>
                       </a>
                     </li>
-                    <li>
+                    {{-- <li>
                       <div class="dropdown-divider"></div>
-                    </li>
-                    <li>
+                    </li> --}}
+                    {{-- <li>
                       <a class="dropdown-item" href="#">
                         <i class="bx bx-user me-2"></i>
                         <span class="align-middle">My Profile</span>
                       </a>
-                    </li>
-                    <li>
+                    </li> --}}
+                    {{-- <li>
                       <a class="dropdown-item" href="#">
                         <i class="bx bx-cog me-2"></i>
                         <span class="align-middle">Settings</span>
                       </a>
-                    </li>
-                    <li>
+                    </li> --}}
+                    {{-- <li>
                       <a class="dropdown-item" href="#">
                         <span class="d-flex align-items-center align-middle">
                           <i class="flex-shrink-0 bx bx-credit-card me-2"></i>
@@ -208,7 +211,7 @@
                           <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
                         </span>
                       </a>
-                    </li>
+                    </li> --}}
                     <li>
                       <div class="dropdown-divider"></div>
                     </li>
