@@ -94,7 +94,7 @@ class transaksiController extends Controller
                 }
             }
 return redirect()->route('admin.transaksi')->with('status','Data berhasil tambahkan!')->with('tipe','success')->with('icon','fas fa-feather');
-  
+
         // dd($request);
     }
     public function destroy(transaksi $item){

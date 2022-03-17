@@ -56,7 +56,7 @@
                     <a href="{{route('cetak.transaksi',$item->kodetrans)}}" class="btn btn-info btn-sm"   data-bs-toggle="tooltip" data-bs-placement="top" title="Invoice" onclick="return confirm('Anda yakin melihat data ini? Y/N')"><span
                         class="pcoded-micon"> <i class="fa-solid fa-file-invoice" ></i></span></a>
                     {{-- @endif --}}
-                    
+
                 </td>
                 {{-- <td>{{substr($item->kodetrans, 0, 7) . '...'}}</td> --}}
                 <td>{{Fungsi::tanggalindo($item->tglbeli)}}</td>
@@ -115,7 +115,7 @@
     <input type="hidden" name="status" value="cancel">
     <button class="btn  btn-danger "
         onclick="return  confirm('Anda yakin mengkonfirmasi data ini? Y/N')"  data-bs-toggle="tooltip" data-bs-placement="top" title="Konfirmasi data!"> Batalkan Pembelian!</button>
-           
+
 </form>
 
 <form action="${urlUpdate}" method="post" class="d-inline">
@@ -123,9 +123,12 @@
     <input type="hidden" name="status" value="success">
     <button class="btn  btn-success "
         onclick="return  confirm('Anda yakin mengkonfirmasi data ini? Y/N')"  data-bs-toggle="tooltip" data-bs-placement="top" title="Konfirmasi data!"> Konfirmasi Pembelian!</button>
-           
+
 </form>
 @endif
+<a href="{{route('pelanggan.transaksi.upoadbukti',$item->id)}}" class="btn  btn-info "
+        onclick="return  confirm('Anda yakin mengkonfirmasi data ini? Y/N')"  data-bs-toggle="tooltip" data-bs-placement="top" title="Konfirmasi data!"> Upload bukti pembayaran!</a>
+
             `;
         }else if(status=='success' || status=='cancel'){
             divModalDetailContent=`  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -135,7 +138,7 @@
     <input type="hidden" name="status" value="pending">
     <button class="btn  btn-dark "
         onclick="return  confirm('Anda yakin mengkonfirmasi data ini? Y/N')"  data-bs-toggle="tooltip" data-bs-placement="top" title="Pending data!"> Pending Pembelian!</button>
-           
+
 </form>
 @endif`;
             // divModalDetailContent=`<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

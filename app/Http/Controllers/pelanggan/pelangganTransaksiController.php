@@ -106,4 +106,13 @@ return redirect()->route('pelanggan.transaksi')->with('status','Data berhasil ta
 
         // dd($request);
     }
+
+    public function uploadbukti(Request $request,$item){
+        $items=transaksi::with('transaksidetail')->where('id',$item)->first();
+        $getPelanggan=pelanggan::where('users_id',Auth::user()->id)->first();
+        $pages='transaksi';
+        $faker = Faker::create('id_ID');
+        $pelanggan=pelanggan::where('id',$getPelanggan->id)->get();
+        return view('pages.pelanggan.transaksi.uploadbukti',compact('pages','items','pelanggan','getPelanggan'));
+    }
 }

@@ -12,5 +12,6 @@ Route::middleware('auth')->group(function () {
     Route::put('/pelanggan/transaksi/{item}', [pelangganTransaksiController::class, 'update'])->name('pelanggan.transaksi.update');
     Route::delete('/pelanggan/transaksi/{item}', [pelangganTransaksiController::class, 'destroy'])->name('pelanggan.transaksi.destroy');
     Route::post('/pelanggan/transaksi/konfirmasi/{item}', [pelangganTransaksiController::class, 'konfirmasi'])->name('pelanggan.transaksi.konfirmasi');
+    Route::get('/pelanggan/transaksi/upoadbukti/{item}', [pelangganTransaksiController::class, 'uploadbukti'])->name('pelanggan.transaksi.upoadbukti');
 
 });
