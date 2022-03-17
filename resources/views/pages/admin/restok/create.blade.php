@@ -85,9 +85,9 @@ Restok Produk
             storeCariData($(this).val(),"{{route('api.produk.cari')}}");
         });
 
-     
-        
-    }); 
+
+
+    });
     </script>
 @endpush
 
@@ -124,12 +124,12 @@ Restok Produk
                 <div class="form-group row align-items-center py-2">
                     <label for="site-title" class="form-control-label col-sm-3 text-md-right">Nama Produk</label>
                     <div class="col-sm-6 col-md-9">
-        
+
                       <input type="text" class="form-control "  readonly id="inputNamaProduk">
-        
+
                       @error('namatoko')<div class="invalid-feedback"> {{$message}}</div>
                       @enderror
-        
+
                     </div>
                   </div>
 
@@ -138,12 +138,12 @@ Restok Produk
                 <div class="form-group row align-items-center py-2">
                     <label for="site-title" class="form-control-label col-sm-3 text-md-right">Harga Pembelian</label>
                     <div class="col-sm-6 col-md-9">
-        
+
                       <input type="text" class="form-control "  id="inputHargaBeli">
-        
+
                       @error('namatoko')<div class="invalid-feedback"> {{$message}}</div>
                       @enderror
-        
+
                     </div>
                   </div>
 
@@ -151,19 +151,19 @@ Restok Produk
                 <div class="form-group row align-items-center py-2">
                     <label for="site-title" class="form-control-label col-sm-3 text-md-right">Jumlah</label>
                     <div class="col-sm-6 col-md-9">
-        
+
                       <input type="number" class="form-control" id="inputJumlah">
-        
+
                       @error('namatoko')<div class="invalid-feedback"> {{$message}}</div>
                       @enderror
-        
+
                     </div>
                   </div>
 
 
             </div>
             <div class="modal-footer" id="btnApplyModalEdit">
-                
+
             </div>
         </div>
     </div>

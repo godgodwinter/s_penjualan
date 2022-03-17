@@ -72,7 +72,7 @@ Re-stok Produk
             <th class="text-center">Total Harga</th>
       </x-slot>
       <x-slot name="tbody">
-      <tbody class="table-border-bottom-0" id="trbody"> 
+      <tbody class="table-border-bottom-0" id="trbody">
       </tbody>
       </x-slot>
   </x-babeng.table-two>

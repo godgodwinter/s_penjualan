@@ -6,14 +6,17 @@ use Illuminate\View\Component;
 
 class transaksiFormTwo extends Component
 {
+    public $kodetrans;
+    public $pelanggan;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($kodetrans=null,$pelanggan)
     {
-        //
+        $this->kodetrans = $kodetrans;
+        $this->pelanggan = $pelanggan;
     }
 
     /**

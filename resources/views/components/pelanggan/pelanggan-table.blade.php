@@ -1,4 +1,6 @@
 <div>
+    {{-- {{dd($items)}} --}}
+    {{-- {{'test'}} --}}
     <x-babeng.table-one>
         <x-slot name="thead">
               <th class="babeng-min-row text-center">No</th>

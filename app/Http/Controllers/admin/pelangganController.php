@@ -19,6 +19,7 @@ class pelangganController extends Controller
         $items=pelanggan::with('users')
         ->orderBy('nama','asc')
         ->get();
+        // dd($items);
         return view('pages.admin.pelanggan.index',compact('items','request','pages'));
     }
     public function create()

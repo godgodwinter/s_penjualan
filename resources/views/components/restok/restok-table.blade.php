@@ -21,8 +21,8 @@
                     <x-btndelete link="{{route('admin.restok.destroy',$item->id)}}"></x-btndelete>
                     <button class="btn btn-info btn-sm" onclick="btnModalDetailTransaksi('{{$url}}',{{$item->id}})" data-bs-toggle="modal" data-bs-target="#modalDetailTransaksi"><span
                         class="pcoded-micon"> <i class="fa-solid fa-angles-right"></i></span></button>
-                   
-                    
+
+
                 </td>
                 {{-- <td>{{substr($item->kodetrans, 0, 7) . '...'}}</td> --}}
                 <td>{{Fungsi::tanggalindo($item->tglbeli)}}</td>

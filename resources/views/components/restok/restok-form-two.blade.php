@@ -23,7 +23,7 @@
 
             </div>
           </div>
-          
+
 
         <div class="form-group row align-items-center py-2">
             <label for="site-title" class="form-control-label col-sm-5 text-md-right">Tanggal Pembelian</label>
@@ -71,3 +71,4 @@
       </form>
 
 </div>
+

@@ -103,7 +103,7 @@ class pelangganTransaksiController extends Controller
                 }
             }
 return redirect()->route('pelanggan.transaksi')->with('status','Data berhasil tambahkan!')->with('tipe','success')->with('icon','fas fa-feather');
-  
+
         // dd($request);
     }
 }

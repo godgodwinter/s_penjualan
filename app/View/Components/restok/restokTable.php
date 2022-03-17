@@ -6,14 +6,15 @@ use Illuminate\View\Component;
 
 class restokTable extends Component
 {
+    public $items;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($items=null)
     {
-        //
+        $this->items = $items;
     }
 
     /**

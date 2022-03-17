@@ -48,7 +48,7 @@ Buat Transaksi
         </div>
 
         <div class="col-md-4 col-12">
-            {{-- {{dd($pelanggan)}} --}}
+            {{-- {{dd($getPelanggan)}} --}}
             <x-transaksi.transaksi-form-two-pelanggan kodetrans="{{$kodetrans}}" :pelanggan="$pelanggan" :getPelanggan="$getPelanggan"></x-transaksi.transaksi-form-two-pelanggan>
         </div>
     </div>
@@ -87,9 +87,9 @@ Buat Transaksi
             storeCariData($(this).val(),"{{route('api.produk.cari')}}");
         });
 
-     
-        
-    }); 
+
+
+    });
     </script>
 @endpush
 
@@ -126,12 +126,12 @@ Buat Transaksi
                 <div class="form-group row align-items-center py-2">
                     <label for="site-title" class="form-control-label col-sm-3 text-md-right">Nama Produk</label>
                     <div class="col-sm-6 col-md-9">
-        
+
                       <input type="text" class="form-control "  readonly id="inputNamaProduk">
-        
+
                       @error('namatoko')<div class="invalid-feedback"> {{$message}}</div>
                       @enderror
-        
+
                     </div>
                   </div>
 
@@ -140,12 +140,12 @@ Buat Transaksi
                 <div class="form-group row align-items-center py-2">
                     <label for="site-title" class="form-control-label col-sm-3 text-md-right ">Harga </label>
                     <div class="col-sm-6 col-md-9">
-        
+
                       <input type="text" class="form-control "  id="inputTerjual" readonly>
-        
+
                       @error('namatoko')<div class="invalid-feedback"> {{$message}}</div>
                       @enderror
-        
+
                     </div>
                   </div>
 
@@ -153,19 +153,19 @@ Buat Transaksi
                 <div class="form-group row align-items-center py-2">
                     <label for="site-title" class="form-control-label col-sm-3 text-md-right ">Jumlah</label>
                     <div class="col-sm-6 col-md-9">
-        
+
                       <input type="number" class="form-control" id="inputJumlah" min="0" max="0" >
-        
+
                     <div class="invalid-feedback">Stok tidak cukup!</div>
-                     
-        
+
+
                     </div>
                   </div>
 
 
             </div>
             <div class="modal-footer" id="btnApplyModalEdit">
-                
+
             </div>
         </div>
     </div>

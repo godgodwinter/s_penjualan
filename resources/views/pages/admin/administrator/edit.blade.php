@@ -25,7 +25,7 @@ Administrator
               aria-label="Toolbar with button groups"
             >
             <div class="btn-group" role="group" aria-label="Third group">
-              <a href="{{route('admin.pelanggan')}}" type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Kembali">
+              <a href="{{route('admin.administrator')}}" type="button" class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Kembali">
                 <i class="fa-solid fa-circle-arrow-left"></i>
               </a>
             </div>

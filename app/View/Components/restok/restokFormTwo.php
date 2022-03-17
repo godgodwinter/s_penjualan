@@ -6,14 +6,15 @@ use Illuminate\View\Component;
 
 class restokFormTwo extends Component
 {
+    public $kodetrans;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($kodetrans=null)
     {
-        //
+        $this->kodetrans = $kodetrans;
     }
 
     /**
