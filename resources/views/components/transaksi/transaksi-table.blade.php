@@ -126,7 +126,13 @@
 
 </form>
 @endif
-<a href="{{route('pelanggan.transaksi.upoadbukti',$item->id)}}" class="btn  btn-info "
+@php
+    $kodetrans=0;
+    if(!empty($item)){
+        $kodetrans=$item->kodetrans;
+    }
+@endphp
+<a href="{{route('pelanggan.transaksi.upoadbukti',$kodetrans)}}" class="btn  btn-info "
         onclick="return  confirm('Anda yakin mengkonfirmasi data ini? Y/N')"  data-bs-toggle="tooltip" data-bs-placement="top" title="Konfirmasi data!"> Upload bukti pembayaran!</a>
 
             `;

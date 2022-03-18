@@ -13,5 +13,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/pelanggan/transaksi/{item}', [pelangganTransaksiController::class, 'destroy'])->name('pelanggan.transaksi.destroy');
     Route::post('/pelanggan/transaksi/konfirmasi/{item}', [pelangganTransaksiController::class, 'konfirmasi'])->name('pelanggan.transaksi.konfirmasi');
     Route::get('/pelanggan/transaksi/upoadbukti/{item}', [pelangganTransaksiController::class, 'uploadbukti'])->name('pelanggan.transaksi.upoadbukti');
+    Route::post('/pelanggan/transaksi/upoadbukti/{item}', [pelangganTransaksiController::class, 'uploadbukti_store'])->name('pelanggan.transaksi.upoadbukti');
 
 });

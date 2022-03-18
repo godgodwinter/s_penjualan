@@ -2,3 +2,9 @@
     width: 1%;
     white-space: nowrap;
 }
+
+/* image preview */
+.file {
+    visibility: hidden;
+    position: absolute;
+  }

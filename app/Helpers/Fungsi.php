@@ -184,6 +184,25 @@ class Fungsi {
         return $data;
     }
 
+    public static function bank_nama(){
+        $settings = DB::table('settings')->first();
+        if($settings!=null){
+            $data=$settings->bank_nama;
+        }else{
+            $data="Judul Aplikasi";
+        }
+        return $data;
+    }
+
+    public static function bank_rekening(){
+        $settings = DB::table('settings')->first();
+        if($settings!=null){
+            $data=$settings->bank_rekening;
+        }else{
+            $data="Judul Aplikasi";
+        }
+        return $data;
+    }
     public static function paginationjml(){
         $settings = DB::table('settings')->first();
         $data=$settings->paginationjml;

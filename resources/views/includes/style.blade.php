@@ -53,5 +53,6 @@
 <script src="{{asset('/')}}assets/js/cdn/dataTables.bootstrap5.min.js"></script>
 <script src="{{asset('/')}}assets/js/cdn/sweetalert2@11.js"></script>
 <script src="{{asset('/')}}assets/js/cdn/select2.min.js"></script>
+{{-- <script src="{{ asset("assets/") }}/js/jquery.uploadPreview.min.js"></script> --}}
 
 

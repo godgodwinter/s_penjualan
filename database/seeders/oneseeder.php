@@ -43,6 +43,8 @@ class oneseeder extends Seeder
             'lembaga_telp' => '0341-123456',
             'lembaga_kota' => 'Malang',
             'lembaga_logo' => 'assets/upload/logo.png',
+            'bank_nama' => 'Bank BRI',
+            'bank_rekening' => '5252-123456-123',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
          ]);
@@ -146,7 +148,7 @@ class oneseeder extends Seeder
         ]);
         //make object produk example
 
-        
+
         foreach ($produk as $item) {
             DB::table('produk')->insert([
                 'nama' => $item['nama'],

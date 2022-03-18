@@ -60,6 +60,28 @@ Pengaturan
 
               </div>
             </div>
+          <div class="form-group row align-items-center py-2">
+              <label for="site-title" class="form-control-label col-sm-3 text-md-right">Nama Bank</label>
+              <div class="col-sm-6 col-md-9">
+
+                <input type="text" class="form-control  @error('bank_nama') is-invalid @enderror" name="bank_nama" required  value="{{old('bank_nama')?old('bank_nama'):$item->bank_nama}}">
+
+                @error('bank_nama')<div class="invalid-feedback"> {{$message}}</div>
+                @enderror
+
+              </div>
+            </div>
+          <div class="form-group row align-items-center py-2">
+              <label for="site-title" class="form-control-label col-sm-3 text-md-right">Nomor Rekening </label>
+              <div class="col-sm-6 col-md-9">
+
+                <input type="text" class="form-control  @error('bank_rekening') is-invalid @enderror" name="bank_rekening" required  value="{{old('bank_rekening')?old('bank_rekening'):$item->bank_rekening}}">
+
+                @error('bank_rekening')<div class="invalid-feedback"> {{$message}}</div>
+                @enderror
+
+              </div>
+            </div>
 
 
 

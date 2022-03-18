@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::table('settings', function($table) {
-            $table->integer('bank_nama')->nullable();
-            $table->integer('bank_rekening')->nullable();
+            $table->string('bank_nama')->nullable();
+            $table->string('bank_rekening')->nullable();
         });
     }
 

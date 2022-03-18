@@ -36,6 +36,8 @@ class settingsController extends Controller
         ->update([
             'app_nama' => $request->app_nama,
             'app_namapendek' => $request->app_namapendek,
+            'bank_nama' => $request->bank_nama,
+            'bank_rekening' => $request->bank_rekening,
            'updated_at'=>date("Y-m-d H:i:s")
         ]);
         return redirect()->route('dev.settings')->with('status','Data berhasil diubah!')->with('tipe','success');

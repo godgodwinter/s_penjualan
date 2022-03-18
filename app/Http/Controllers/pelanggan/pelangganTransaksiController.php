@@ -4,6 +4,7 @@ namespace App\Http\Controllers\pelanggan;
 
 use App\Helpers\Fungsi;
 use App\Http\Controllers\Controller;
+use App\Models\image;
 use App\Models\pelanggan;
 use App\Models\transaksi;
 use Illuminate\Http\Request;
@@ -108,11 +109,55 @@ return redirect()->route('pelanggan.transaksi')->with('status','Data berhasil ta
     }
 
     public function uploadbukti(Request $request,$item){
-        $items=transaksi::with('transaksidetail')->where('id',$item)->first();
+        $items=transaksi::with('transaksidetail')->where('kodetrans',$item)->first();
         $getPelanggan=pelanggan::where('users_id',Auth::user()->id)->first();
         $pages='transaksi';
         $faker = Faker::create('id_ID');
         $pelanggan=pelanggan::where('id',$getPelanggan->id)->get();
         return view('pages.pelanggan.transaksi.uploadbukti',compact('pages','items','pelanggan','getPelanggan'));
+    }
+
+    public function uploadbukti_store(Request $request,$kodetrans){
+        $transaksi_id=transaksi::where('kodetrans',$kodetrans)->first();
+
+
+        // dd($request,$transaksi_id);
+
+        $request->validate([
+            'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg,pdf|max:2048',
+        ]);
+
+
+
+        $imageName = time().'.'.$request->photo->extension();
+
+        $periksa=image::where('parrent_id',$transaksi_id->id)->count();
+        if($periksa>0){
+            $hapus=image::where('parrent_id',$transaksi_id->id)->get();
+            foreach($hapus as $item){
+                $path=public_path($item->photo);
+                if(file_exists($path)){
+                    unlink($path);
+                }
+                $item->delete();
+            }
+        }
+        $data_id=DB::table('image')->insertGetId(
+            array(
+                    'nama'     =>   $imageName,
+                    'prefix'     =>   'buktipembayaran',
+                    'parrent_id'     =>   $transaksi_id->id,
+                   'desc'     =>   'Bukti pembayaran transaksi',
+                   'photo'     =>   'images/bukti/'.$imageName,
+                   'created_at'=>date("Y-m-d H:i:s"),
+                   'updated_at'=>date("Y-m-d H:i:s")
+            ));
+
+        $request->photo->move(public_path('images/bukti'), $imageName);
+
+
+
+        return redirect()->route('pelanggan.transaksi')->with('status','Data berhasil tambahkan!')->with('tipe','success')->with('icon','fas fa-feather');
+        // return
     }
 }
