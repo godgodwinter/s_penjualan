@@ -81,9 +81,10 @@
 @push('before-script')
 <script>
     let tbodyContent=``;
+    var buktipembayaran=null;
+
     function btnModalDetailTransaksi(url=null,id=null,status=null,urlUpdate=null){
         // console.log(url,id);
-
         //fetch
         $.ajax({
             url: url,
@@ -91,6 +92,16 @@
             dataType: 'json',
             success: function(data){
                 tbodyContent=``;
+                buktipembayaran=data.bukti;
+
+let divModalBuktiContent=`Bukti Pembayaran Belum di upload!`;
+if(buktipembayaran){
+    divModalBuktiContent=`
+    <h5 class="modal-title" id="formModalLabel">Bukti Pembayaran</h5>
+    <img id="frame" src="${buktipembayaran}" class="w-px-400 h-auto "  style="display: block;max-width: 100%;height: 200px;object-fit: cover" />`;
+}
+        $('#divModalBukti').html(divModalBuktiContent);
+                // console.log(buktipembayaran);
                 $.each(data.data, function(index, value){
                     tbodyContent+=`
                         <tr>
@@ -132,8 +143,11 @@
         $kodetrans=$item->kodetrans;
     }
 @endphp
+
+@if(Auth()->user()->tipeuser=='pelanggan')
 <a href="{{route('pelanggan.transaksi.upoadbukti',$kodetrans)}}" class="btn  btn-info "
         onclick="return  confirm('Anda yakin mengkonfirmasi data ini? Y/N')"  data-bs-toggle="tooltip" data-bs-placement="top" title="Konfirmasi data!"> Upload bukti pembayaran!</a>
+@endif
 
             `;
         }else if(status=='success' || status=='cancel'){
@@ -152,7 +166,7 @@
             // `;
         }
         $('#divModalDetail').html(divModalDetailContent);
-
+// console.log(buktipembayaran);
     }
 </script>
 @endpush

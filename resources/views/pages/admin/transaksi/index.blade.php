@@ -75,6 +75,17 @@ Transaksi
       </tbody>
       </x-slot>
   </x-babeng.table-two>
+
+
+  @php
+      $photo_old='https://ui-avatars.com/api/?name=00&color=7F9CF5&background=EBF4FF';
+  @endphp
+  <div id="divModalBukti">
+    <h5 class="modal-title" id="formModalLabel">Bukti Pembayaran</h5>
+    <img id="frame" src="{{$photo_old}}" class="w-px-300 h-auto "  style="display: block;max-width: 100%;height: 200px;object-fit: cover" />
+  </div>
+
+
           </div>
           <div class="modal-footer" id="divModalDetail">
             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
