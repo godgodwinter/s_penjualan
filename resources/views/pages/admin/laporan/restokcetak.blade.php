@@ -21,10 +21,10 @@
         <th>Total Tagihan</th>
         <th>Penanggung Jawab</th>
     </tr>
-    @forelse ($items as $item)
     @php
-        $totalbayar=0;
+$totalbayar=0;
     @endphp
+    @forelse ($items as $item)
         <tr>
             <td>{{$loop->index+1}}</td>
             <td>{{Fungsi::tanggalindo($item->tglbeli)}}</td>

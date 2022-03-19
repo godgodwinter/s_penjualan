@@ -23,9 +23,11 @@
         <th class="babeng-min-row">Total Tagihan</th>
         <th class="babeng-min-row">Penanggung Jawab</th>
     </tr>
+    @php
+$totalbayar=0;
+    @endphp
     @forelse ($items as $item)
     @php
-        $totalbayar=0;
         $pelanggan=$item->pelanggan_id;
         $warnapelanggan='info';
         $warnatransaksi='secondary';
@@ -46,7 +48,6 @@
         if($item->status=='cancel'){
             $warnastatus='danger';
         }
-        $totalbayar=0;
     @endphp
         <tr>
             <td>{{$loop->index+1}}</td>
