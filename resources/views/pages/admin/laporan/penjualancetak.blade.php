@@ -46,6 +46,7 @@
         if($item->status=='cancel'){
             $warnastatus='danger';
         }
+        $totalbayar=0;
     @endphp
         <tr>
             <td>{{$loop->index+1}}</td>
