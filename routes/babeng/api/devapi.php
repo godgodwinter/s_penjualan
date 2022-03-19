@@ -12,6 +12,7 @@ Route::get('restapi/datatransaksi/{item}', [apiTransaksiController::class, 'deta
 Route::get('restapi/users/cek/username', [apiProdukController::class, 'periksausername'])->name('api.users.periksausername');
 
 Route::get('restapi/datalaporan/restok', [apiLaporanController::class, 'restok'])->name('api.laporan.restok');
+Route::get('restapi/datalaporan/penjualan', [apiLaporanController::class, 'penjualan'])->name('api.laporan.penjualan');
 
 Route::middleware('auth')->group(function () {
     Route::get('restapi/label', [apiKategoriController::class, 'label'])->name('api.label.index');

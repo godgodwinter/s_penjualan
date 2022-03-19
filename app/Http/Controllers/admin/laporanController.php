@@ -30,7 +30,10 @@ class laporanController extends Controller
         $pages='laporanpenjualan';
         $items=transaksi::
         orderBy('tglbeli','desc')
+        ->with('transaksidetail')
         ->orderBy('id','desc')
+        ->WhereMonth('tglbeli',date('m'))
+        ->WhereYear('tglbeli',date('Y'))
         ->get();
         return view('pages.admin.laporan.penjualan',compact('items','request','pages'));
     }

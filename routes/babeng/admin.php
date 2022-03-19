@@ -87,10 +87,11 @@ Route::middleware('auth')->group(function () {
     Route::put('/admin/konfirmasi/{item}', [konfirmasiController::class, 'update'])->name('admin.konfirmasi.update');
     Route::delete('/admin/konfirmasi/{item}', [konfirmasiController::class, 'destroy'])->name('admin.konfirmasi.destroy');
 
-    //transaksi
+    //laporan
     Route::get('/admin/laporanrestok', [laporanController::class, 'restok'])->name('admin.laporanrestok');
     Route::get('/admin/laporanrestok/cetak', [cetakController::class, 'restok_cetak'])->name('admin.laporanrestok.cetak');
     Route::get('/admin/laporanpenjualan', [laporanController::class, 'penjualan'])->name('admin.laporanpenjualan');
+    Route::get('/admin/laporanpenjualan/cetak', [cetakController::class, 'penjualan_cetak'])->name('admin.laporanpenjualan.cetak');
     // //invoice
     // Route::get('/admin/invoice', [invoiceController::class, 'index'])->name('admin.invoice');
     // Route::get('/admin/invoice/create', [invoiceController::class, 'create'])->name('admin.invoice.create');
