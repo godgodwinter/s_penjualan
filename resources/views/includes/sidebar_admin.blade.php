@@ -111,7 +111,7 @@
         href="{{route('admin.laporanpenjualan')}}"
             class="menu-link"
         >
-        <i class="menu-icon fa-solid fa-file-invoice"></i>
+        <i class="menu-icon fa-solid fa-file-invoice-dollar"></i>
             <div data-i18n="Support">Laporan Penjualan</div>
         </a>
         </li>

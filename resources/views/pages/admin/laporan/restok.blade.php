@@ -32,6 +32,7 @@ Laporan Pengadaan Barang
     <script>
             //fungsi
                 function fnPilihBlnThn(e){
+                    $('#blnthn').val(e.value);
                     // console.log(e.value);
                     //ajax fetch data with 2 field
                     $.ajax({
@@ -70,9 +71,12 @@ Laporan Pengadaan Barang
     </script>
             <div class="btn-group" role="group" aria-label="Third group">
                 <input type="month" onchange="fnPilihBlnThn(this)" class="form-control  @error('tgl') is-invalid @enderror" name="tgl" required  value="{{old('tgl')?old('tgl'):$tgl}}" id="inputBlnThn">
-                <button href="{{route('admin.transaksi.create')}}" type="button" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Cetak">
-                    <i class="fa-solid fa-print"></i>
-                </button>
+<form action="{{route('admin.laporanrestok.cetak')}}">
+    <input type="hidden" id="blnthn" name="blnthn">
+    <button  type="submit" type="button" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Cetak">
+        <i class="fa-solid fa-print"></i>
+    </button>
+</form>
             </div>
 
             </div>

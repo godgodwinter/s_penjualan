@@ -89,6 +89,7 @@ Route::middleware('auth')->group(function () {
 
     //transaksi
     Route::get('/admin/laporanrestok', [laporanController::class, 'restok'])->name('admin.laporanrestok');
+    Route::get('/admin/laporanrestok/cetak', [cetakController::class, 'restok_cetak'])->name('admin.laporanrestok.cetak');
     Route::get('/admin/laporanpenjualan', [laporanController::class, 'penjualan'])->name('admin.laporanpenjualan');
     // //invoice
     // Route::get('/admin/invoice', [invoiceController::class, 'index'])->name('admin.invoice');

@@ -19,7 +19,7 @@ class laporanController extends Controller
         ->WhereMonth('tglbeli',date('m'))
         ->WhereYear('tglbeli',date('Y'))
         ->orderBy('id','desc')
-        ->paginate();
+        ->get();
         // dd($items);
         return view('pages.admin.laporan.restok',compact('items','request','pages'));
     }
@@ -31,7 +31,7 @@ class laporanController extends Controller
         $items=transaksi::
         orderBy('tglbeli','desc')
         ->orderBy('id','desc')
-        ->paginate();
+        ->get();
         return view('pages.admin.laporan.penjualan',compact('items','request','pages'));
     }
 }
