@@ -24,8 +24,8 @@ This section should list any major frameworks that you built your project using.
 <!-- * [Bootstrap](https://getbootstrap.com) -->
 <!-- * [JQuery](https://jquery.com) -->
 Tools and Framework
-* [Laravel 8](https://laravel.com)
-* [PHP 7.4+](https://php.net)
+* [Laravel 9](https://laravel.com)
+* [PHP 8.0+](https://php.net)
 * [gitbash](https://git-scm.com/downloads)
 * [composer](https://getcomposer.org/)
 
@@ -35,10 +35,12 @@ Alternatif (tidak perlu diinstall)
 * [Nodejs](https://node.js)
 
 Library/Plugin
-* [Auth:Fortify](#)
-* [Auth:Jetstream](#)
-* [Bootstrap 4](https://getbootstrap.com/docs/4.0/getting-started/introduction/)
-* [Stisla](https://github.com/stisla/stisla)
+* [Auth:Breeze](#)
+* [Bootstrap 5](#)
+* [FontAwesome6](#)
+* [SwipeOne](#)
+* [Sneat](#)
+* [Select2](#)
 
 
 <!-- Fitur Utama
