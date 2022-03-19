@@ -8,6 +8,7 @@
               <th class="text-center">Stok</th>
               <th class="text-center">Terjual</th>
               <th class="text-center">Satuan</th>
+              <th class="text-center">Photo</th>
         </x-slot>
         <x-slot name="tbody">
             @forelse ($items as $item)
@@ -28,6 +29,16 @@
                 <td class="text-center">{{ $getstok}}</td>
                 <td class="text-center">{{$getterjual}}</td>
                 <td class="text-center">{{$item->satuan}}</td>
+                @php
+        $photo_old='https://ui-avatars.com/api/?name='.$item->nama.'&color=7F9CF5&background=EBF4FF';
+        $getphoto=\App\Models\image::where('parrent_id',$item->id)->where('prefix','produk')->first();
+        if($getphoto){
+            $photo_old=url('/').'/'.$getphoto->photo;
+        }
+                @endphp
+                <td  class="text-center babeng-min-row">
+                    <img id="frame" src="{{$photo_old}}" class="w-px-10 h-auto "  style="display: block;max-width: 60px;height: 60px;object-fit: cover" />
+                </td>
             </tr>
             @empty
             @endforelse

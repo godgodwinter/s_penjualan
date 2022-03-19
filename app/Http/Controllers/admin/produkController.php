@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Helpers\Fungsi;
 use App\Http\Controllers\Controller;
+use App\Models\image;
 use App\Models\produk;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -88,5 +89,58 @@ class produkController extends Controller
         produk::destroy($item->id);
         return redirect()->route('admin.produk')->with('status','Data berhasil dihapus!')->with('tipe','warning')->with('icon','fas fa-feather');
 
+    }
+
+    public function uploadphoto(produk $item,Request $request){
+        // dd($request,$item);
+
+        $request->validate([
+            'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+
+
+        $imageName = time().'.'.$request->photo->extension();
+
+        // $periksa=image::where('parrent_id',$item->id)->count();
+        // if($periksa>0){
+        //     $hapus=image::where('parrent_id',$item->id)->get();
+        //     foreach($hapus as $item){
+        //         $path=public_path($item->photo);
+        //         if(file_exists($path)){
+        //             unlink($path);
+        //         }
+        //         $item->delete();
+        //     }
+        // }
+        $data_id=DB::table('image')->insertGetId(
+            array(
+                    'nama'     =>   $imageName,
+                    'prefix'     =>   'produk',
+                    'parrent_id'     =>   $item->id,
+                   'desc'     =>   'Bukti pembayaran transaksi',
+                   'photo'     =>   'images/produk/'.$imageName,
+                   'created_at'=>date("Y-m-d H:i:s"),
+                   'updated_at'=>date("Y-m-d H:i:s")
+            ));
+
+        $request->photo->move(public_path('images/produk'), $imageName);
+
+
+
+        return redirect()->route('admin.produk')->with('status','Photo berhasil tambahkan!')->with('tipe','success')->with('icon','fas fa-feather');
+
+    }
+    public function photodestroy(image $item,Request $request){
+        image::destroy($item->id);
+        // dd($item);
+                $path=public_path($item->photo);
+                if(file_exists($path)){
+                    unlink($path);
+                }
+                $item->delete();
+        image::destroy($item->id);
+    return redirect()->route('admin.produk')->with('status','Data berhasil dihapus!')->with('tipe','success')->with('icon','fas fa-feather');
+        // dd($item);
     }
 }

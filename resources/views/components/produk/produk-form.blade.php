@@ -90,12 +90,12 @@
             <div class="form-group row align-items-center py-2">
                 <label for="site-title" class="form-control-label col-sm-3 text-md-right">Satuan </label>
                 <div class="col-sm-6 col-md-9">
-    
+
                   <input type="text" class="form-control  @error('satuan') is-invalid @enderror" placeholder="Kg/Biji/Meter/dll" name="satuan" required  value="{{old('satuan')?old('satuan'):$satuan}}">
-    
+
                   @error('satuan')<div class="invalid-feedback"> {{$message}}</div>
                   @enderror
-    
+
                 </div>
               </div>
 

@@ -36,6 +36,10 @@ Produk
     <hr class="my-1" />
 
   <x-produk.produk-form :item="$item"></x-produk.produk-form>
+
+  <x-produk.produk-form-photo :item="$item"></x-produk.produk-form-photo>
+  <x-produk.produk-photo-list :item="$item"></x-produk.produk-photo-list>
+
     </div>
 
 

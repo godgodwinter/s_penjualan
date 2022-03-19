@@ -13,7 +13,7 @@ class apiTransaksiController extends Controller
     public function detail($item,Request $request){
         $bukti=null;
         //periksa bukti
-        $getImages=image::where('parrent_id',$item)->first();
+        $getImages=image::where('parrent_id',$item)->where('prefix','buktipembayaran')->first();
         if($getImages){
             $bukti=url('/').'/'.$getImages->photo;
         }

@@ -39,6 +39,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/produk/{item}', [produkController::class, 'edit'])->name('admin.produk.edit');
     Route::put('/admin/produk/{item}', [produkController::class, 'update'])->name('admin.produk.update');
     Route::delete('/admin/produk/{item}', [produkController::class, 'destroy'])->name('admin.produk.destroy');
+    Route::post('/admin/produk/uploadphoto/{item}', [produkController::class, 'uploadphoto'])->name('admin.produk.uploadphoto');
+    Route::delete('/admin/produk/uploadphoto/{item}/destroy', [produkController::class, 'photodestroy'])->name('admin.produk.uploadphoto.destroy');
 
 
     //restok
