@@ -17,11 +17,13 @@ class apiTransaksiController extends Controller
         if($getImages){
             $bukti=url('/').'/'.$getImages->photo;
         }
+        $transaksi=transaksi::where('id',$item)->first();
         $items=transaksidetail::with('produk')->with('transaksi')->where('transaksi_id',$item)->get();
         return response()->json([
             'success'    => true,
             'data'    => $items,
             'bukti'    => $bukti,
+            'kodetrans'    => $transaksi->kodetrans,
         ], 200);
     }
 }

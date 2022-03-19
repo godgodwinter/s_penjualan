@@ -119,6 +119,7 @@ function storeBtnOpenModalEdit(id=null,index=null){
         // $('#inputHargaAsli').val(`${rupiah(getData[index].harga_asli)} / Stok : ${getData[index].stok}`);
         // $('#inputTerjual').val(`${rupiah(getData[index].harga_terjual)} / Stok : ${getData[index].stok}`);
         $('#inputTerjual').val(getData[index].harga_terjual);
+        $('#inputStokTersedia').val(getData[index].stok);
         // $('#inputTerjual').val(getData[index].harga_terjual);
         $('#inputJumlah').val(getData[index].jumlah);
         $('#inputJumlah').prop('max',getData[index].stok);
@@ -188,7 +189,7 @@ function storeCariData(inputancari='',inputanUrl='#'){
 
 contentResponse+=`<a href="produk/${datas[i].slug}"  class="mb-2 ml-2 btn btn-primary addProduk">Detail</a>`;
 if(datas[i].stoktersedia>0){
-contentResponse+=`<button  class="btn btn-${datas[i].stoktersedia<1?'dark':'info'} addProduk " onclick="storeProduk(${datas[i].id},'${datas[i].nama}',${datas[i].harga_jual},${datas[i].stoktersedia})">Tambahkan Keranjang</button>`;
+contentResponse+=`<button  class="btn btn-${datas[i].stoktersedia<1?'dark':'info'} addProduk " onclick="storeProduk(${datas[i].id},'${datas[i].nama}',${datas[i].harga_jual},${datas[i].stoktersedia})">Tambahkan ke Keranjang</button>`;
 }else{
     contentResponse+=`<button  class="btn btn-${datas[i].stoktersedia<1?'dark':'info'} addProduk" onclick="return  confirm('Stok Habis!')">Tambahkan Keranjang</button>`;
 

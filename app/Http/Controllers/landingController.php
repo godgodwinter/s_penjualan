@@ -14,8 +14,10 @@ class landingController extends Controller
         return view('pages.landing.portofolio.index',compact('items','pages'));
     }
     public function produkshow($slug){
-        $item=produk::where('slug',$slug)->first();
-        dd($item);
+        $pages='produk';
+        $items=produk::where('slug',$slug)->first();
+        return view('pages.landing.produk.detail',compact('items','pages'));
+        // dd($item);
     }
     public function show($slug){
         $pages='portofolio';

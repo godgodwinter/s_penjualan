@@ -26,6 +26,7 @@ class produk extends Model
             return $this->hasMany(produkdetail::class,'produk_id','id');
         }
 
+
     // public static function boot() {
         // parent::boot();
         // static::deleting(function($produk) { // before delete() method call this

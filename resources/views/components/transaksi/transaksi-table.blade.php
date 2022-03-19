@@ -82,7 +82,7 @@
 <script>
     let tbodyContent=``;
     var buktipembayaran=null;
-
+    var kodetransaksi=null;
     function btnModalDetailTransaksi(url=null,id=null,status=null,urlUpdate=null){
         // console.log(url,id);
         //fetch
@@ -93,32 +93,17 @@
             success: function(data){
                 tbodyContent=``;
                 buktipembayaran=data.bukti;
-
+                kodetransaksi=data.kodetrans;
+                // console.log(kodetransaksi);
 let divModalBuktiContent=`Bukti Pembayaran Belum di upload!`;
 if(buktipembayaran){
     divModalBuktiContent=`
     <h5 class="modal-title" id="formModalLabel">Bukti Pembayaran</h5>
     <img id="frame" src="${buktipembayaran}" class="w-px-400 h-auto "  style="display: block;max-width: 100%;height: 200px;object-fit: cover" />`;
 }
-        $('#divModalBukti').html(divModalBuktiContent);
-                // console.log(buktipembayaran);
-                $.each(data.data, function(index, value){
-                    tbodyContent+=`
-                        <tr>
-                            <td class="text-center">${index+1}</td>
-                            <td>${value.produk.nama}</td>
-                            <td>${value.harga_jual}</td>
-                            <td class="text-center">${value.jml}</td>
-                            <td class="text-center">${value.harga_jual*value.jml}</td>
-                        </tr>
-                    `;
-                });
-      $('#trbody').html(tbodyContent);
-            }
-        });
 
-        let divModalDetailContent=`<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>`;
-        if(status=='pending'){
+let divModalDetailContent=`<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>`;
+if(status=='pending'){
             divModalDetailContent=`<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 @if(Auth()->user()->tipeuser=='admin')
     <form action="${urlUpdate}" method="post" class="d-inline">
@@ -145,12 +130,14 @@ if(buktipembayaran){
 @endphp
 
 @if(Auth()->user()->tipeuser=='pelanggan')
-<a href="{{route('pelanggan.transaksi.upoadbukti',$kodetrans)}}" class="btn  btn-info "
+<a href="{{url('/pelanggan/transaksi/upoadbukti/')}}/${kodetransaksi}" class="btn  btn-info "
         onclick="return  confirm('Anda yakin mengkonfirmasi data ini? Y/N')"  data-bs-toggle="tooltip" data-bs-placement="top" title="Konfirmasi data!"> Upload bukti pembayaran!</a>
 @endif
 
             `;
-        }else if(status=='success' || status=='cancel'){
+ }
+
+ if(status=='success' || status=='cancel'){
             divModalDetailContent=`  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             @if(Auth()->user()->tipeuser=='admin')
             <form action="${urlUpdate}" method="post" class="d-inline">
@@ -166,6 +153,24 @@ if(buktipembayaran){
             // `;
         }
         $('#divModalDetail').html(divModalDetailContent);
+        $('#divModalBukti').html(divModalBuktiContent);
+                // console.log(buktipembayaran);
+                $.each(data.data, function(index, value){
+                    tbodyContent+=`
+                        <tr>
+                            <td class="text-center">${index+1}</td>
+                            <td>${value.produk.nama}</td>
+                            <td>${value.harga_jual}</td>
+                            <td class="text-center">${value.jml}</td>
+                            <td class="text-center">${value.harga_jual*value.jml}</td>
+                        </tr>
+                    `;
+                });
+      $('#trbody').html(tbodyContent);
+            }
+        });
+
+
 // console.log(buktipembayaran);
     }
 </script>

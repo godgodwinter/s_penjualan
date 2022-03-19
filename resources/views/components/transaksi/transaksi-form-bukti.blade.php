@@ -2,6 +2,7 @@
     <form id="setting-form" method="POST" action="{{route('pelanggan.transaksi.upoadbukti',$item)}}" enctype="multipart/form-data">
     @php
         $transaksi=\App\Models\Transaksi::where('kodetrans',$item)->first();
+    // dd($transaksi,$transaksi->id);
     //declare var
         $photo='';
         $photo_old='https://ui-avatars.com/api/?name=00&color=7F9CF5&background=EBF4FF';

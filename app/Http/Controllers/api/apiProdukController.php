@@ -24,7 +24,7 @@ class apiProdukController extends Controller
             if($getImages!=null){
                 $img=asset('/').$getImages->photo;
             }else{
-                $img='https://ui-avatars.com/api/?name=00&color=7F9CF5&background=EBF4FF';
+                $img='https://ui-avatars.com/api/?name='.$data->nama.'&color=7F9CF5&background=EBF4FF';
             }
             //get stok
             $getstok=produkdetail::where('produk_id',$data->id)->sum('jml');
