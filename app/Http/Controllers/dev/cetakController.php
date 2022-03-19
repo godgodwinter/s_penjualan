@@ -35,4 +35,21 @@ class cetakController extends Controller
         $pdf = PDF::loadview('pages.admin.laporan.restokcetak',compact('items','blnthn','bln','thn'))->setPaper('a4', 'potrait');
         return $pdf->stream('data'.$tgl.'.pdf');
     }
+
+    public function penjualan_cetak(Request $request){
+        $bln=$request->blnthn?date('m',strtotime($request->blnthn)):date('m');
+        $thn=$request->blnthn?date('Y',strtotime($request->blnthn)):date('Y');
+        $blnthn=$request->blnthn?$request->blnthn:date('Y-m');
+        $items=transaksi::
+        orderBy('tglbeli','desc')
+        ->with('transaksidetail')
+        ->WhereMonth('tglbeli',$bln)
+        ->WhereYear('tglbeli',$thn)
+        ->orderBy('id','desc')
+        ->get();
+        $tgl=date("YmdHis");
+        // dd($bln,$thn,$items);
+        $pdf = PDF::loadview('pages.admin.laporan.penjualancetak',compact('items','blnthn','bln','thn'))->setPaper('a4', 'potrait');
+        return $pdf->stream('data'.$tgl.'.pdf');
+    }
 }
