@@ -10,11 +10,12 @@ Sistem Informasi Penjualan di Toko Bangunan
 | Menu                                                                       | Status                                                                                                            |
 | ----------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
 | Auth Multi User                                                                     | :white_check_mark:                                                                                                  |
-| Admin : Pengelolaan Stok                                                                       | :clock1030:                                                                                                               |
-| Admin : Pengelolaan Penjualan                                                                       | :clock1030:                                                                                                               |
-| Admin : Pengelolaan Pembayaran                                                                       | :clock1030:                                                                                                               |
-| Admin : Pengelolaan Pembelian                                                                       | :clock1030:                                                                                                               |
-| Admin : Pengelolaan Pembelian                                                                       | :clock1030:                                                                                                               |
+| Admin : Pengelolaan Stok                                                                       | :white_check_mark:                                                                                                               |
+| Admin : Pengelolaan Penjualan                                                                       | :white_check_mark:                                                                                                                |
+| Admin : Pengelolaan Pembayaran                                                                       | :white_check_mark:                                                                                                              |
+| Admin : Pengelolaan Pembelian                                                                       | :white_check_mark:                                                                                                                |
+| Admin : Laporan                                                                       | :white_check_mark:                                                                                                                |
+| Etc                                                                      | :clock1030:                                                                                                                  |
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
