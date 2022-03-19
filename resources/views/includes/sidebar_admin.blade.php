@@ -97,7 +97,7 @@
 <li class="menu-header small text-uppercase"><span class="menu-header-text">Menu Laporan</span></li>
     <li class="menu-item {{$pages=='laporanrestok'?'active': ''}}">
         <a
-            href="#"
+            href="{{route('admin.laporanrestok')}}"
             class="menu-link"
         >
         <i class="menu-icon fa-solid fa-file-invoice"></i>
@@ -108,7 +108,7 @@
 
     <li class="menu-item {{$pages=='laporanpenjualan'?'active': ''}}">
         <a
-            href="#"
+        href="{{route('admin.laporanpenjualan')}}"
             class="menu-link"
         >
         <i class="menu-icon fa-solid fa-file-invoice"></i>

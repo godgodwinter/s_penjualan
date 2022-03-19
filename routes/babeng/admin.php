@@ -5,6 +5,7 @@ use App\Http\Controllers\admin\administratorController;
 use App\Http\Controllers\admin\invoiceController;
 use App\Http\Controllers\admin\konfirmasiController;
 use App\Http\Controllers\admin\labelController;
+use App\Http\Controllers\admin\laporanController;
 use App\Http\Controllers\admin\pelangganController;
 use App\Http\Controllers\admin\portofolioController;
 use App\Http\Controllers\admin\produkController;
@@ -86,6 +87,9 @@ Route::middleware('auth')->group(function () {
     Route::put('/admin/konfirmasi/{item}', [konfirmasiController::class, 'update'])->name('admin.konfirmasi.update');
     Route::delete('/admin/konfirmasi/{item}', [konfirmasiController::class, 'destroy'])->name('admin.konfirmasi.destroy');
 
+    //transaksi
+    Route::get('/admin/laporanrestok', [laporanController::class, 'restok'])->name('admin.laporanrestok');
+    Route::get('/admin/laporanpenjualan', [laporanController::class, 'penjualan'])->name('admin.laporanpenjualan');
     // //invoice
     // Route::get('/admin/invoice', [invoiceController::class, 'index'])->name('admin.invoice');
     // Route::get('/admin/invoice/create', [invoiceController::class, 'create'])->name('admin.invoice.create');
