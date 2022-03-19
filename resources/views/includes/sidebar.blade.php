@@ -12,7 +12,9 @@
         @include('includes.sidebar_admin')
         @elseif (Auth::user()->tipeuser=='pelanggan')
         @include('includes.sidebar_pelanggan')
+        @elseif (Auth::user()->tipeuser=='owner')
+        @include('includes.sidebar_owner')
         @endif
-        
+
     @endif
 </ul>

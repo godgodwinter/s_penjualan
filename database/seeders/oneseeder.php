@@ -32,6 +32,20 @@ class oneseeder extends Seeder
             'updated_at' => Carbon::now()
          ]);
 
+
+
+        DB::table('users')->insert([
+            'name' => 'Owner',
+            'email' => 'owner@gmail.com',
+            'password' => Hash::make('owner'),
+            // 'password' => '$2y$10$oOhE/tcF8MC9crGCw/Zv5.zFMGu0JLm591undChCaHJM6YrnGjgCu',
+            'tipeuser' => 'owner',
+            'nomerinduk' => '123',
+            'username' => 'owner',
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now()
+         ]);
+
         DB::table('settings')->truncate();
          //settings SEEDER
         DB::table('settings')->insert([
