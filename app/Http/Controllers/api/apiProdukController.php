@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
+use App\Models\image;
 use App\Models\produk;
 use App\Models\produkdetail;
 use App\Models\transaksidetail;
@@ -15,7 +16,14 @@ class apiProdukController extends Controller
         //add stok,terjual,dan stok tersedia to data
         $datas=produk::where('nama', 'like', '%'.$request->cari.'%')->get();
         $items=[];
+        $img='https://ui-avatars.com/api/?name=00&color=7F9CF5&background=EBF4FF';
         foreach($datas as $data){
+            $getImages=image::where('prefix','produk')
+            ->where('parrent_id',$data->id)
+            ->first();
+            if($getImages!=null){
+                $img=asset('/').$getImages->photo;
+            }
             //get stok
             $getstok=produkdetail::where('produk_id',$data->id)->sum('jml');
             // $getterjual=transaksidetail::where('produk_id',$data->id)->sum('jml');
@@ -29,6 +37,7 @@ class apiProdukController extends Controller
             $arr['stok']=$getstok;
             $arr['terjual']=$getterjual;
             $arr['stoktersedia']=$getstoktersedia;
+            $arr['img']=$img;
             $items[]=$arr; //array push
         }
 
@@ -63,5 +72,5 @@ class apiProdukController extends Controller
         ], 200);
     }
 
-    
+
 }

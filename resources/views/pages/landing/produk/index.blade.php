@@ -41,8 +41,8 @@ Beranda
         });
 
         storeCariData('',"{{route('api.produk.cari')}}");
-        
-    }); 
+
+    });
     </script>
 @endpush
                 <div class="row " id="contentCari">

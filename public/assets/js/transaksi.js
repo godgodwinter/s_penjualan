@@ -34,7 +34,7 @@ function storeGetProduk(){
     // console.log(getData);
     return getData;
 }
-function storeProduk(id=null,nama=null,harga_jual=null,stok=null,terjual=null,stoktersedia=null){	
+function storeProduk(id=null,nama=null,harga_jual=null,stok=null,terjual=null,stoktersedia=null){
     var dataTemp = {
         id:id,
         nama:nama,
@@ -119,7 +119,7 @@ function storeBtnOpenModalEdit(id=null,index=null){
         }else{
             $('#inputJumlah').prop("disabled", false);
         }
-        $('#inputJumlah').keyup(function () { 
+        $('#inputJumlah').keyup(function () {
             // console.log($(this).attr("max"));
             if($(this).val()>parseInt($(this).attr("max")) || $(this).val()=='' || $(this).val()==null || $(this).val()==0){
             //    console.log('stok tidak cukup');
@@ -127,9 +127,9 @@ function storeBtnOpenModalEdit(id=null,index=null){
      footerModalEdit=`<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
      <button type="button" class="btn btn-dark text-secondary">Apply</button>`;
             }else{
-              $('#inputJumlah').removeClass('is-invalid ');  
+              $('#inputJumlah').removeClass('is-invalid ');
      footerModalEdit=`<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-     <button type="button" class="btn btn-primary" onclick="storeBtnApplyModalEdit(${index})">Apply</button>`; 
+     <button type="button" class="btn btn-primary" onclick="storeBtnApplyModalEdit(${index})">Apply</button>`;
             }
 
     $('#btnApplyModalEdit').html(footerModalEdit);
@@ -148,9 +148,9 @@ function storeBtnApplyModalEdit(index=null){
     // console.log(index,getData[index].jumlah,getData[index].harga_beli,getData[index].total);
     localStorage.setItem('transaksiItems',JSON.stringify(getData));
     $('#formModalEdit').modal('hide');
-    // $('.close').click(); 
+    // $('.close').click();
     refreshDataRestok();
-    
+
 }
 
 
@@ -179,7 +179,7 @@ function storeCariData(inputancari='',inputanUrl='#'){
                         contentResponse += `
 <div class="col-12 col-md-6 col-lg-4 mb-4 mb-lg-0 mt-3">
 <div class="card border-0 bg-white text-center p-1" >
-<img src="https://ui-avatars.com/api/?name=${datas[i].nama}&color=7F9CF5&background=EBF4FF" class="thumbnail img-responsive"  style="display: block;max-width: 100%;height: 200px;object-fit: cover"> 
+<img src="${datas[i].img}" class="thumbnail img-responsive"  style="display: block;max-width: 100%;height: 200px;object-fit: cover">
 <div class="card-body">
 <h5 class="card-title">${datas[i].nama}</h5>
 <p class="card-text">Harga : Rp ${rupiah(datas[i].harga_jual)},00 - Stok : ${datas[i].stoktersedia}</p>

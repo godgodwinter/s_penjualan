@@ -118,7 +118,7 @@ class produkController extends Controller
                     'nama'     =>   $imageName,
                     'prefix'     =>   'produk',
                     'parrent_id'     =>   $item->id,
-                   'desc'     =>   'Bukti pembayaran transaksi',
+                   'desc'     =>   'Photo Produk',
                    'photo'     =>   'images/produk/'.$imageName,
                    'created_at'=>date("Y-m-d H:i:s"),
                    'updated_at'=>date("Y-m-d H:i:s")
