@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Helpers\Fungsi;
 use App\Http\Controllers\Controller;
 use App\Models\image;
+use App\Models\label;
 use App\Models\produk;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -33,12 +34,13 @@ class produkController extends Controller
                 'harga_jual'=>'required',
                 'desc'=>'required',
                 'satuan'=>'required',
+                'label'=>'required',
             ],
             [
                 'nama.nama'=>'Nama harus diisi',
             ]);
             $slug=Str::slug($request->nama, '-');
-            DB::table('produk')->insert(
+            $item_id=DB::table('produk')->insertGetId(
                 array(
                        'nama'     =>   $request->nama,
                        'harga_jual'     =>    Fungsi::angka($request->harga_jual),
@@ -48,6 +50,20 @@ class produkController extends Controller
                        'created_at'=>date("Y-m-d H:i:s"),
                        'updated_at'=>date("Y-m-d H:i:s")
                 ));
+
+
+            $label=$request->label;
+
+            $label=collect($label);
+
+            foreach($label as $d){
+                label::firstOrCreate([
+                    'parrent_id'=>$item_id,
+                    'prefix'=>'produk',
+                    'nama'=>$d,
+                ]);
+            }
+
     return redirect()->route('admin.produk')->with('status','Data berhasil tambahkan!')->with('tipe','success')->with('icon','fas fa-feather');
     }
 
@@ -58,11 +74,12 @@ class produkController extends Controller
     }
     public function update(produk $item,Request $request)
     {
-
+        // dd($request->label);
         $request->validate([
             'nama'=>'required',
             'harga_jual'=>'required',
             'desc'=>'required',
+            'label'=>'required',
         ],
         [
             'nama.required'=>'nama harus diisi',
@@ -80,7 +97,35 @@ class produkController extends Controller
                'updated_at'=>date("Y-m-d H:i:s")
             ]);
 
+            $labelold=label::where('parrent_id',$item->id)->where('prefix','produk')->pluck('nama');
 
+            $label=$request->label;
+
+            $label=collect($label);
+
+            $create = $label->diff($labelold);
+            //diff yang perlu dihapus
+            $create->all();
+
+            $remove = $labelold->diff($label);
+            //diff yang perlu dihapus
+            $remove->all();
+
+
+            //insert label baru
+        foreach($create as $d){
+            label::firstOrCreate([
+                'parrent_id'=>$item->id,
+                'prefix'=>'produk',
+                'nama'=>$d,
+            ]);
+        }
+
+    //hapus label yang tidak digunakan
+    foreach($remove as $d){
+        label::where('nama', $d)->where('prefix','produk')->where('parrent_id',$item->id)->delete();
+    }
+            // dd(count($labelold),$labelold,$label,$create,$remove);
 
     return redirect()->route('admin.produk')->with('status','Data berhasil diubah!')->with('tipe','success')->with('icon','fas fa-feather');
     }

@@ -99,6 +99,47 @@
                 </div>
               </div>
 
+
+@push('before-script')
+<script type="text/javascript">
+      // In your Javascript (external .js resource or <script> tag)
+        $('.js-example-basic-single').select2({
+                  theme: "classic",
+                  // allowClear: true,
+                  width: "resolve"
+              });
+ </script>
+@endpush
+
+
+<div class="form-group row align-items-center py-2">
+    <label for="site-title" class="form-control-label col-sm-3 text-md-right">Label / Kategori Produk </label>
+    <div class="col-sm-6 col-md-9">
+
+        <select class="js-example-basic-single form-control" name="label[]"  multiple="multiple" required>
+            <option disabled value=""> Pilih Kategori</option>
+            @php
+               $labels=\App\Models\kategori::where('prefix','label')->get();
+            @endphp
+            @forelse ($labels as $label)
+            @php
+            $selected='';
+            if($item){
+                $periksalabel=\App\Models\label::where('nama',$label->nama)->where('prefix','produk')->where('parrent_id',$item->id)->count();
+                if($periksalabel>0){
+                    $selected='selected';
+                }
+            }
+            @endphp
+            <option {{$selected}}>{{$label->nama}}</option>
+            @empty
+
+            @endforelse
+        </select>
+
+    </div>
+  </div>
+
               <div class="card-footer d-flex justify-content-between flex-row-reverse">
                 <button class="btn btn-primary" id="save-btn">Simpan</button>
               </div>

@@ -10,7 +10,7 @@
 
 <!-- Mastering -->
 <li class="menu-header small text-uppercase"><span class="menu-header-text">Mastering</span></li>
-    {{-- <li class="menu-item {{$pages=='label'?'active': ''}}">
+    <li class="menu-item {{$pages=='label'?'active': ''}}">
         <a
             href="{{route('admin.label')}}"
             class="menu-link"
@@ -18,7 +18,7 @@
         <i class="menu-icon fa-solid fa-tags"></i>
             <div data-i18n="Support">Label</div>
         </a>
-        </li> --}}
+        </li>
         <li class="menu-item {{$pages=='pelanggan'?'active': ''}}">
             <a
                 href="{{route('admin.pelanggan')}}"
