@@ -72,6 +72,8 @@ class seederController extends Controller
             'lembaga_logo' => 'assets/upload/logo.png',
             'bank_nama' => 'Bank BRI',
             'bank_rekening' => '5252-123456-123',
+            'desc' => 'Termurah, Terpercaya dan Terlengkap.',
+            'desc2' => 'Semua ada semua bisa.',
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now()
          ]);

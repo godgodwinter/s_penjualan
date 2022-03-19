@@ -35,6 +35,7 @@ class apiProdukController extends Controller
             $getstoktersedia=$getstok-$getterjual;
             $arr['id']=$data->id;
             $arr['nama']=$data->nama;
+            $arr['slug']=$data->slug;
             $arr['harga_jual']=$data->harga_jual;
             $arr['stok']=$getstok;
             $arr['terjual']=$getterjual;

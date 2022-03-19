@@ -189,7 +189,7 @@ class Fungsi {
         if($settings!=null){
             $data=$settings->bank_nama;
         }else{
-            $data="Judul Aplikasi";
+            $data="Bank BRI";
         }
         return $data;
     }
@@ -199,7 +199,31 @@ class Fungsi {
         if($settings!=null){
             $data=$settings->bank_rekening;
         }else{
-            $data="Judul Aplikasi";
+            $data="5252-2525-2525-2525";
+        }
+        return $data;
+    }
+
+
+    public static function desc(){
+        $settings = DB::table('settings')->first();
+        // dd($settings->first()->desc);
+        if($settings!=null){
+            $data=$settings->desc;
+        }else{
+            $data="Termurah, Terpercaya dan Terlengkap";
+        }
+        return $data;
+    }
+
+
+    public static function desc2(){
+        $settings = DB::table('settings')->first();
+        // dd($settings->first()->desc2);
+        if($settings!=null){
+            $data=$settings->desc2;
+        }else{
+            $data="Semua ada semua bisa.";
         }
         return $data;
     }

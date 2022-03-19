@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 //pages
 Route::get('/produk', [landingController::class, 'produk'])->name('produk');
-Route::get('/produk/{slug}', [landingController::class, 'show'])->name('produk.show');
+Route::get('/produk/{slug}', [landingController::class, 'produkshow'])->name('produk.show');
 
 
 Route::get('/about', [landingController::class, 'index'])->name('about');

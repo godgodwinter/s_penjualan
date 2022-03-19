@@ -21,7 +21,7 @@ Beranda
                         <h1 class="display-2 font-weight-bolder mb-4">
                            {{Fungsi::app_nama()}}
                         </h1>
-                        <p class="lead mb-4 mb-lg-5">Termurah, Terpercaya dan Terlengkap. </p>
+                        <p class="lead mb-4 mb-lg-5"> {{Fungsi::desc()}} </p>
                         {{-- <p class="lead mb-4 mb-lg-5">Made with Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }}).</p> --}}
 
         @php
@@ -35,7 +35,7 @@ Beranda
         // dd($commitDate->format('Y-m-d H:i:s'));
         $versi=$commitDate->format('Ymd.H.i.s');
     @endphp
-                        <p class="lead mb-4 mb-lg-5"> Semua ada semua bisa.</p>
+                        <p class="lead mb-4 mb-lg-5"> {{Fungsi::desc2()}}</p>
                         {{-- <p class="lead mb-4 mb-lg-5"> v0. {{ $versi }}.</p> --}}
                         <div>
                             <a href="{{route('produk')}}" class="btn btn-dark btn-download-app">
@@ -54,5 +54,5 @@ Beranda
                 </div>
             </div>
         </section>
-        
+
 @endsection

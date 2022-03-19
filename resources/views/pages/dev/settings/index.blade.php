@@ -49,6 +49,7 @@ Pengaturan
             </div>
           </div>
 
+
           <div class="form-group row align-items-center py-2">
               <label for="site-title" class="form-control-label col-sm-3 text-md-right">Nama Pendek Aplikasi </label>
               <div class="col-sm-6 col-md-9">
@@ -60,6 +61,33 @@ Pengaturan
 
               </div>
             </div>
+
+
+            <div class="form-group row align-items-center py-2">
+                <label for="site-title" class="form-control-label col-sm-3 text-md-right">Dekripsi 1 </label>
+                <div class="col-sm-6 col-md-9">
+
+                  <input type="text" class="form-control  @error('desc') is-invalid @enderror" name="desc" required  value="{{old('desc')?old('desc'):$item->desc}}">
+
+                  @error('desc')<div class="invalid-feedback"> {{$message}}</div>
+                  @enderror
+
+                </div>
+              </div>
+
+
+              <div class="form-group row align-items-center py-2">
+                <label for="site-title" class="form-control-label col-sm-3 text-md-right">Deskripsi 2 </label>
+                <div class="col-sm-6 col-md-9">
+
+                  <input type="text" class="form-control  @error('desc2') is-invalid @enderror" name="desc2" required  value="{{old('desc2')?old('desc2'):$item->desc2}}">
+
+                  @error('desc2')<div class="invalid-feedback"> {{$message}}</div>
+                  @enderror
+
+                </div>
+              </div>
+
           <div class="form-group row align-items-center py-2">
               <label for="site-title" class="form-control-label col-sm-3 text-md-right">Nama Bank</label>
               <div class="col-sm-6 col-md-9">
@@ -82,6 +110,8 @@ Pengaturan
 
               </div>
             </div>
+
+
 
 
 
