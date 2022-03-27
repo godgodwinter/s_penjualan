@@ -5,7 +5,7 @@
             title: '{{ $status }}',
             // text: 'Something went wrong!',
             showConfirmButton: true,
-            timer: 1000
+            timer: 3000
         })
 
     </script>

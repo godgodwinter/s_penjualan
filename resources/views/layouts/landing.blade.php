@@ -45,6 +45,7 @@
 
             </div>
             <div class="d-flex align-items-center">
+                <a href="{{route('daftar')}}" class="btn btn-outline-soft d-none d-md-inline mr-md-3 animate-up-2">Daftar</a>
                 <a href="{{route('login')}}" class="btn btn-outline-soft d-none d-md-inline mr-md-3 animate-up-2">Login</a>
                 <a href="{{route('keranjang')}}"  class="btn btn-md btn-tertiary text-white d-none d-md-inline animate-up-2">Keranjang<i class="fa-solid fa-cart-arrow-down ml-2"></i></a>
                 <button class="navbar-toggler ml-2" type="button" data-toggle="collapse" data-target="#navbar_global" aria-controls="navbar_global" aria-expanded="false" aria-label="Toggle navigation">
