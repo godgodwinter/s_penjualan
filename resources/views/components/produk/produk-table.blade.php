@@ -26,7 +26,7 @@
                         $query->where('status', '<>', 'cancel');
                     })->sum('jml');
                 @endphp
-                <td class="text-center">{{ $getstok}}</td>
+                <td class="text-center">{{ $getstok-$getterjual}}</td>
                 <td class="text-center">{{$getterjual}}</td>
                 <td class="text-center">{{$item->satuan}}</td>
                 @php
