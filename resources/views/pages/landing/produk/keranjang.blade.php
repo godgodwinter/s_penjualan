@@ -15,6 +15,11 @@ Beranda
 <section class="section section-lg pb-0" id="testimonials">
     <div class="container">
         <div class="row justify-content-center">
+            @if(!Auth::user())
+            <div class="alert alert-warning" role="alert">
+               Anda harus Login Untuk menambah ke keranjang dan melakukan checkout !
+              </div>
+              @endif
             <div class="col-12 col-md-10 text-center mb-0 mb-lg-0">
                 <h2 class="display-3 mb-4">Keranjang</h2><!-- Button trigger modal -->
                 {{-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
