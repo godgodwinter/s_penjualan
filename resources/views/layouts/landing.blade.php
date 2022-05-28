@@ -35,8 +35,10 @@
     <nav id="navbar-main" aria-label="Primary navigation" class="navbar navbar-main navbar-expand-lg navbar-theme-primary headroom navbar-light navbar-theme-secondary">
         <div class="container position-relative">
             <a class="navbar-brand mr-lg-4" href="{{ url('/') }}">
-                <img class="navbar-brand-dark" src="{{ asset('/') }}assets/template/swipe/assets/img/light.svg" alt="Logo light">
-                <img class="navbar-brand-light" src="{{ asset('/') }}assets/template/swipe/assets/img/dark.svg" alt="Logo dark">
+                <img class="navbar-brand-dark" src="{{ asset('/') }}assets/img/house.png" alt="Logo light">
+                <img class="navbar-brand-light" src="{{ asset('/') }}assets/img/house.png"alt="Logo dark">
+                {{-- <img class="navbar-brand-dark" src="{{ asset('/') }}assets/template/swipe/assets/img/light.svg" alt="Logo light">
+                <img class="navbar-brand-light" src="{{ asset('/') }}assets/template/swipe/assets/img/dark.svg" alt="Logo dark"> --}}
             </a>
             <div class="navbar-collapse collapse mr-auto" id="navbar_global">
 
@@ -45,10 +47,16 @@
 
             </div>
             <div class="d-flex align-items-center">
+                {{-- {{ Auth::user()?Auth::user()->name:'Belum Login' }} --}}
+                @if (Auth::user())
+                <a href="{{route('login')}}" class="btn btn-outline-soft d-none d-md-inline mr-md-3 animate-up-2">Dashboard</a>
+                <a href="{{route('keranjang')}}"  class="btn btn-md btn-tertiary text-white d-none d-md-inline animate-up-2">Keranjang<i class="fa-solid fa-cart-arrow-down ml-2"></i></a>
+
+                @else
                 <a href="{{route('daftar')}}" class="btn btn-outline-soft d-none d-md-inline mr-md-3 animate-up-2">Daftar</a>
                 <a href="{{route('login')}}" class="btn btn-outline-soft d-none d-md-inline mr-md-3 animate-up-2">Login</a>
-                <a href="{{route('keranjang')}}"  class="btn btn-md btn-tertiary text-white d-none d-md-inline animate-up-2">Keranjang<i class="fa-solid fa-cart-arrow-down ml-2"></i></a>
-                <button class="navbar-toggler ml-2" type="button" data-toggle="collapse" data-target="#navbar_global" aria-controls="navbar_global" aria-expanded="false" aria-label="Toggle navigation">
+                @endif
+               <button class="navbar-toggler ml-2" type="button" data-toggle="collapse" data-target="#navbar_global" aria-controls="navbar_global" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
             </div>
@@ -76,7 +84,7 @@
                     <img src="{{ asset('/') }}assets/template/swipe/assets/img/themesberg.svg" height="25" class="mb-3" alt="Themesberg Logo">
                 </a>
             <div class="d-flex text-center justify-content-center align-items-center" role="contentinfo">
-                <p class="font-weight-normal font-small mb-0">Copyright © BaemonTeam 2022-<span class="current-year">2020</span>. All rights reserved. Template By themesberg</p>
+                <p class="font-weight-normal font-small mb-0">Copyright © Tim Dev-<span class="current-year">2020</span>. All rights reserved. Template By themesberg</p>
                 </div>
             </div>
         </div>

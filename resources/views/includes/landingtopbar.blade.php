@@ -2,7 +2,8 @@
     <div class="row">
         <div class="col-6 collapse-brand">
             <a href="{{ url('/') }}">
-                <img src="{{ asset('/') }}assets/template/swipe/assets/img/dark.svg" alt="Logo dark">
+                {{-- <img src="{{ asset('/') }}assets/template/swipe/assets/img/dark.svg" alt="Logo dark"> --}}
+                <img src="{{ asset('/') }}assets/img/house.png" alt="Logo dark">
             </a>
         </div>
         <div class="col-6 collapse-close">

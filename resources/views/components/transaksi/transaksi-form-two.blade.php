@@ -45,8 +45,8 @@
             </div>`;
         $("#divonline").html(divOnlineString);
         console.log("Online");
-   }); 
-  
+   });
+
    $("#buttonOffline").on("click", function(){
         transaksiTipe='offline';
             $("#buttonOffline").addClass("btn-info text-white");
@@ -57,8 +57,8 @@
     let divOnlineString=`
               <input type="hidden" class="form-control  " name="alamat"   value="">`;
         $("#divonline").html(divOnlineString);
-   }); 
-  
+   });
+
     });
 </script>
 @endpush
@@ -97,8 +97,8 @@
         @forelse ($pelanggan as $item)
             selectPelanggan_id+=`<option value="{{$item->id}}">{{$item->nama}}</option>`;
         @empty
-            
-        @endforelse                        
+
+        @endforelse
                             // <option value="1"> 1</option>
                       selectPelanggan_id+=`</select>`;
         $('#divpelanggan_id').html(selectPelanggan_id);
@@ -109,8 +109,8 @@
                   width: "resolve"
               });
         console.log("member");
-   }); 
-  
+   });
+
    $("#buttonNonmember").on("click", function(){
         pelangganTipe='nonmember';
             $("#buttonNonmember").addClass("btn-info text-white");
@@ -122,8 +122,8 @@
         $('#divpelanggan_id').html(divpelangganString);
         console.log("Offline");
         console.log("nonmember");
-   }); 
-  
+   });
+
     });
 </script>
 @endpush
@@ -141,7 +141,7 @@
         <input type="hidden" class="form-control  " name="transaksi_tipe" id="inputTransaksiTipe" value="offline" >
         <input type="hidden" class="form-control  " name="pelanggan_tipe" id="inputPelangganTipe" value="nonmember" >
         <input type="hidden" class="form-control  @error('kodetrans') is-invalid @enderror" id="kodetrans" name="kodetrans" value="{{$kodetrans}}" >
-        
+
         <input type="hidden" class="form-control  @error('cart') is-invalid @enderror" id="cart" name="cart"  >
 
     <div class="row py-2 px-2" id="formtwo">
@@ -155,11 +155,11 @@
               </div>
 
 
-              
+
         <div class="form-group row align-items-center py-2" id="divonline">
             <input type="hidden" class="form-control " name="alamat"   value="">
           </div>
-          
+
 
         <div class="form-group row align-items-center py-2">
             <label for="site-title" class="form-control-label col-sm-5 text-md-right">Tanggal Pembelian</label>

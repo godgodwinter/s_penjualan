@@ -13,8 +13,58 @@ Beranda
 
 @section('content')
 
-        <!-- Hero -->
-        <section class="section section-header text-dark pb-md-8">
+<div class="b-example-divider"></div>
+
+@push('before-style')
+
+@endpush
+
+
+
+<section class="pt-6 pb-2">
+<div class="overflow-hidden ">
+	<div class="container-fluid col-xl-8">
+		<div class="row flex-lg-nowrap align-items-center g-5">
+			<div class="order-lg-1 w-100">
+				<img style="clip-path: polygon(25% 0%, 100% 0%, 100% 99%, 0% 100%);" src="{{ asset('/') }}assets/img/toko1.jpg" class="d-block mx-lg-auto img-fluid" alt="Photo by Milad Fakurian" loading="lazy" srcset="{{ asset('/') }}assets/img/toko1.jpg" sizes="(max-width: 1080px) 100vw, 1080px" width="2160" height="768">
+				{{-- <img style="clip-path: polygon(25% 0%, 100% 0%, 100% 99%, 0% 100%);" src="{{ asset('/') }}assets/img/toko1.jpg" class="d-block mx-lg-auto img-fluid" alt="Photo by Milad Fakurian" loading="lazy" srcset="https://images.unsplash.com/photo-1618004912476-29818d81ae2e?crop=entropy&amp;cs=tinysrgb&amp;fit=crop&amp;fm=jpg&amp;ixid=MnwzNzg0fDB8MXxzZWFyY2h8NzV8fHB1cnBsZXxlbnwwfDB8fHwxNjQ3NDcxNjY4&amp;ixlib=rb-1.2.1&amp;q=80&amp;w=1080&amp;h=768 1080w, https://images.unsplash.com/photo-1618004912476-29818d81ae2e??crop=entropy&amp;cs=tinysrgb&amp;fit=crop&amp;fm=jpg&amp;ixid=MnwzNzg0fDB8MXxzZWFyY2h8NzV8fHB1cnBsZXxlbnwwfDB8fHwxNjQ3NDcxNjY4&amp;ixlib=rb-1.2.1&amp;q=80&amp;w=150 150w, https://images.unsplash.com/photo-1618004912476-29818d81ae2e??crop=entropy&amp;cs=tinysrgb&amp;fit=crop&amp;fm=jpg&amp;ixid=MnwzNzg0fDB8MXxzZWFyY2h8NzV8fHB1cnBsZXxlbnwwfDB8fHwxNjQ3NDcxNjY4&amp;ixlib=rb-1.2.1&amp;q=80&amp;w=300 300w, https://images.unsplash.com/photo-1618004912476-29818d81ae2e??crop=entropy&amp;cs=tinysrgb&amp;fit=crop&amp;fm=jpg&amp;ixid=MnwzNzg0fDB8MXxzZWFyY2h8NzV8fHB1cnBsZXxlbnwwfDB8fHwxNjQ3NDcxNjY4&amp;ixlib=rb-1.2.1&amp;q=80&amp;w=768 768w, https://images.unsplash.com/photo-1618004912476-29818d81ae2e??crop=entropy&amp;cs=tinysrgb&amp;fit=crop&amp;fm=jpg&amp;ixid=MnwzNzg0fDB8MXxzZWFyY2h8NzV8fHB1cnBsZXxlbnwwfDB8fHwxNjQ3NDcxNjY4&amp;ixlib=rb-1.2.1&amp;q=80&amp;w=1024 1024w" sizes="(max-width: 1080px) 100vw, 1080px" width="2160" height="768"> --}}
+			</div>
+			<div class="col-lg-6 col-xl-5 text-center text-lg-start pt-lg-5 mt-xl-2">
+				<div class="lc-block mb-4">
+					<div editable="rich">
+						<h1 class="fw-bold display-3"> {{Fungsi::app_nama()}}</h1>
+					</div>
+				</div>
+
+				<div class="lc-block mb-5">
+					<div editable="rich">
+						<p class="rfs-8">  {{Fungsi::desc()}}</p>
+					</div>
+				</div>
+
+				<div class="lc-block mb-6"><a class="btn btn-primary px-4 me-md-2 btn-lg" href="{{ url('produk') }}" role="button">Lihat Produk</a>
+				</div>
+
+				{{-- <div class="lc-block">
+					<div editable="rich">
+						<p class="fw-bold"> Business collaboration based on trust:</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="lc-block col-3"><img class="img-fluid wp-image-975" src="https://library.livecanvas.com/starters/wp-content/uploads/sites/15/2021/11/motorola.svg" width="" height="300" srcset="" sizes="" alt=""></div>
+					<div class="lc-block col-3"><img class="img-fluid wp-image-977" src="https://library.livecanvas.com/starters/wp-content/uploads/sites/15/2021/11/asus.svg" width="" height="300" srcset="" sizes="" alt=""></div>
+					<div class="lc-block col-3"><img class="img-fluid wp-image-974" src="https://library.livecanvas.com/starters/wp-content/uploads/sites/15/2021/11/sony.svg" width="" height="300" srcset="" sizes="" alt=""></div>
+					<div class="lc-block col-3"><img class="img-fluid wp-image-967" src="https://library.livecanvas.com/starters/wp-content/uploads/sites/15/2021/11/samsung-282297.svg" width="" height="300" srcset="" sizes="" alt=""></div>
+				</div> --}}
+			</div>
+
+		</div><!-- /lc-block -->
+	</div>
+</div>
+</section>
+
+
+        {{-- <section class="section section-header text-dark pb-md-8">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-12 col-md-10 text-center mb-2 mb-md-1">
@@ -22,24 +72,14 @@ Beranda
                            {{Fungsi::app_nama()}}
                         </h1>
                         <p class="lead mb-4 mb-lg-5"> {{Fungsi::desc()}} </p>
-                        {{-- <h4 class=" mb-4 mb-lg-5">Buka: 07.30 - 15.30</h4>
-                        <p class="lead mb-4 mb-lg-5"><small>Jln. Sunan kali jaga RT 08 RW 01 </small></p>
-                        <p class="lead mb-4 mb-lg-5"><small>Dsn ngipek Ds kanigoro Kec pagelaran Kab Malang </small></p>
-                        <p class="lead mb-4 mb-lg-5"> Telp : +62 857-0419-2502</p> --}}
+
 
         @php
-        // exec('git rev-parse --verify HEAD 2> /dev/null', $output);
-        // $hash = $output[0];
-        // dd($hash)
         $commitHash = trim(exec('git log --pretty="%h" -n1 HEAD'));
         $commitDate = new \DateTime(trim(exec('git log -n1 --pretty=%ci HEAD')));
         $commitDate->setTimezone(new \DateTimeZone('UTC'));
-        // dd($commitDate);
-        // dd($commitDate->format('Y-m-d H:i:s'));
         $versi=$commitDate->format('Ymd.H.i.s');
     @endphp
-                        {{-- <p class="lead mb-4 mb-lg-5"> {{Fungsi::desc2()}}</p> --}}
-                        {{-- <p class="lead mb-4 mb-lg-5"> v0. {{ $versi }}.</p> --}}
                         <div>
                             <a href="{{route('produk')}}" class="btn btn-dark btn-download-app">
                                 <span class="d-flex align-items-center">
@@ -51,12 +91,14 @@ Beranda
                             </a>
                         </div>
                     </div>
-                    {{-- <div class="col-12 col-md-10 justify-content-center">
-                        <img class="d-none d-md-inline-block" src="{{ asset('/') }}assets/template/swipe/assets/img/illustrations/scene.svg" alt="Mobile App Mockup">
-                    </div> --}}
+
                 </div>
             </div>
-        </section>
+        </section> --}}
+
+
+
+
 
         <div class="section bg-soft" id="download">
             <figure class="position-absolute top-0 left-0 w-100 d-none d-md-block mt-n3">
@@ -96,9 +138,10 @@ Beranda
                         </div> --}}
                     </div>
                     <div class="col-12 col-lg-5 ml-lg-auto">
-                        <img class="d-none d-lg-inline-block" src="{{ asset('/') }}assets/img/hero-5.jpg" alt="Mobile App Illustration">
+                        <img class="d-none d-lg-inline-block" src="{{ asset('/') }}assets/img/toko1.jpg" alt="Mobile App Illustration">
                     </div>
                 </div>
+
             </div>
         </div>
         {{-- <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
@@ -137,6 +180,9 @@ Beranda
                             <div class="carousel-inner">
                               <div class="carousel-item active" data-bs-interval="10000">
                                 <img src="{{ asset('/') }}assets/img/hero-1.jpg" class="d-block w-100" alt="...">
+                              </div>
+                              <div class="carousel-item" data-bs-interval="2000">
+                                <img src="{{ asset('/') }}assets/img/toko1.jpg" class="d-block w-100" alt="...">
                               </div>
                               <div class="carousel-item" data-bs-interval="2000">
                                 <img src="{{ asset('/') }}assets/img/hero-4.jpg" class="d-block w-100" alt="...">

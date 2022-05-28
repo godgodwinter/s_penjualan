@@ -15,6 +15,10 @@
 
     </div>
 </div>
+
+<div class="card card-body">
+    BANK BRI - 6769-4568953 - H. Nasuki
+   </div>
 </div>
     <form id="setting-form" method="POST" action="{{route('pelanggan.transaksi.store')}}">
     @php
@@ -30,10 +34,11 @@
         <input type="hidden" class="form-control  " name="transaksi_tipe" id="inputTransaksiTipe" value="online" >
         <input type="hidden" class="form-control  " name="pelanggan_tipe" id="inputPelangganTipe" value="member" >
         <input type="hidden" class="form-control  @error('kodetrans') is-invalid @enderror" id="kodetrans" name="kodetrans" value="{{$kodetrans}}" >
-        
+
         <input type="hidden" class="form-control  @error('cart') is-invalid @enderror" id="cart" name="cart"  >
 
     <div class="row py-2 px-2" id="formtwo">
+
             <div class="form-group row align-items-center py-2">
                 <label for="site-title" class="form-control-label col-sm-5 text-md-right">Nama Pelanggan</label>
                 <div class="col-sm-4 col-md-7" id="divpelanggan_id" >
@@ -44,7 +49,7 @@
               </div>
 
 
-              
+
         <div class="form-group row align-items-center py-2" id="divonline">
           <label for="site-title" class="form-control-label col-sm-5 text-md-right">Alamat Penerima</label>
           <div class="col-sm-4 col-md-7">
@@ -56,7 +61,7 @@
 
           </div>
           </div>
-          
+
 
         <div class="form-group row align-items-center py-2">
             <label for="site-title" class="form-control-label col-sm-5 text-md-right">Tanggal Pembelian</label>
@@ -86,6 +91,18 @@
                 <span class="btn btn-danger ml-2" id="save-reset" onclick="return confirm('Anda yakin melakukan reset ? Y/N') ?resetData():''">Reset</span>
                 <button class="btn btn-success ml-2" id="save-save" onclick="return confirm('Anda yakin data telah sesuai? Y/N')">Simpan</button>
               </div>
+
+
+              {{-- <p>
+                <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                 Detail No Rekening
+                </a>
+              </p>
+              <div class="collapse" id="collapseExample">
+                <div class="card card-body">
+                 BANK BRI - 6769-4568953 - H. Nasuki
+                </div>
+              </div> --}}
       </div>
       </form>
 
