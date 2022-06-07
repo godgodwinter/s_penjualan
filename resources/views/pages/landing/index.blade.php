@@ -32,13 +32,15 @@ Beranda
 			<div class="col-lg-6 col-xl-5 text-center text-lg-start pt-lg-5 mt-xl-2">
 				<div class="lc-block mb-4">
 					<div editable="rich">
-						<h1 class="fw-bold display-3"> {{Fungsi::app_nama()}}</h1>
+						{{-- <h1 class="fw-bold display-3"> {{Fungsi::app_nama()}}</h1> --}}
+						<h1 class="fw-bold display-3">Tentang Toko Eva Jaya</h1>
 					</div>
 				</div>
 
 				<div class="lc-block mb-5">
 					<div editable="rich">
-						<p class="rfs-8">  {{Fungsi::desc()}}</p>
+						<p class="rfs-8">Toko bangunan Eva Jaya adalah toko bangunan yang terletak di Kabupaten Malang yang menyediakan bahan dan alat bangunan seperti pasir, semen, dan alat-alat bangunan lainya. Sistem penjualan di toko Eva Jaya sekarang masih manual, Dengan adanya Eva Jaya Website, pembeli bisa membeli barang di toko Eva Jaya secara Online melalui website ini.</p>
+						{{-- <p class="rfs-8">  {{Fungsi::desc()}}</p> --}}
 					</div>
 				</div>
 
@@ -113,6 +115,8 @@ Beranda
                         <h2 class="display-3 mb-4">Jam 07.30 - 15.30</h2>
                         {{-- <p class="lead text-muted">Quickly connect to tools and services such as Google Analytics, Intercom or Github to track, measure and optimize performance. </p> --}}
                         <span class="h5 text-muted mb-2 d-block">Nama Pemilik: H. Nasuki</span>
+                        <span class="h5 text-muted mb-2 d-block">Karyawan: Ibu Sum dan Evarina</span>
+                        <span class="h5 text-muted mb-2 d-block">Tahun Berdiri : 12 Agustus 2011</span>
                         <span class="h5 text-muted mb-2 d-block">No Rek : 6769-4568953 - H. Nasuki</span>
 
                         <p class=" mt-4 lead  text-muted"><small>Jln. Sunan kali jaga RT 08 RW 01 </small></p>

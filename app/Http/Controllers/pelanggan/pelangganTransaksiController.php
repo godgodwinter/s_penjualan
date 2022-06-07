@@ -14,15 +14,15 @@ use Illuminate\Support\Facades\DB;
 
 class pelangganTransaksiController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware(function ($request, $next) {
-            if (Auth::user()->tipeuser != 'pelanggan') {
-                return redirect()->route('dashboard')->with('status', 'Halaman tidak ditemukan!')->with('tipe', 'danger');
-            }
-            return $next($request);
-        });
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware(function ($request, $next) {
+    //         if (Auth::user()->tipeuser != 'pelanggan') {
+    //             return redirect()->route('dashboard')->with('status', 'Halaman tidak ditemukan!')->with('tipe', 'danger');
+    //         }
+    //         return $next($request);
+    //     });
+    // }
     public function index(Request $request)
     {
         $getPelanggan = pelanggan::where('users_id', Auth::user()->id)->first();
@@ -166,5 +166,102 @@ class pelangganTransaksiController extends Controller
 
         return redirect()->route('pelanggan.transaksi')->with('status', 'Data berhasil tambahkan!')->with('tipe', 'success')->with('icon', 'fas fa-feather');
         // return
+    }
+
+    public function rajaongkir_province(Request $request)
+    {
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => "https://api.rajaongkir.com/starter/province", //id=11 jatim
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "GET",
+            CURLOPT_HTTPHEADER => array(
+                "key:b36ac6ff20a865173409d6107da115e3"
+            ),
+        ));
+
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+
+        curl_close($curl);
+
+        if ($err) {
+            echo "cURL Error #:" . $err;
+        } else {
+            echo $response;
+        }
+    }
+    public function rajaongkir_city(Request $request)
+    {
+        $provinsi_id = $request->provinsi_id ? $request->provinsi_id : 11;
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => "https://api.rajaongkir.com/starter/city?province={$provinsi_id}",
+            // CURLOPT_URL => "https://api.rajaongkir.com/starter/city?province={$provinsi_id}&id=74", //blitar
+            // CURLOPT_URL => "https://api.rajaongkir.com/starter/city?province=11&id=255", //malang
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "GET",
+            CURLOPT_HTTPHEADER => array(
+                "key:b36ac6ff20a865173409d6107da115e3"
+            ),
+        ));
+
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+
+        curl_close($curl);
+
+        if ($err) {
+            echo "cURL Error #:" . $err;
+        } else {
+            echo $response;
+        }
+    }
+    public function rajaongkir_cost(Request $request)
+    {
+
+        $origin = 255; //malang
+        $provinsi_id = $request->provinsi_id ? $request->provinsi_id : 11;
+        $city_id = $request->city_id ? $request->city_id : 74;
+        $weight = $request->weight ? $request->weight : 100;
+        $courir = $request->courir ? $request->courir : 'jne';
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => "https://api.rajaongkir.com/starter/cost",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 30,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS => "origin={$origin}&destination={$city_id}&weight={$weight}&courier={$courir}",  //berat dalam gram
+            CURLOPT_HTTPHEADER => array(
+                "content-type: application/x-www-form-urlencoded",
+                "key: b36ac6ff20a865173409d6107da115e3"
+            ),
+        ));
+
+        $response = curl_exec($curl);
+        $err = curl_error($curl);
+
+        curl_close($curl);
+
+        if ($err) {
+            echo "cURL Error #:" . $err;
+        } else {
+            echo $response;
+        }
     }
 }

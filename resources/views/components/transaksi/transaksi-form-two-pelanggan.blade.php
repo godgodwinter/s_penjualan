@@ -48,10 +48,144 @@
                 </div>
               </div>
 
+              @push('before-script')
+              <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+                  <script>
+
+    $(document).ready(function() {
+        $('.js-example-basic-single').select2({
+            // theme: "classic",
+            // allowClear: true,
+            width: "resolve"
+        });
+    });
+
+
+    let dataProvinsi=document.getElementById("dataProvinsi");
+    let dataCity=document.getElementById("dataCity");
+// let dataKabupaten=document.getElementById("dataKabupaten");
+// let kab = document.getElementsByClassName("kab");
+        //ambildatanconst
+getDatas = async () => {
+//  axios.get('https://reqres.in/api/users')
+await axios.get('http://127.0.0.1:8000/pelanggan/rajaongkir/province',)
+ .then(response => {
+  let datas =  response.data.rajaongkir.results;
+
+//   dataKabupaten.remove();
+//     dataKecamatan.remove();
+dataProvinsi.innerHTML=`<option disabled selected value=""> Pilih Provinsi</option>`;
+  datas.forEach(function(data){
+    // console.log(data);
+    // addOption(data.id,data.nama);
+
+    dataProvinsi.innerHTML += `
+    <option value="${data.province_id}"> ${data.province}</option>
+    `;
+  })
+//   console.log(`GET data`, datas);
+// console.log('tes');
+})
+ .catch(error => console.error(error));
+};
+getDatas();
+
+// onchange
+getDataProvinsi=(sel)=>{
+
+let value = sel.value;
+let text = sel.options[sel.selectedIndex].text;
+provinsi_id.value=value;
+provinsi_nama.value=text;
+  console.log(value+' '+text);
+
+//ambildataKabupaten
+getDatasKota(value);
+
+
+}
+
+
+getDatasKota = async (id=11) => {
+//  axios.get('https://reqres.in/api/users')
+await axios.get(`http://127.0.0.1:8000/pelanggan/rajaongkir/city?provinsi_id=${id}`)
+ .then(response => {
+  let datas =  response.data.rajaongkir.results;
+
+//   dataKabupaten.remove();
+//     dataKecamatan.remove();
+dataCity.innerHTML=`<option disabled selected value=""> Pilih Kota / Kabupaten</option>`;
+  datas.forEach(function(data){
+
+    dataCity.innerHTML += `
+    <option value="${data.city_id}">${data.type} ${data.city_name} </option>
+    `;
+  })
+  console.log(`GET data`, datas);
+})
+ .catch(error => console.error(error));
+};
+
+
+// onchange
+getDataCity=(sel)=>{
+
+let value = sel.value;
+let text = sel.options[sel.selectedIndex].text;
+city_id.value=value;
+city_nama.value=text;
+  console.log(value+' '+text);
+
+//ambildataKabupaten
+getDatasKota(value);
+
+
+}
+                  </script>
+              @endpush
+              <div class="form-group row align-items-center py-2" id="divonline">
+                <label for="site-title" class="form-control-label col-sm-5 text-md-right">Pilih Provinsi</label>
+                <div class="col-sm-4 col-md-7">
+
+                    <select class="js-example-basic-single form-control-sm @error('provinsi')
+                    is-invalid
+                @enderror" name="provinsi"  style="width: 100%" id="dataProvinsi"  onchange="getDataProvinsi(this)" >
+                    <option disabled selected value=""> Pilih Provinsi</option>
+
+                  </select>
+                  <input type="hidden" name="provinsi_id" id="provinsi_id" value="">
+                  <input type="hidden" name="provinsi_nama" id="provinsi_nama" value="">
+                  <input type="hidden" name="city_id" id="city_id" value="">
+                  <input type="hidden" name="city_nama" id="city_nama" value="">
+
+                  @error('provinsi')<div class="invalid-feedback"> {{$message}}</div>
+                  @enderror
+
+                </div>
+                </div>
+
+              <div class="form-group row align-items-center py-2" id="divonline">
+                <label for="site-title" class="form-control-label col-sm-5 text-md-right">Pilih Kota</label>
+                <div class="col-sm-4 col-md-7">
+
+
+                    <select class="js-example-basic-single form-control-sm @error('city')
+                    is-invalid
+                @enderror" name="city"  style="width: 100%" id="dataCity"  onchange="getDataCity(this)" >
+                    <option disabled selected value=""> Pilih Kota / Kabupaten</option>
+
+                  </select>
+                  <input type="hidden" name="city_nama" id="city_nama" value="">
+
+                  @error('kota')<div class="invalid-feedback"> {{$message}}</div>
+                  @enderror
+
+                </div>
+                </div>
 
 
         <div class="form-group row align-items-center py-2" id="divonline">
-          <label for="site-title" class="form-control-label col-sm-5 text-md-right">Alamat Penerima</label>
+          <label for="site-title" class="form-control-label col-sm-5 text-md-right">Alamat Lengkap Penerima</label>
           <div class="col-sm-4 col-md-7">
 
             <input type="text" class="form-control  @error('alamat') is-invalid @enderror" name="alamat" required  value="">
@@ -61,6 +195,18 @@
 
           </div>
           </div>
+
+          <div class="form-group row align-items-center py-2" id="divonline">
+            <label for="site-title" class="form-control-label col-sm-5 text-md-right">Total Ongkir</label>
+            <div class="col-sm-4 col-md-7">
+
+              <input type="text" class="form-control  @error('ongkir') is-invalid @enderror" name="ongkir" required  value="0" readonly id="ongkir">
+
+              @error('ongkir')<div class="invalid-feedback"> {{$message}}</div>
+              @enderror
+
+            </div>
+            </div>
 
 
         <div class="form-group row align-items-center py-2">

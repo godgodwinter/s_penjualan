@@ -53,8 +53,6 @@ Buat Transaksi
         </div>
     </div>
 </div>
-
-
 @endsection
 
 @section('containermodal')
