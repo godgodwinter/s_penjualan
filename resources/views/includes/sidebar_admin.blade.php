@@ -115,3 +115,12 @@
             <div data-i18n="Support">Laporan Penjualan</div>
         </a>
         </li>
+    <li class="menu-item {{$pages=='laporanlaba'?'active': ''}}">
+        <a
+        href="{{route('admin.laporanlaba')}}"
+            class="menu-link"
+        >
+        <i class="menu-icon fa-solid fa-file-invoice-dollar"></i>
+            <div data-i18n="Support">Laporan Laba</div>
+        </a>
+        </li>
