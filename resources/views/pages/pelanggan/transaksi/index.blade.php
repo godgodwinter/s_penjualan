@@ -51,6 +51,10 @@ Transaksi
           </div>
           <div class="modal-body">
 
+          <div class="modal-footer" id="divModalTransaksiDetail">
+              Tes
+          </div>
+
     <x-babeng.table-two>
       <x-slot name="thead">
             <th class="babeng-min-row text-center">No</th>
@@ -60,7 +64,7 @@ Transaksi
             <th class="text-center">Total Harga</th>
       </x-slot>
       <x-slot name="tbody">
-      <tbody class="table-border-bottom-0" id="trbody"> 
+      <tbody class="table-border-bottom-0" id="trbody">
       </tbody>
       </x-slot>
   </x-babeng.table-two>

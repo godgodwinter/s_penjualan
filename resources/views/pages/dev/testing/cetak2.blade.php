@@ -23,6 +23,18 @@
       <td width="60%"></td>
   </tr>
   <tr>
+      <td width="15%">Alamat Tujuan</td>
+      <td width="1%">:</td>
+      <td width="25%">{{$items->alamat}}</td>
+      <td width="60%"></td>
+  </tr>
+  <tr>
+      <td width="15%">No HP / WA</td>
+      <td width="1%">:</td>
+      <td width="25%">{{$items->telp}}</td>
+      <td width="60%"></td>
+  </tr>
+  <tr>
       <td width="15%">Status Transaksi</td>
       <td width="1%">:</td>
       <td width="25%">{{$items->status}}</td>
@@ -46,8 +58,16 @@
         <td align="right">{{Fungsi::rupiah($item->jml*$item->harga_akhir)}}</td>
     </tr>
     @empty
-        
+
     @endforelse
+    <tr>
+        <td colspan="4"><b>Total Tagihan</b></td>
+        <td align="right"><b>{{Fungsi::rupiah($items->totaltagihan)}}</b></td>
+    </tr>
+    <tr>
+        <td colspan="4"><b>Ongkir</b></td>
+        <td align="right"><b>{{Fungsi::rupiah($items->ongkir)}}</b></td>
+    </tr>
     <tr>
         <td colspan="4"><b>Total Harga</b></td>
         <td align="right"><b>{{Fungsi::rupiah($items->totalbayar)}}</b></td>

@@ -4,8 +4,10 @@
               <th class="babeng-min-row text-center">No</th>
               <th class="text-center">Aksi</th>
               <th>Nama</th>
+              <th>Harga Beli (Rata-rata)</th>
               <th>Harga Jual</th>
               <th class="text-center">Stok</th>
+              <th class="text-center">Berat</th>
               <th class="text-center">Terjual</th>
               <th class="text-center">Satuan</th>
               <th class="text-center">Photo</th>
@@ -19,6 +21,20 @@
                     <x-btndelete link="{{route('admin.produk.destroy',$item->id)}}"></x-btndelete>
                 </td>
                 <td>{{$item->nama}}</td>
+                @php
+                    $getHargaBeli=\App\Models\produkdetail::where('produk_id',$item->id)->get();
+                    $harga_beli=0;
+                    $ttl=0;
+                    $jmlbrg=0;
+                    foreach($getHargaBeli as $pd){
+                        $ttl+=$pd->harga_beli*$pd->jml;
+                        $jmlbrg+=$pd->jml;
+                    }
+                    if($jmlbrg>0){
+                    $harga_beli=round($ttl/$jmlbrg,0);
+                    }
+                @endphp
+                <td>{{Fungsi::rupiah($harga_beli)}}</td>
                 <td>{{Fungsi::rupiah($item->harga_jual)}}</td>
                 @php
                     $getstok=\App\Models\produkdetail::where('produk_id',$item->id)->sum('jml');
@@ -27,6 +43,7 @@
                     })->sum('jml');
                 @endphp
                 <td class="text-center">{{ $getstok-$getterjual}}</td>
+                <td class="text-center">{{$item->berat}} g</td>
                 <td class="text-center">{{$getterjual}}</td>
                 <td class="text-center">{{$item->satuan}}</td>
                 @php

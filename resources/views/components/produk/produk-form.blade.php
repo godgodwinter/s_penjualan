@@ -88,16 +88,27 @@
               </div>
             </div>
             <div class="form-group row align-items-center py-2">
-                <label for="site-title" class="form-control-label col-sm-3 text-md-right">Satuan </label>
+                <label for="site-title" class="form-control-label col-sm-3 text-md-right">Berat *) <i>Dalam gram</i> </label>
                 <div class="col-sm-6 col-md-9">
 
-                  <input type="text" class="form-control  @error('satuan') is-invalid @enderror" placeholder="Kg/Biji/Meter/dll" name="satuan" required  value="{{old('satuan')?old('satuan'):$satuan}}">
+                  <input type="text" class="form-control  @error('berat') is-invalid @enderror" placeholder="dalam gram" name="berat" required  value="{{old('berat')?old('berat'):200}}">
 
-                  @error('satuan')<div class="invalid-feedback"> {{$message}}</div>
+                  @error('berat')<div class="invalid-feedback"> {{$message}}</div>
                   @enderror
 
                 </div>
               </div>
+              <div class="form-group row align-items-center py-2">
+                  <label for="site-title" class="form-control-label col-sm-3 text-md-right">Satuan </label>
+                  <div class="col-sm-6 col-md-9">
+
+                    <input type="text" class="form-control  @error('satuan') is-invalid @enderror" placeholder="Kg/Biji/Meter/dll" name="satuan" required  value="{{old('satuan')?old('satuan'):$satuan}}">
+
+                    @error('satuan')<div class="invalid-feedback"> {{$message}}</div>
+                    @enderror
+
+                  </div>
+                </div>
 
 
 @push('before-script')

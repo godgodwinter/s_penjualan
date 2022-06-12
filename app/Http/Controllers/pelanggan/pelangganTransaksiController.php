@@ -66,6 +66,7 @@ class pelangganTransaksiController extends Controller
                 'pelanggan_id.required' => 'Pelanggan harus diisi',
             ]
         );
+        // dd($request);
         $status = 'success';
         if ($request->transaksi_tipe == 'online') {
             $status = 'pending';
@@ -76,10 +77,16 @@ class pelangganTransaksiController extends Controller
                 'pelanggan_tipe'     =>   'member',
                 'transaksi_tipe'     =>   'online',
                 'pelanggan_id'     =>   $getPelanggan->id,
+                'totaltagihan'     =>    Fungsi::angka($request->totaltagihan),
                 'totalbayar'     =>    Fungsi::angka($request->totalbayar),
+                'dibayar'     =>    Fungsi::angka($request->totalbayar),
+                'ongkir'     =>    Fungsi::angka($request->ongkir),
+                'weight'     =>    Fungsi::angka($request->weight),
+                'kembalian'     =>   0,
                 'penanggungjawab'     =>   'member',
                 'tglbeli'     =>   $request->tglbeli,
                 'alamat'     =>   $request->alamat,
+                'telp'     =>   $request->telp,
                 'ppn'     =>   null,
                 'dibayar'     =>   null,
                 'kembalian'     =>   null,

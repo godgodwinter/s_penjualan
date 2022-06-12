@@ -48,7 +48,7 @@
                     <x-btndelete link="{{route('admin.transaksi.destroy',$item->id)}}"></x-btndelete>
                     @endif
                    {{-- @if ($item->status=='pending') --}}
-                   <button class="btn btn-success btn-sm"  onclick="btnModalDetailTransaksi('{{$urlModalDetail}}',{{$item->id}},'{{$item->status}}','{{$urlModalDetailUpdate}}')" data-bs-toggle="modal" data-bs-target="#modalDetailTransaksi" ><span
+                   <button class="btn btn-success btn-sm"  onclick="btnModalDetailTransaksi('{{$urlModalDetail}}',{{$item->id}},'{{$item->status}}','{{$urlModalDetailUpdate}}','{{ Fungsi::rupiah($item->totalbayar) }}','{{ Fungsi::rupiah($item->totaltagihan) }}' ,'{{ Fungsi::rupiah($item->ongkir) }}')" data-bs-toggle="modal" data-bs-target="#modalDetailTransaksi" ><span
                     class="pcoded-micon"> <i class="fa-regular fa-circle-check"></i></span></button>
                    {{-- @endif --}}
 
@@ -83,7 +83,8 @@
     let tbodyContent=``;
     var buktipembayaran=null;
     var kodetransaksi=null;
-    function btnModalDetailTransaksi(url=null,id=null,status=null,urlUpdate=null){
+    function btnModalDetailTransaksi(url=null,id=null,status=null,urlUpdate=null,totalbayar=null,totaltagihan=0,ongkir=0){
+
         // console.log(url,id);
         //fetch
         $.ajax({
@@ -153,6 +154,17 @@ if(status=='pending'){
             // `;
         }
         $('#divModalDetail').html(divModalDetailContent);
+        let modalTransaksiDetail=`<div>
+            <H5>KodeTrans : ${kodetransaksi}</H5>
+        <br>
+        <h5>Total Tagihan : ${totaltagihan}</h5>
+        <br>
+        <h5>Ongkir : ${ongkir}</h5>
+        <br>
+        <h5>Total bayar : ${totalbayar}</h5>
+            </div>
+        `;
+        $('#divModalTransaksiDetail').html(modalTransaksiDetail);
         $('#divModalBukti').html(divModalBuktiContent);
                 // console.log(buktipembayaran);
                 $.each(data.data, function(index, value){

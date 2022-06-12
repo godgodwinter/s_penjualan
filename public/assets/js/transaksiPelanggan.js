@@ -13,6 +13,7 @@ function refreshDataRestok() {
         </td>
         <td>${el.nama}</td>
         <td>Rp ${rupiah(el.harga_terjual)},00/Stok : ${el.stok}</td>
+        <td class="text-center">${el.berat}</td>
         <td class="text-center">${el.jumlah}</td>
         <td class="text-center">Rp ${rupiah(el.total)},00</td>
         </tr>`
@@ -20,6 +21,9 @@ function refreshDataRestok() {
         document.querySelector('#trbody').innerHTML = data;
         $('#cart').val(JSON.stringify(getData));
         let sumtotalbayar = getData.map(item => item.total).reduce((prev, next) => prev + next);
+        let totalberat = getData.map(item => item.berat * item.jumlah).reduce((prev, next) => prev + next);
+        $('#berat').val(totalberat);
+        $('#weight').val(totalberat);
         $('#totalbayar').val('Rp ' + rupiah(sumtotalbayar));
         $('#totaltagihan').val('Rp ' + rupiah(sumtotalbayar));
         $('#totalbayarNumber').val(sumtotalbayar);
@@ -39,19 +43,21 @@ function storeGetProduk() {
     // console.log(getData);
     return getData;
 }
-function storeProduk(id = null, nama = null, harga_jual = null, stok = null, terjual = null, stoktersedia = null) {
+function storeProduk(id = null, nama = null, harga_jual = null, stok = null, terjual = null, stoktersedia = null, berat = 0) {
     var dataTemp = {
         id: id,
         nama: nama,
         harga_asli: harga_jual,
         harga_terjual: harga_jual, //
         stok: stok,
+        berat: berat,
         // terjual:terjual,
         // stoktersedia:stoktersedia,
         jumlah: 0,
         total: 0,
         inputTerjual: 0,
     }
+    console.log(dataTemp, berat);
     //ambilDataLocalStorage
     //ubah menjadi array and object
     let getData = storeGetProduk();
@@ -155,9 +161,48 @@ function storeBtnApplyModalEdit(index = null) {
     $('#formModalEdit').modal('hide');
     // $('.close').click();
     refreshDataRestok();
+    getDataCity();
+    // cek ongkir
 
 }
 
+
+
+// getDataCityNoData = async () => {
+
+//     let dataProvinsi = document.getElementById("dataProvinsi");
+//     let dataCity = document.getElementById("dataCity");
+//     let ongkir = document.getElementById("ongkir");
+//     let totalbayarNumber = document.getElementById("totalbayarNumber");
+//     let totalbayar = document.getElementById("totalbayar");
+//     let weightInputan = document.getElementById("weight");
+//     let provinsi_id = 11, city_id = 255, courir = 'jne', weight = 100;
+
+//     weight = weightInputan.value;
+//     console.log(weight);
+
+//     //ambildataOngkir
+
+//     //  axios.get('https://reqres.in/api/users')
+//     await axios.get(`http://127.0.0.1:8000/pelanggan/rajaongkir/cost?provinsi_id=${provinsi_id}&city_id=${city_id}&courir=${courir}&weight=${weight}`)
+//         .then(response => {
+//             let datas = response.data.rajaongkir.results;
+//             datas.forEach(function (data) {
+//                 // dataCity.innerHTML += `
+//                 // <option value="${data.city_id}">${data.type} ${data.city_name} </option>
+//                 // `;
+//                 console.log(data.name, data.code, data.costs, data.costs[0].cost[0].value);
+//                 // console.log(sumtotalbayar);
+//                 ongkir.value = data.costs[0].cost[0].value;
+//                 totalbayarNumber.value = parseInt(totalbayarNumber.value) + parseInt(data.costs[0].cost[0].value);
+//                 totalbayar.value = `Rp ${rupiah(totalbayarNumber.value)}`;
+//             })
+//             console.log(`GET data`, datas);
+//         })
+//         .catch(error => console.error(error));
+
+
+// }
 
 function storeCariData(inputancari = '', inputanUrl = '#') {
 
@@ -172,13 +217,13 @@ function storeCariData(inputancari = '', inputanUrl = '#') {
             cari: inputancari
         },
         success: function (response) {
-            // console.log(response.data);
+            console.log(response.data);
             datas = response.data;
             let jmlDataResponse = datas.length;
             for (let i = 0; i < jmlDataResponse; i++) {
                 buttonContent = `<button  class="btn btn-dark">Add</button>`;
                 if (datas[i].stoktersedia > 0) {
-                    buttonContent = `<button  class="btn btn-info addProduk" onclick="storeProduk(${datas[i].id},'${datas[i].nama}',${datas[i].harga_jual},${datas[i].stoktersedia})">Add</button>`;
+                    buttonContent = `<button  class="btn btn-info addProduk" onclick="storeProduk(${datas[i].id},'${datas[i].nama}',${datas[i].harga_jual},${datas[i].stok},${datas[i].terjual},${datas[i].stoktersedia},  ${datas[i].berat})">Add </button>`;
 
                 }
                 contentResponse += `
@@ -187,7 +232,7 @@ function storeCariData(inputancari = '', inputanUrl = '#') {
 <img src="${datas[i].img}" class="thumbnail img-responsive"  style="display: block;max-width: 100%;height: 200px;object-fit: cover">
 <div class="card-body">
 <h5 class="card-title">${datas[i].nama}</h5>
-<p class="card-text">Harga : Rp ${rupiah(datas[i].harga_jual)},00 - Stok : ${datas[i].stoktersedia}</p>
+<p class="card-text">Harga : Rp ${rupiah(datas[i].harga_jual)},00 - Stok : ${datas[i].stoktersedia} - Berat : ${datas[i].berat} gram</p>
 ${buttonContent}
 </div>
 </div>

@@ -8,28 +8,28 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class transaksidetail extends Model
 {
-        public $table = "transaksidetail";
+    public $table = "transaksidetail";
 
-        use SoftDeletes;
-        use HasFactory;
+    use SoftDeletes;
+    use HasFactory;
 
-        protected $fillable = [
-            'transaksi_id',
-            'produk_id',
-            'jml',
-            'harga_awal',
-            'diskon',
-            'harga_akhir',
-        ];
+    protected $fillable = [
+        'transaksi_id',
+        'produk_id',
+        'jml',
+        'harga_awal',
+        'diskon',
+        'harga_akhir',
+        'jml_berat',
+    ];
 
-        public function produk()
-        {
-            return $this->belongsTo(produk::class,'produk_id','id');
-        }
+    public function produk()
+    {
+        return $this->belongsTo(produk::class, 'produk_id', 'id');
+    }
 
-        public function transaksi()
-        {
-            return $this->belongsTo(transaksi::class,'transaksi_id','id');
-        }
-
+    public function transaksi()
+    {
+        return $this->belongsTo(transaksi::class, 'transaksi_id', 'id');
+    }
 }

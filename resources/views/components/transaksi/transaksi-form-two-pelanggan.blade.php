@@ -69,6 +69,7 @@
     let ongkir=document.getElementById("ongkir");
     let totalbayarNumber=document.getElementById("totalbayarNumber");
     let totalbayar=document.getElementById("totalbayar");
+    let weightInputan=document.getElementById("weight");
 // let dataKabupaten=document.getElementById("dataKabupaten");
 // let kab = document.getElementsByClassName("kab");
         //ambildatanconst
@@ -150,18 +151,24 @@ dataCity.innerHTML=`<option disabled selected value=""> Pilih Kota / Kabupaten</
 
 
 // onchange
-getDataCity=async(sel)=>{
-let provinsi_id=11,city_id=255,courir='jne',weight=100;
-let value = sel.value;
+getDataCity=async(sel=null)=>{
+let provinsi_id=11,city=255,courir='jne',weight=100;
+
+weight=weightInputan.value;
+console.log(weight);
+if(sel){
+    let value = sel.value;
 let text = sel.options[sel.selectedIndex].text;
 city_id.value=value;
 city_nama.value=text;
+city=value;
   console.log(value+' '+text);
+}
 
 //ambildataOngkir
 
 //  axios.get('https://reqres.in/api/users')
-await axios.get(`http://127.0.0.1:8000/pelanggan/rajaongkir/cost?provinsi_id=${provinsi_id}&city_id=${city_id}&courir=${courir}&weight=${weight}`)
+await axios.get(`http://127.0.0.1:8000/pelanggan/rajaongkir/cost?provinsi_id=${provinsi_id}&city_id=${city}&courir=${courir}&weight=${weight}`)
  .then(response => {
   let datas =  response.data.rajaongkir.results;
   datas.forEach(function(data){
@@ -242,6 +249,19 @@ await axios.get(`http://127.0.0.1:8000/pelanggan/rajaongkir/cost?provinsi_id=${p
               <input type="text" class="form-control  @error('telp') is-invalid @enderror" name="telp" required  value="">
 
               @error('telp')<div class="invalid-feedback"> {{$message}}</div>
+              @enderror
+
+            </div>
+            </div>
+
+          <div class="form-group row align-items-center py-2" id="divonline">
+            <label for="site-title" class="form-control-label col-sm-5 text-md-right">Total Berat *) gram</label>
+            <div class="col-sm-4 col-md-7">
+
+              <input type="text" class="form-control  @error('berat') is-invalid @enderror" name="berat" required  value="0" readonly id="berat">
+              <input type="hidden" class="form-control  @error('weight') is-invalid @enderror" name="weight" required  value="0" readonly id="weight">
+
+              @error('berat')<div class="invalid-feedback"> {{$message}}</div>
               @enderror
 
             </div>
