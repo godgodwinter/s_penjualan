@@ -38,7 +38,7 @@ class laporanController extends Controller
     public function laba(Request $request)
     {
         #WAJIB
-        $pages = 'laporanpenjualan';
+        $pages = 'laporanpenlaba';
         $items = transaksi::orderBy('tglbeli', 'desc')
             ->with('transaksidetail')
             ->where('status', 'success')
