@@ -17,7 +17,9 @@
 </div>
 
 <div class="card card-body">
-    BANK BRI - 6769-4568953 - H. Nasuki
+    <h4>
+        BANK BRI - 6769-4568953 - H. Nasuki</h4>
+        <p>*} Alamat lengkap Pengiriman dan No Hp/WA Aktif wajib diisi.</p>
    </div>
 </div>
     <form id="setting-form" method="POST" action="{{route('pelanggan.transaksi.store')}}">
@@ -36,6 +38,7 @@
         <input type="hidden" class="form-control  @error('kodetrans') is-invalid @enderror" id="kodetrans" name="kodetrans" value="{{$kodetrans}}" >
 
         <input type="hidden" class="form-control  @error('cart') is-invalid @enderror" id="cart" name="cart"  >
+        <input type="hidden" class="form-control  @error('totalbayarNumber') is-invalid @enderror" id="totalbayarNumber" name="totalbayarNumber"  >
 
     <div class="row py-2 px-2" id="formtwo">
 
@@ -63,6 +66,9 @@
 
     let dataProvinsi=document.getElementById("dataProvinsi");
     let dataCity=document.getElementById("dataCity");
+    let ongkir=document.getElementById("ongkir");
+    let totalbayarNumber=document.getElementById("totalbayarNumber");
+    let totalbayar=document.getElementById("totalbayar");
 // let dataKabupaten=document.getElementById("dataKabupaten");
 // let kab = document.getElementsByClassName("kab");
         //ambildatanconst
@@ -90,6 +96,21 @@ dataProvinsi.innerHTML=`<option disabled selected value=""> Pilih Provinsi</opti
 };
 getDatas();
 
+
+
+function rupiah(angka){
+    var	number_string = angka.toString(),
+        sisa 	= number_string.length % 3,
+        rupiah 	= number_string.substr(0, sisa),
+        ribuan 	= number_string.substr(sisa).match(/\d{3}/g);
+
+    if (ribuan) {
+        separator = sisa ? '.' : '';
+        rupiah += separator + ribuan.join('.');
+    }
+    return rupiah;
+
+}
 // onchange
 getDataProvinsi=(sel)=>{
 
@@ -104,6 +125,7 @@ getDatasKota(value);
 
 
 }
+
 
 
 getDatasKota = async (id=11) => {
@@ -128,16 +150,33 @@ dataCity.innerHTML=`<option disabled selected value=""> Pilih Kota / Kabupaten</
 
 
 // onchange
-getDataCity=(sel)=>{
-
+getDataCity=async(sel)=>{
+let provinsi_id=11,city_id=255,courir='jne',weight=100;
 let value = sel.value;
 let text = sel.options[sel.selectedIndex].text;
 city_id.value=value;
 city_nama.value=text;
   console.log(value+' '+text);
 
-//ambildataKabupaten
-getDatasKota(value);
+//ambildataOngkir
+
+//  axios.get('https://reqres.in/api/users')
+await axios.get(`http://127.0.0.1:8000/pelanggan/rajaongkir/cost?provinsi_id=${provinsi_id}&city_id=${city_id}&courir=${courir}&weight=${weight}`)
+ .then(response => {
+  let datas =  response.data.rajaongkir.results;
+  datas.forEach(function(data){
+    // dataCity.innerHTML += `
+    // <option value="${data.city_id}">${data.type} ${data.city_name} </option>
+    // `;
+    console.log(data.name,data.code,data.costs,data.costs[0].cost[0].value);
+    // console.log(sumtotalbayar);
+    ongkir.value=data.costs[0].cost[0].value;
+    totalbayarNumber.value=parseInt(totalbayarNumber.value)+parseInt(data.costs[0].cost[0].value);
+    totalbayar.value=`Rp ${rupiah(totalbayarNumber.value)}`;
+  })
+  console.log(`GET data`, datas);
+})
+ .catch(error => console.error(error));
 
 
 }
@@ -196,6 +235,18 @@ getDatasKota(value);
           </div>
           </div>
 
+        <div class="form-group row align-items-center py-2" id="divonline">
+            <label for="site-title" class="form-control-label col-sm-5 text-md-right">No HP/WA</label>
+            <div class="col-sm-4 col-md-7">
+
+              <input type="text" class="form-control  @error('telp') is-invalid @enderror" name="telp" required  value="">
+
+              @error('telp')<div class="invalid-feedback"> {{$message}}</div>
+              @enderror
+
+            </div>
+            </div>
+
           <div class="form-group row align-items-center py-2" id="divonline">
             <label for="site-title" class="form-control-label col-sm-5 text-md-right">Total Ongkir</label>
             <div class="col-sm-4 col-md-7">
@@ -224,6 +275,17 @@ getDatasKota(value);
 
         <div class="form-group row align-items-center py-2">
             <label for="site-title" class="form-control-label col-sm-5 text-md-right">Total Tagihan</label>
+            <div class="col-sm-4 col-md-7">
+
+              <input type="text" class="form-control  @error('totaltagihan') is-invalid @enderror" name="totaltagihan"  readonly id="totaltagihan" value="0">
+
+              @error('totaltagihan')<div class="invalid-feedback"> {{$message}}</div>
+              @enderror
+
+            </div>
+          </div>
+        <div class="form-group row align-items-center py-2">
+            <label for="site-title" class="form-control-label col-sm-5 text-md-right">Total Bayar</label>
             <div class="col-sm-4 col-md-7">
 
               <input type="text" class="form-control  @error('totalbayar') is-invalid @enderror" name="totalbayar"  readonly id="totalbayar" value="0">
