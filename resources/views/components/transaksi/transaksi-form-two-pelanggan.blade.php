@@ -178,8 +178,8 @@ await axios.get(`http://127.0.0.1:8000/pelanggan/rajaongkir/cost?provinsi_id=${p
     console.log(data.name,data.code,data.costs,data.costs[0].cost[0].value);
     // console.log(sumtotalbayar);
     ongkir.value=data.costs[0].cost[0].value;
-    totalbayarNumber.value=parseInt(totalbayarNumber.value)+parseInt(data.costs[0].cost[0].value);
-    totalbayar.value=`Rp ${rupiah(totalbayarNumber.value)}`;
+    let totalbayarNow=parseInt(totalbayarNumber.value)+parseInt(data.costs[0].cost[0].value);
+    totalbayar.value=`Rp ${rupiah(totalbayarNow)}`;
   })
   console.log(`GET data`, datas);
 })
