@@ -68,6 +68,7 @@ Beranda
             <th class="text-center">Aksi</th>
             <th>Nama</th>
             <th>Harga Produk</th>
+            <th class="text-center babeng-min-row">Berat</th>
             <th class="text-center babeng-min-row">Jumlah</th>
             <th class="text-center">Total Harga</th>
       </x-slot>

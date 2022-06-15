@@ -82,8 +82,14 @@ $img='https://ui-avatars.com/api/?name='.$items->nama.'&color=FFFFFF&background=
     <div class=" col-6 text-left mb-4 mb-lg-4">
         <div class="mt-5 mb-5 justify-start">
             <h3 class="mb-4"> {{$items->nama}}</h3>
-            <h4 class="mb-4 ">Harga : {{Fungsi::rupiah($items->harga_jual)}} /1 {{$items->satuan}}</h4>
-            <h5 class="mb-4">Stok : {{$stoktersedia}} {{$items->satuan}}</h5>
+            <h4 class="mb-4 ">Harga : {{Fungsi::rupiah($items->harga_jual)}}
+                {{-- /1 {{$items->satuan}} --}}
+            </h4>
+            <h5 class="mb-4">Stok : {{$stoktersedia}}
+                {{-- {{$items->satuan}} --}}
+            </h5>
+            <h5 class="mb-4">Berat : {{$items->berat}} gram
+            </h5>
             <p class="mb-5">{!!$items->desc!!}.</p>
             @php
                 $labels = \App\Models\label::where('parrent_id',$items->id)->where('prefix','produk')->get();
@@ -96,7 +102,7 @@ $img='https://ui-avatars.com/api/?name='.$items->nama.'&color=FFFFFF&background=
 
             @endforelse
             <div class="text-right mt-5">
-                <button class="btn btn-success"  onclick="storeProduk({{$items->id}},'{{$items->nama}}',{{$items->harga_jual}},{{$stoktersedia}})"> Tambahkan ke keranjang </button>
+                <button class="btn btn-success"  onclick="storeProduk({{$items->id}},'{{$items->nama}}',{{$items->harga_jual}},{{$stoktersedia}},0,0,{{ $items->berat }})"> Tambahkan ke keranjang </button>
             </div>
         </div>
 
