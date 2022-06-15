@@ -36,7 +36,7 @@ Laporan Laba Penjualan
             <div class="btn-group" role="group" aria-label="Third group">
                 <input type="month" class="form-control  @error('tgl') is-invalid @enderror" name="tgl" required  value="{{$tgl}}" id="inputBlnThn">
     {{-- <input type="hidden" id="blnthn" name="blnthn"> --}}
-    <button  type="submit" type="button" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Cetak">
+    <button  type="submit" type="button" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Pilih">
         <i class="fa-solid fa-hand-pointer"></i>
     </button>
     {{-- <button  type="submit" type="button" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Cetak">
