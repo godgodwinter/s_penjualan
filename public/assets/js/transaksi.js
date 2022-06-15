@@ -14,6 +14,7 @@ function refreshDataRestok() {
         <td>${el.nama}</td>
         <td>Rp ${rupiah(el.harga_asli)},00 / Stok : ${el.stok}</td>
         <td>Rp ${rupiah(el.harga_terjual)},00</td>
+        <td class="text-center">${el.berat}</td>
         <td class="text-center">${el.jumlah}</td>
         <td class="text-center">Rp ${rupiah(el.total)},00</td>
         </tr>`
@@ -21,7 +22,14 @@ function refreshDataRestok() {
         document.querySelector('#trbody').innerHTML = data;
         $('#cart').val(JSON.stringify(getData));
         let sumtotalbayar = getData.map(item => item.total).reduce((prev, next) => prev + next);
+        let totalberat = getData.map(item => item.berat * item.jumlah).reduce((prev, next) => prev + next);
+        $('#berat').val(totalberat);
+        $('#weight').val(totalberat);
         $('#totalbayar').val('Rp ' + rupiah(sumtotalbayar));
+        $('#totaltagihan').val('Rp ' + rupiah(sumtotalbayar));
+        $('#totalbayarNumber').val(sumtotalbayar);
+        $('#telp').val('');
+        $('#telp').val('');
     } else {
         document.querySelector('#trbody').innerHTML = '';
         $('#cart').val('');
@@ -34,19 +42,21 @@ function storeGetProduk() {
     // console.log(getData);
     return getData;
 }
-function storeProduk(id = null, nama = null, harga_jual = null, stok = null, terjual = null, stoktersedia = null) {
+function storeProduk(id = null, nama = null, harga_jual = null, stok = null, terjual = null, stoktersedia = null, berat = 0) {
     var dataTemp = {
         id: id,
         nama: nama,
         harga_asli: harga_jual,
         harga_terjual: harga_jual, //
         stok: stok,
+        berat: berat,
         // terjual:terjual,
         // stoktersedia:stoktersedia,
         jumlah: 0,
         total: 0,
         inputTerjual: 0,
     }
+    console.log(dataTemp, berat);
     //ambilDataLocalStorage
     //ubah menjadi array and object
     let getData = storeGetProduk();
@@ -150,6 +160,7 @@ function storeBtnApplyModalEdit(index = null) {
     $('#formModalEdit').modal('hide');
     // $('.close').click();
     refreshDataRestok();
+    getDataCity();
 
 }
 
@@ -173,7 +184,7 @@ function storeCariData(inputancari = '', inputanUrl = '#') {
             for (let i = 0; i < jmlDataResponse; i++) {
                 buttonContent = `<button  class="btn btn-dark">Add</button>`;
                 if (datas[i].stoktersedia > 0) {
-                    buttonContent = `<button  class="btn btn-info addProduk" onclick="storeProduk(${datas[i].id},'${datas[i].nama}',${datas[i].harga_jual},${datas[i].stoktersedia})">Add</button>`;
+                    buttonContent = `<button  class="btn btn-info addProduk" onclick="storeProduk(${datas[i].id},'${datas[i].nama}',${datas[i].harga_jual},${datas[i].stoktersedia},0,0,  ${datas[i].berat})">Add</button>`;
 
                 }
                 contentResponse += `
@@ -182,7 +193,7 @@ function storeCariData(inputancari = '', inputanUrl = '#') {
 <img src="${datas[i].img}" class="thumbnail img-responsive"  style="display: block;max-width: 100%;height: 200px;object-fit: cover">
 <div class="card-body">
 <h5 class="card-title">${datas[i].nama}</h5>
-<p class="card-text">Harga : Rp ${rupiah(datas[i].harga_jual)},00 - Stok : ${datas[i].stoktersedia}</p>
+<p class="card-text">Harga : Rp ${rupiah(datas[i].harga_jual)},00 - Stok : ${datas[i].stoktersedia}  - Berat : ${datas[i].berat} gram</p>
 ${buttonContent}
 </div>
 </div>

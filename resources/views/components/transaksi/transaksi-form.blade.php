@@ -6,6 +6,7 @@
               <th>Nama</th>
               <th>Harga Asli / Stok </th>
               <th>Harga Terjual</th>
+              <th class="text-center babeng-min-row">Berat</th>
               <th class="text-center babeng-min-row">Jumlah</th>
               <th class="text-center">Total Harga</th>
         </x-slot>
@@ -39,7 +40,7 @@ $(function () {
 });
             </script>
             @endpush
-        <tbody class="table-border-bottom-0" id="trbody"> 
+        <tbody class="table-border-bottom-0" id="trbody">
         </tbody>
         </x-slot>
     </x-babeng.table-two>

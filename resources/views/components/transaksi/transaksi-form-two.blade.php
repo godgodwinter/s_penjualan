@@ -34,7 +34,62 @@
             $("#buttonOffline").addClass("btn-dark text-secondary");
             $("#buttonOffline").removeClass("btn-info text-white");
         document.getElementById("inputTransaksiTipe").value = transaksiTipe;
-    let divOnlineString=`<label for="site-title" class="form-control-label col-sm-5 text-md-right">Alamat Penerima</label>
+        dataProvinsi=document.getElementById("dataProvinsi");
+    let divOnlineString=`
+    <div class="form-group row align-items-center py-2" id="divonline">
+            <label for="site-title" class="form-control-label col-sm-5 text-md-right">Pilih Provinsi</label>
+            <div class="col-sm-4 col-md-7">
+
+                <select class="js-example-basic-single form-control-sm @error('provinsi')
+                is-invalid
+            @enderror" name="provinsi"  style="width: 100%" id="dataProvinsi"  onchange="getDataProvinsi(this)" >
+                <option disabled selected value=""> Pilih Provinsi</option>
+
+              </select>
+              <input type="hidden" name="provinsi_id" id="provinsi_id" value="">
+              <input type="hidden" name="provinsi_nama" id="provinsi_nama" value="">
+              <input type="hidden" name="city_id" id="city_id" value="">
+              <input type="hidden" name="city_nama" id="city_nama" value="">
+
+              @error('provinsi')<div class="invalid-feedback"> {{$message}}</div>
+              @enderror
+
+            </div>
+            </div>
+
+          <div class="form-group row align-items-center py-2" id="divonline">
+            <label for="site-title" class="form-control-label col-sm-5 text-md-right">Pilih Kota</label>
+            <div class="col-sm-4 col-md-7">
+
+
+                <select class="js-example-basic-single form-control-sm @error('city')
+                is-invalid
+            @enderror" name="city"  style="width: 100%" id="dataCity"  onchange="getDataCity(this)" >
+                <option disabled selected value=""> Pilih Kota / Kabupaten</option>
+
+              </select>
+              <input type="hidden" name="city_nama" id="city_nama" value="">
+
+              @error('kota')<div class="invalid-feedback"> {{$message}}</div>
+              @enderror
+
+            </div>
+            </div>
+            <div class="form-group row align-items-center py-2" id="divonline">
+                <label for="site-title" class="form-control-label col-sm-5 text-md-right">No HP/WA</label>
+                <div class="col-sm-4 col-md-7">
+
+                  <input type="text" class="form-control  @error('telp') is-invalid @enderror" name="telp" required  value="">
+
+                  @error('telp')<div class="invalid-feedback"> {{$message}}</div>
+                  @enderror
+
+                </div>
+                </div>
+
+
+
+    <label for="site-title" class="form-control-label col-sm-5 text-md-right">Alamat Penerima</label>
             <div class="col-sm-4 col-md-7">
 
               <input type="text" class="form-control  @error('alamat') is-invalid @enderror" name="alamat" required  value="">
@@ -44,10 +99,14 @@
 
             </div>`;
         $("#divonline").html(divOnlineString);
+            getDatas()
+
         console.log("Online");
    });
 
    $("#buttonOffline").on("click", function(){
+    document.getElementById("totalbayar").value =document.getElementById("totaltagihan").value;
+    document.getElementById("ongkir").value =0;
         transaksiTipe='offline';
             $("#buttonOffline").addClass("btn-info text-white");
             $("#buttonOffline").removeClass("btn-dark");
@@ -124,6 +183,138 @@
         console.log("nonmember");
    });
 
+
+   let dataProvinsi=document.getElementById("dataProvinsi");
+    let dataCity=document.getElementById("dataCity");
+    let ongkir=document.getElementById("ongkir");
+    let totalbayarNumber=document.getElementById("totalbayarNumber");
+    let totalbayar=document.getElementById("totalbayar");
+    let weightInputan=document.getElementById("weight");
+// let dataKabupaten=document.getElementById("dataKabupaten");
+// let kab = document.getElementsByClassName("kab");
+        //ambildatanconst
+getDatas = async () => {
+    dataProvinsi=document.getElementById("dataProvinsi");
+//  axios.get('https://reqres.in/api/users')
+await axios.get('http://127.0.0.1:8000/pelanggan/rajaongkir/province',)
+ .then(response => {
+  let datas =  response.data.rajaongkir.results;
+
+//   dataKabupaten.remove();
+//     dataKecamatan.remove();
+dataProvinsi.innerHTML=`<option disabled selected value=""> Pilih Provinsi</option>`;
+  datas.forEach(function(data){
+    // console.log(data);
+    // addOption(data.id,data.nama);
+
+    dataProvinsi.innerHTML += `
+    <option value="${data.province_id}"> ${data.province}</option>
+    `;
+  })
+//   console.log(`GET data`, datas);
+// console.log('tes');
+})
+ .catch(error => console.error(error));
+};
+getDatas();
+
+
+
+function rupiah(angka){
+    var	number_string = angka.toString(),
+        sisa 	= number_string.length % 3,
+        rupiah 	= number_string.substr(0, sisa),
+        ribuan 	= number_string.substr(sisa).match(/\d{3}/g);
+
+    if (ribuan) {
+        separator = sisa ? '.' : '';
+        rupiah += separator + ribuan.join('.');
+    }
+    return rupiah;
+
+}
+// onchange
+getDataProvinsi=(sel)=>{
+
+let value = sel.value;
+let text = sel.options[sel.selectedIndex].text;
+provinsi_id.value=value;
+provinsi_nama.value=text;
+  console.log(value+' '+text);
+
+//ambildataKabupaten
+getDatasKota(value);
+
+
+}
+
+
+
+getDatasKota = async (id=11) => {
+    dataCity=document.getElementById("dataCity");
+//  axios.get('https://reqres.in/api/users')
+await axios.get(`http://127.0.0.1:8000/pelanggan/rajaongkir/city?provinsi_id=${id}`)
+ .then(response => {
+  let datas =  response.data.rajaongkir.results;
+
+//   dataKabupaten.remove();
+//     dataKecamatan.remove();
+dataCity.innerHTML=`<option disabled selected value=""> Pilih Kota / Kabupaten</option>`;
+  datas.forEach(function(data){
+
+    dataCity.innerHTML += `
+    <option value="${data.city_id}">${data.type} ${data.city_name} </option>
+    `;
+  })
+  console.log(`GET data`, datas);
+})
+ .catch(error => console.error(error));
+};
+
+
+// onchange
+getDataCity=async(sel=null)=>{
+
+     ongkir=document.getElementById("ongkir");
+     totalbayarNumber=document.getElementById("totalbayarNumber");
+     totalbayar=document.getElementById("totalbayar");
+     weightInputan=document.getElementById("weight");
+let provinsi_id=11,city=255,courir='jne',weight=100;
+
+weight=weightInputan.value;
+console.log(weight);
+if(sel){
+    let value = sel.value;
+let text = sel.options[sel.selectedIndex].text;
+city_id.value=value;
+city_nama.value=text;
+city=value;
+  console.log(value+' '+text);
+}
+
+//ambildataOngkir
+
+//  axios.get('https://reqres.in/api/users')
+await axios.get(`http://127.0.0.1:8000/pelanggan/rajaongkir/cost?provinsi_id=${provinsi_id}&city_id=${city}&courir=${courir}&weight=${weight}`)
+ .then(response => {
+  let datas =  response.data.rajaongkir.results;
+  datas.forEach(function(data){
+    // dataCity.innerHTML += `
+    // <option value="${data.city_id}">${data.type} ${data.city_name} </option>
+    // `;
+    console.log(data.name,data.code,data.costs,data.costs[0].cost[0].value);
+    // console.log(sumtotalbayar);
+    ongkir.value=data.costs[0].cost[0].value;
+    let totalbayarNow=parseInt(totalbayarNumber.value)+parseInt(data.costs[0].cost[0].value);
+    totalbayar.value=`Rp ${rupiah(totalbayarNow)}`;
+  })
+  console.log(`GET data`, datas);
+})
+ .catch(error => console.error(error));
+
+
+}
+
     });
 </script>
 @endpush
@@ -143,6 +334,10 @@
         <input type="hidden" class="form-control  @error('kodetrans') is-invalid @enderror" id="kodetrans" name="kodetrans" value="{{$kodetrans}}" >
 
         <input type="hidden" class="form-control  @error('cart') is-invalid @enderror" id="cart" name="cart"  >
+        <input type="hidden" class="form-control  @error('totalbayarNumber') is-invalid @enderror" id="totalbayarNumber" name="totalbayarNumber"  >
+
+
+
 
     <div class="row py-2 px-2" id="formtwo">
             <div class="form-group row align-items-center py-2">
@@ -156,9 +351,36 @@
 
 
 
+
         <div class="form-group row align-items-center py-2" id="divonline">
+
             <input type="hidden" class="form-control " name="alamat"   value="">
           </div>
+
+          <div class="form-group row align-items-center py-2" id="divonline">
+            <label for="site-title" class="form-control-label col-sm-5 text-md-right">Total Berat *) gram</label>
+            <div class="col-sm-4 col-md-7">
+
+              <input type="text" class="form-control  @error('berat') is-invalid @enderror" name="berat" required  value="0" readonly id="berat">
+              <input type="hidden" class="form-control  @error('weight') is-invalid @enderror" name="weight" required  value="0" readonly id="weight">
+
+              @error('berat')<div class="invalid-feedback"> {{$message}}</div>
+              @enderror
+
+            </div>
+            </div>
+
+          <div class="form-group row align-items-center py-2" id="divonline">
+            <label for="site-title" class="form-control-label col-sm-5 text-md-right">Total Ongkir</label>
+            <div class="col-sm-4 col-md-7">
+
+              <input type="text" class="form-control  @error('ongkir') is-invalid @enderror" name="ongkir" required  value="0" readonly id="ongkir">
+
+              @error('ongkir')<div class="invalid-feedback"> {{$message}}</div>
+              @enderror
+
+            </div>
+            </div>
 
 
         <div class="form-group row align-items-center py-2">
@@ -174,8 +396,20 @@
           </div>
 
 
-        <div class="form-group row align-items-center py-2">
+
+          <div class="form-group row align-items-center py-2">
             <label for="site-title" class="form-control-label col-sm-5 text-md-right">Total Tagihan</label>
+            <div class="col-sm-4 col-md-7">
+
+              <input type="text" class="form-control  @error('totaltagihan') is-invalid @enderror" name="totaltagihan"  readonly id="totaltagihan" value="0">
+
+              @error('totaltagihan')<div class="invalid-feedback"> {{$message}}</div>
+              @enderror
+
+            </div>
+          </div>
+        <div class="form-group row align-items-center py-2">
+            <label for="site-title" class="form-control-label col-sm-5 text-md-right">Total Bayar</label>
             <div class="col-sm-4 col-md-7">
 
               <input type="text" class="form-control  @error('totalbayar') is-invalid @enderror" name="totalbayar"  readonly id="totalbayar" value="0">
