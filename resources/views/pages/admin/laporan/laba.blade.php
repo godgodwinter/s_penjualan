@@ -1,8 +1,8 @@
 @extends('layouts.default')
-
+{{-- https://www.jurnal.id/id/blog/cara-menghitung-laba-bersih/ --}}
 @section('title')
 Laporan Laba Penjualan
- (proses)
+
 @endsection
 
 @push('before-script')
@@ -15,7 +15,9 @@ Laporan Laba Penjualan
 @section('content')
 <x-jstooltip/>
     <x-jsdatatable/>
-    <h4 class="fw-bold py-3 mb-4">@yield('title')</h4>
+    <h4 class="fw-bold py-3 mb-4">@yield('title')
+        {{-- - (proses) tes {{ Fungsi::getHargaBeliMonth(1,'2022-07') }} --}}
+    </h4>
     <div class="card px-2">
         <div class="row">
           <div class="col-xl-6 mb-xl-0 mb-3">
@@ -30,75 +32,16 @@ Laporan Laba Penjualan
 @push('after-style')
 <script src="{{asset('/assets/js/babeng.js')}}"></script>
 @endpush
-    <script>
-            //fungsi
-                function fnPilihBlnThn(e){
-                    $('#blnthn').val(e.value);
-                    // console.log(e.value);
-                    //ajax fetch data with 2 field
-                    $.ajax({
-                        url: "{{route('api.laporan.penjualan')}}",
-                        type: "GET",
-                        data: {
-                            'blnthn': e.value
-                        },
-                        dataType: "json",
-                        success: function(data){
-                            // console.log(data);
-                            let itemsBodyContent=``;
-                             data.data.forEach(function(item, index){
-                    pelanggan='';
-                    warnapelanggan='info';
-                    warnatransaksi='secondary';
-                    warnastatus='secondary';
-                    if(item.pelanggan_tipe=='member'){
-                        warnapelanggan='success';
-                        pelanggan=item.pelanggan?item.pelanggan.nama:item.pelanggan_id;
-                    }else{
-                        pelanggan=item.pelanggan_id;
-                    }
-                    if(item.transaksi_tipe=='online'){
-                        warnatransaksi='success';
-                    }
-                    if(item.status=='success'){
-                        warnastatus='success';
-                    }
-
-                    if(item.status=='cancel'){
-                        warnastatus='danger';
-                    }
-                                itemsBodyContent+=`
-                                <tr>
-                                    <td>${index+1}</td>
-                                    <td>
-                                        <button class="btn btn-info btn-sm" onclick="btnModalDetailTransaksi('{{url("/")}}/restapi/datatransaksi/${item.id}',${item.id})" data-bs-toggle="modal" data-bs-target="#modalDetailTransaksi"><span
-                            class="pcoded-micon"> <i class="fa-solid fa-angles-right"></i></span></button>
-                                    </td>
-                                    <td>${tanggalindo(item.tglbeli)}</td>
-                                    <td><span class="btn btn-${warnastatus} me-1 text-dark text-capitalize">${item.status}</span></td>
-                <td class="text-center babeng-min-row">${pelanggan}  <span class="btn btn-${warnapelanggan} text-dark me-1 text-capitalize">${item.pelanggan_tipe}</span> </td>
-                <td class="text-center"><span class="btn btn-${warnatransaksi} me-1 text-capitalize text-dark">${item.transaksi_tipe}</span></td>
-                <td class="text-center">${item.jumlahproduk}</td>
-                <td class="text-center">${item.jumlahbarang}</td>
-                <td class="text-center">${rupiah(item.totalbayar)}</td>
-                <td class="text-center">${item.penanggungjawab}</td>
-                                </tr>
-                                `;
-                            });
-
-                            $('#itemsBody').html(itemsBodyContent);
-                        }
-                    });
-
-                }
-    </script>
+<form action="{{route('admin.laporanlaba')}}" method="get" >
             <div class="btn-group" role="group" aria-label="Third group">
-                <input type="month" onchange="fnPilihBlnThn(this)" class="form-control  @error('tgl') is-invalid @enderror" name="tgl" required  value="{{old('tgl')?old('tgl'):$tgl}}" id="inputBlnThn">
-<form action="{{route('admin.laporanpenjualan.cetak')}}">
-    <input type="hidden" id="blnthn" name="blnthn">
+                <input type="month" class="form-control  @error('tgl') is-invalid @enderror" name="tgl" required  value="{{old('tgl')?old('tgl'):$tgl}}" id="inputBlnThn">
+    {{-- <input type="hidden" id="blnthn" name="blnthn"> --}}
     <button  type="submit" type="button" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Cetak">
-        <i class="fa-solid fa-print"></i>
+        <i class="fa-solid fa-hand-pointer"></i>
     </button>
+    {{-- <button  type="submit" type="button" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Cetak">
+        <i class="fa-solid fa-print"></i>
+    </button> --}}
 </form>
             </div>
 
@@ -106,73 +49,72 @@ Laporan Laba Penjualan
           </div>
         </div>
     </div>
-    <div class="card">
-        <div class="table-responsive px-2 py-2">
-          <table id="datatable" class="table table-striped table-bordered table-md">
-            <thead>
-              <tr>
-                <th class="babeng-min-row text-center">No</th>
-                <th class="text-center">Aksi</th>
-                <th>Tanggal Pembelian</th>
-                <th>Nama Pelanggan</th>
-                <th class="babeng-min-row text-center">Jumlah Produk</th>
-                <th class="babeng-min-row text-center">Jumlah Barang</th>
-                <th class="babeng-min-row text-center">Total Tagihan</th>
-                <th class="babeng-min-row text-center">Laba</th>
-              </tr>
-            </thead>
-            <tbody class="table-border-bottom-0" id="itemsBody">
-                @forelse ($items as $item)
-                @php
-                $url=route('api.transaksi.detail',$item->id);
-                    $pelanggan='';
-                    $warnapelanggan='info';
-                    $warnatransaksi='secondary';
-                    $warnastatus='secondary';
-                    if($item->pelanggan_tipe=='member'){
-                        $warnapelanggan='success';
-                        $pelanggan=$item->pelanggan?$item->pelanggan->nama:'Pelangan tidak ditemukan';
-                    }else{
-                        $pelanggan=$item->pelanggan_id;
-                    }
-                    if($item->transaksi_tipe=='online'){
-                        $warnatransaksi='success';
-                    }
-                    if($item->status=='success'){
-                        $warnastatus='success';
-                    }
+@php
+    $totalpendapatan=0;
+    $jml=0;
+    foreach($items as $item){
+        $gethargabeli=\App\Models\transaksidetail::where('transaksi_id',$item->id)->get();
+        $jml=\App\Models\transaksidetail::where('transaksi_id',$item->id)->sum('jml');
+        foreach($gethargabeli as $gh){
+            $totalpendapatan+=$gh->jml*$gh->harga_jual;
+        }
+    }
+    // dd($items,$gethargabeli,$jml);
+@endphp
 
-                    if($item->status=='cancel'){
-                        $warnastatus='danger';
-                    }
-                @endphp
-                <tr>
-                    <td class="text-center">{{$loop->index+1}}</td>
-                    <td>
-                        <button class="btn btn-info btn-sm" onclick="btnModalDetailTransaksi('{{$url}}',{{$item->id}})" data-bs-toggle="modal" data-bs-target="#modalDetailTransaksi"><span
-                            class="pcoded-micon"> <i class="fa-solid fa-angles-right"></i></span></button>
+        <div class="card py-4">
+            <div class="container">
+                 <h4>Total Pendapatan  = {{ Fungsi::rupiah($totalpendapatan) }} ({{ $jml }}) Barang  </h4>
+             </div>
 
-                    </td>
-                    <td>{{Fungsi::tanggalindo($item->tglbeli)}}</td>
-                <td class="text-center babeng-min-row">{{$pelanggan}}  <span class="btn btn-{{$warnapelanggan}} text-dark me-1 text-capitalize">{{$item->pelanggan_tipe}}</span> </td>
-                @php
-                    $jumlahproduk = \App\Models\transaksidetail::where('transaksi_id',$item->id)->count();
-                    $jumlahbarang = \App\Models\transaksidetail::where('transaksi_id',$item->id)->sum('jml');
-                @endphp
-                <td class="text-center">{{$jumlahproduk}}</td>
-                <td class="text-center">{{$jumlahbarang}}</td>
-                <td class="text-center">{{Fungsi::rupiah($item->totalbayar)}}</td>
-                <td class="text-center">{{$item->penanggungjawab}}</td>
-                </tr>
-
-                @empty
-
-                @endforelse
-
-            </tbody>
-          </table>
-        </div>
+@php
+$beban=0;
+$jml=0;
+foreach($items as $item){
+    $gethargabeli=\App\Models\transaksidetail::where('transaksi_id',$item->id)->get();
+    $jml=\App\Models\transaksidetail::where('transaksi_id',$item->id)->sum('jml');
+    foreach($gethargabeli as $gh){
+        $hargabeli=Fungsi::getHargaBeliMonth($gh->produk_id,$item->tglbeli);
+        $beban+=$gh->jml*$hargabeli;
+    }
+}
+// dd($items,$gethargabeli,$jml);
+$lababersih=0;
+$lababersih=$totalpendapatan-$beban;
+$marginlababersih=0;
+if($totalpendapatan>0){
+$marginlababersih=round(($lababersih/$totalpendapatan*100),2);
+}
+@endphp
+            <div class="container">
+                {{-- beban = jumlah barang * rata-rata harga_beli(restok) --}}
+                  <h4>Beban =  {{ Fungsi::rupiah($beban) }} ({{ $jml }}) Barang </h4>
+            </div>
+            <div class="container">
+                {{-- Laba Bersih = Total Pendapatan – Total Pengeluaran (beban) --}}
+                  <h4> Laba Bersih = {{ Fungsi::rupiah($lababersih) }} </h4>
+            </div>
+            <div class="container">
+                {{-- Margin Laba Bersih = (Laba Bersih / Total Pendapatan) X 100 --}}
+                  <h4> Margin Laba Bersih = {{ $marginlababersih }} %</h4>
+            </div>
     </div>
+
+
+    <div class="card py-10">
+        <div class="container">
+             <h4>Catatan :</h4>
+<ol>
+    <li> <code> Total Pendapatan = jumlah barang * hargajual(transaksi)</code></li>
+    <li><code> beban = jumlah barang(transaksi) * rata-rata harga_beli(restok)</code></li>
+    <li><code>Laba Bersih = Total Pendapatan – Total Pengeluaran (beban)</code></li>
+    <li> <code> Margin Laba Bersih = (Laba Bersih / Total Pendapatan) X 100</code></li>
+</ol>
+
+
+
+
+         </div>
 
 @push('before-script')
 <script>

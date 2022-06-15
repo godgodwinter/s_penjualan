@@ -37,15 +37,25 @@ class laporanController extends Controller
     }
     public function laba(Request $request)
     {
+        $date = date('Y-m');
+        if ($request->has('tgl')) {
+            $date = $request->tgl;
+        }
+        // dd($date);
+        $tgl = $date;
+
+        $year = substr($date, 0, 4);
+        $month = substr($date, 5, 2);
+        $day = substr($date, 8, 2);
         #WAJIB
         $pages = 'laporanpenlaba';
         $items = transaksi::orderBy('tglbeli', 'desc')
             ->with('transaksidetail')
             ->where('status', 'success')
             ->orderBy('id', 'desc')
-            ->WhereMonth('tglbeli', date('m'))
-            ->WhereYear('tglbeli', date('Y'))
+            ->WhereMonth('tglbeli', $month)
+            ->WhereYear('tglbeli', $year)
             ->get();
-        return view('pages.admin.laporan.laba', compact('items', 'request', 'pages'));
+        return view('pages.admin.laporan.laba', compact('items', 'request', 'pages', 'tgl'));
     }
 }
