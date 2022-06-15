@@ -106,7 +106,7 @@
             <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
               {{-- <i class="bx bx-chevron-left bx-sm align-middle"></i> --}}
               <i class="fa-solid fa-circle-chevron-left pt-1 text-center align-middle"></i>
-              
+
             </a>
           </div>
 
@@ -171,7 +171,7 @@
                     <div class="avatar avatar-online">
                       {{-- <img src="{{ asset('/') }}assets/template/sneat/assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" /> --}}
                       <img src="https://ui-avatars.com/api/?name={{Auth::user()?Auth::user()->name:'Belum Login'}}&color=7F9CF5&background=EBF4FF" class="w-px-40 h-auto rounded-circle"  style="display: block;max-width: 100%;height: 200px;object-fit: cover">
-                            
+
                     </div>
                   </a>
                   <ul class="dropdown-menu dropdown-menu-end">
@@ -260,7 +260,7 @@
                   <script>
                     document.write(new Date().getFullYear());
                   </script>
-                  - BaemonTeam , Template admin by
+                  - TimDev , Template admin by
                   <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">ThemeSelection</a>
                 </div>
                 <div>
