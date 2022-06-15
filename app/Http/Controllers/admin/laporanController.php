@@ -48,7 +48,7 @@ class laporanController extends Controller
         $month = substr($date, 5, 2);
         $day = substr($date, 8, 2);
         #WAJIB
-        $pages = 'laporanpenlaba';
+        $pages = 'laporanlaba';
         $items = transaksi::orderBy('tglbeli', 'desc')
             ->with('transaksidetail')
             ->where('status', 'success')
