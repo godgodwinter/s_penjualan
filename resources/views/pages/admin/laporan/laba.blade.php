@@ -27,14 +27,14 @@ Laporan Laba Penjualan
               aria-label="Toolbar with button groups"
             >
             @php
-                $tgl=date('Y-m');
+                $tgl=$tgl?$tgl:date('Y-m');
             @endphp
 @push('after-style')
 <script src="{{asset('/assets/js/babeng.js')}}"></script>
 @endpush
 <form action="{{route('admin.laporanlaba')}}" method="get" >
             <div class="btn-group" role="group" aria-label="Third group">
-                <input type="month" class="form-control  @error('tgl') is-invalid @enderror" name="tgl" required  value="{{old('tgl')?old('tgl'):$tgl}}" id="inputBlnThn">
+                <input type="month" class="form-control  @error('tgl') is-invalid @enderror" name="tgl" required  value="{{$tgl}}" id="inputBlnThn">
     {{-- <input type="hidden" id="blnthn" name="blnthn"> --}}
     <button  type="submit" type="button" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Cetak">
         <i class="fa-solid fa-hand-pointer"></i>
