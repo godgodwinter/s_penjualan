@@ -13,7 +13,7 @@
         @csrf
     <div class="row py-2 px-2">
         <div class="form-group row align-items-center py-2">
-            <label for="site-title" class="form-control-label col-sm-3 text-md-right">Upload Bukti Pembayaran <br>.jpg / .png / .svg || Max 2Mb</label>
+            <label for="site-title" class="form-control-label col-sm-3 text-md-right">Upload Photo Produk <br>.jpg / .png / .svg || Max 2Mb</label>
             <div class="col-sm-6 col-md-9">
 
               <input type="file" class="form-control  @error('photo') is-invalid @enderror" name="photo" required  value="{{old('photo')?old('photo'):$photo}}" id="formFile" onchange="preview()">
