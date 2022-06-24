@@ -39,7 +39,7 @@ $(function () {
 });
             </script>
             @endpush
-        <tbody class="table-border-bottom-0" id="trbody"> 
+        <tbody class="table-border-bottom-0" id="trbody">
         </tbody>
         </x-slot>
     </x-babeng.table-two>
