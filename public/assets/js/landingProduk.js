@@ -198,7 +198,7 @@ function storeCariData(inputancari = '', inputanUrl = '#') {
 
                 contentResponse += `<a href = "produk/${datas[i].slug}"  class="mb-2 ml-2 btn btn-primary addProduk" > Detail</a> `;
                 if (datas[i].stoktersedia > 0) {
-                    contentResponse += `<button  class="btn btn-${datas[i].stoktersedia < 1 ? 'dark' : 'info'} addProduk " onclick = "storeProduk(${datas[i].id},'${datas[i].nama}',${datas[i].harga_jual},${datas[i].stoktersedia},  ${datas[i].berat})" > Tambahkan ke Keranjang</button> `;
+                    contentResponse += `<button  class="btn btn-${datas[i].stoktersedia < 1 ? 'dark' : 'info'} addProduk " onclick = "storeProduk(${datas[i].id},'${datas[i].nama}',${datas[i].harga_jual},0,0,${datas[i].stoktersedia},  ${datas[i].berat})" > Tambahkan ke Keranjang </button> `;
                 } else {
                     contentResponse += `<button  class="btn btn-${datas[i].stoktersedia < 1 ? 'dark' : 'info'} addProduk" onclick = "return  confirm('Stok Habis!')" > Tambahkan Keranjang</button> `;
 
