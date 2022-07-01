@@ -5,10 +5,10 @@
         {{-- </td> --}}
         <td width="100%" align="center">
             <p><b>
-                    <font size="14px"> TOKO MAJU SEJAHTERA
-                        <br> No.10 HP. 085123456123 / 0341123456 Malang - Jawa Timur </font>
+                    <font size="14px"> TOKO BANGUNAN EVA JAYA
+                        </font>
                 </br><br>
-                <font size="12px">Sekretariat Letjen Ahmad Yani V. 48 Tlp. (0341) 123456 Malang - Jawa Timur <br> email: admin@gmail.com / ABCD-1235678.AB.11.12.Tahun 2022</font>
+                <font size="12px">Jln. Sunan kali jaga RT 08 RW 01  Dusun Ngipek Desa Kanigoro <br>  Kecamatan Pagelaran Kabupaten Malang <br>  Tlp. +62 857-0419-2502  - No Rek : 6769-4568953 - H. Nasuki</font>
         </td>
     </tr>
 </table>
